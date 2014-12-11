@@ -1,5 +1,3 @@
-# Installations
-
 ## General
 
 - VLC Media Player
