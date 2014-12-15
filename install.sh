@@ -4,7 +4,7 @@ declare -r olddir="dotfiles_old"
 
 echo $olddir
 
-mkdir -p $olddir
+mkdir -p ~/$olddir
 
 for file in `ls ~/dotfiles/*.symlink`; do
 	# echo $file
@@ -13,7 +13,7 @@ for file in `ls ~/dotfiles/*.symlink`; do
 	dotfile="${filename%.*}"
 	# echo $dotfile
 	# echo "--remove-destination ~/.$dotfile $olddir/$dotfile.old"
-	cp -u -v --remove-destination ~/.$dotfile $olddir/$dotfile.old
+	cp -u -v --remove-destination ~/.$dotfile ~/$olddir/$dotfile.old
 	rm ~/.$dotfile
 	# echo "ln -s $file ~/.$dotfile"
 	ln -s $file ~/.$dotfile
