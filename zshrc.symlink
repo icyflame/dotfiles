@@ -78,3 +78,6 @@ export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source /opt/ros/indigo/setup.zsh
+export ROS_WORKSPACE=~/ros_workspace
+export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
