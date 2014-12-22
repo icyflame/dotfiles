@@ -18,7 +18,7 @@ runtime! debian.vim
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 if has("syntax")
-  syntax on
+	syntax on
 endif
 
 set nocompatible              " be iMproved, required
@@ -75,8 +75,24 @@ syntax on
 filetype plugin on
 filetype plugin indent on
 
+set ignorecase " ignores case when searching
+set hlsearch " highlight the search results
+set incsearch " search works like modern web browsers
+
+" remap leader to , character
+let g:mapleader=","
+
+" the write shortcut
+nmap <leader>w :w<cr>
+
+" indent the whole file
+nmap <leader>i gg=G<cr>
+
+" indent the whole file, write and exit vim.
+nmap <leader>x gg=G:w<cr>ZZ
+
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
+	source /etc/vim/vimrc.local
 endif
 
