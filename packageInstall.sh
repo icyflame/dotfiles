@@ -7,6 +7,11 @@ sudo apt-get install gitg
 
 sudo apt-get install vim
 
+# install ruby
+
+sudo apt-get install ruby-full
+gem install rails --verbose
+
 # install and configure zsh
 # https://gist.github.com/tsabat/1498393
 
