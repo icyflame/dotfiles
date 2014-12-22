@@ -9,6 +9,7 @@ sudo apt-get install vim
 
 # install ruby
 
+sudo apt-get install nodejs
 sudo apt-get install ruby-full
 gem install rails --verbose
 
