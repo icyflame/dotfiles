@@ -35,7 +35,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 "
-
+call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 "set background=dark
