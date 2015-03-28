@@ -79,7 +79,7 @@ export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/
 #
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
-
+alias connectauv="ssh -X teamauv@192.168.10.12"
 alias drived="cd /media/New\ Volume/"
 alias drivee="cd /media/General/"
 alias gpoa="git push origin --all"
