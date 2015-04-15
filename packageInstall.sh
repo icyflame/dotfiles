@@ -12,6 +12,9 @@ sudo apt-get install vim
 sudo apt-get install nodejs
 sudo apt-get install ruby-full
 gem install rails --verbose
+sudo su
+gem install devise --verbose
+gem install zeus --verbose
 
 # install and configure zsh
 # https://gist.github.com/tsabat/1498393
