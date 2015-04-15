@@ -34,6 +34,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-rails'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
