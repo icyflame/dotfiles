@@ -80,6 +80,8 @@ alias gpoa="git push origin --all"
 alias gpot="git push origin --tags"
 alias gru="git remote update"
 alias glod="git log --oneline --decorate"
+
+alias getvideo="youtube-dl -citk --max-quality FORMAT "
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source /opt/ros/indigo/setup.zsh
 export ROS_WORKSPACE=~/ros_workspace
