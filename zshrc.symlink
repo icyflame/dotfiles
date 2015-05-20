@@ -3,9 +3,6 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="avit"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -43,13 +40,9 @@ ZSH_THEME="avit"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(rails git)
 
 source $ZSH/oh-my-zsh.sh
-# source ~/django-user/bin/activate
 
 # User configuration
 
@@ -82,7 +75,6 @@ alias gru="git remote update"
 alias glod="git log --oneline --decorate"
 
 alias getvideo="youtube-dl -citk --max-quality FORMAT "
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 source /opt/ros/indigo/setup.zsh
 export ROS_WORKSPACE=~/ros_workspace
 export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
