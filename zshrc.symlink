@@ -64,20 +64,54 @@ export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+#
+# temporary
+alias hiper="drived && cd hiperware/"
+alias anet="drived && cd alumni-cell-git-repo/networking-rails/"
 
+# zsh
 alias zshconfig="vim ~/.zshrc"
+
+# ssh
+alias v="ssh -X teamauv@192.168.10.12"
 alias connectauv="ssh -X teamauv@192.168.10.12"
+alias connectalum="ssh -X alumni@10.3.103.247"
+
+# switch drives
 alias drived="cd /media/New\ Volume/"
 alias drivee="cd /media/General/"
+
+# git <3
+
+# gpoa : Push all branches to origin
 alias gpoa="git push origin --all"
+
+# gpot : Push all tags to origin
 alias gpot="git push origin --tags"
+
+# gru : Remote the status of all remote repositories
 alias gru="git remote update"
+
+# glod : Decorated one line log (Shows the short SHA of each commit)
 alias glod="git log --oneline --decorate"
 
+# pl : Pretty git log for humans. (Name on Date : Commit subject)
+alias pl="git log --pretty=format:'%an on %cd: %s' --date=short" 
+
+# getvideo : getvideo URL 
+# URL : Video URL | Playlist URL | video on playlist URL
 alias getvideo="youtube-dl -citk --max-quality FORMAT "
+
+alias fuck='$(thefuck $(fc -ln -1))'
+
+# ROS : ros.org
 source /opt/ros/indigo/setup.zsh
 export ROS_WORKSPACE=~/ros_workspace
 export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
+
+# rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# added by travis gem
+[ -f /home/siddharth/.travis/travis.sh ] && source /home/siddharth/.travis/travis.sh
