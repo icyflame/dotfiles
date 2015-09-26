@@ -112,6 +112,10 @@ alias ws="wallet stats"
 # URL : Video URL | Playlist URL | video on playlist URL
 alias getvideo="youtube-dl -citk --max-quality FORMAT "
 
+# serve port_number : Create a Simple HTTP Server
+# Using Python. Port defaults to 8000.
+alias serve="python -m SimpleHTTPServer $1"
+alias serve_php="php -S localhost:8000"
 # srnm : sudo restart network-manager
 alias srnm="sudo restart network-manager"
 
