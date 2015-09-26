@@ -8,6 +8,7 @@
 [core]
 	editor = vim
 	excludesfile = /home/siddharth/.gitignore_global
+	autocrlf = input
 [url "https://"]
 	insteadOf = git://
 [http]
@@ -31,3 +32,5 @@
 	untracked = cyan
 [credential]
 	helper = cache --timeout 36000
+[hub]
+	protocol = https
