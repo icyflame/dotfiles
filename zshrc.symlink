@@ -102,6 +102,11 @@ alias pl="git log --pretty=format:'%an on %cd: %s' --date=short"
 alias gpo="git push origin"
 alias gpu="git push upstream"
 alias gph="git push heroku"
+alias gpi="git push icyflame"
+
+# terminal-wallet : NPM module
+alias wd="wallet debit"
+alias ws="wallet stats"
 
 # getvideo : getvideo URL 
 # URL : Video URL | Playlist URL | video on playlist URL
