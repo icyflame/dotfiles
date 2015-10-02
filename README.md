@@ -1,10 +1,9 @@
 ## General
 
 - VLC Media Player
-- Google Chrome
+- Google Chrome (?) Read [this](http://icyflame.github.io/blog/linux/2015/10/03/chromium-vs-firefox/)!
 
-## Programming
-- Terminator
+## From the terminal
 - zsh 
     - ~/.zshrc file
 - git
@@ -13,7 +12,16 @@
 - vim
 		- Install Vundle
     - vimrc file
-- Sublime Text
+- htop
+- node
+- npm
+    - terminal-wallet
+    - CLI Cube Timer
+    - vtop
+
+## Programming
+
+- Atom
 
 ## Files
 
