@@ -41,6 +41,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'git_patch_tags.vim'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
