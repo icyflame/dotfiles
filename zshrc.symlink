@@ -162,6 +162,17 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 export NVM_DIR="/home/siddharth/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+# To differentiate aliases from other command types
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+
+# To have paths colored instead of underlined
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+
+# To disable highlighting of globbing expressions
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+
 plugins=(rails git zsh-syntax-highlighting)
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
