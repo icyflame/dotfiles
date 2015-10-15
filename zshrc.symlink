@@ -118,6 +118,7 @@ alias getvideo="youtube-dl -citk --max-quality FORMAT "
 # Using Python. Port defaults to 8000.
 alias serve="python -m SimpleHTTPServer $1"
 alias serve_php="php -S localhost:8000"
+alias serve_django="python manage.py runserver"
 
 # Generate a random string
 alias rand="echo `date` | sha256sum"
