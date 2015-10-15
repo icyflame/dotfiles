@@ -68,6 +68,7 @@ export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/
 # temporary
 alias hiper="drived && cd hiperware/"
 alias anet="drived && cd alumni-cell-git-repo/networking-rails/"
+alias amentor="drived && cd alumni-cell-git-repo/mentorship-portal/mentorship-portal-private-repo"
 
 # zsh
 alias zshconfig="vim ~/.zshrc"
@@ -77,9 +78,10 @@ alias v="ssh -X teamauv@192.168.10.12"
 alias connectauv="ssh -X teamauv@192.168.10.12"
 alias connectalum="ssh -X alumni@10.3.103.247"
 
-# switch drives
+# switch drives and filesystem
 alias drived="cd /media/New\ Volume/"
 alias drivee="cd /media/General/"
+alias acads="cd /media/New\ Volume/KGP/KGP\ Acads/KGP\ Academics/Sem\ 5\ --\ Autumn\ 2015"
 
 # git <3
 
