@@ -42,8 +42,6 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # plugins=(rails git)
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/siddharth/.rvm/bin:/home/siddharth/.rvm/bin"
@@ -163,15 +161,34 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export NVM_DIR="/home/siddharth/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+# export https_proxy="http://10.3.100.207:8080"
+
+## Main Highlighter
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+
 # To differentiate aliases from other command types
-ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold,underline'
 
 # To have paths colored instead of underlined
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 # To disable highlighting of globbing expressions
-ZSH_HIGHLIGHT_STYLES[globbing]='none'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=crimson'
+
+# To define styles for nested brackets up to level 4
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
+
+# plugins=(rails git zsh-syntax-highlighting)
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+source $ZSH/oh-my-zsh.sh
+
+alias gru="git remote update"
 
 plugins=(rails git zsh-syntax-highlighting)
 
