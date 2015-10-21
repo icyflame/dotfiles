@@ -83,6 +83,12 @@ alias acads="cd /media/New\ Volume/KGP/KGP\ Acads/KGP\ Academics/Sem\ 5\ --\ Aut
 
 # git <3
 
+# gst : Status of the repository
+alias gst="git status"
+
+# gb
+alias gb="git branch"
+
 # gpoa : Push all branches to origin
 alias gpoa="git push origin --all"
 
