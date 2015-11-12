@@ -89,6 +89,21 @@ alias gst="git status"
 # gb
 alias gb="git branch"
 
+# gc
+alias gc="git commit"
+
+# ga
+alias ga="git add"
+
+# gd
+alias gd="git diff"
+
+# gr
+alias gr="git remote"
+
+# gco
+alias gco="git checkout"
+
 # gpoa : Push all branches to origin
 alias gpoa="git push origin --all"
 
