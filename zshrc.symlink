@@ -156,7 +156,11 @@ alias tmux="tmux -u"
 # then use Ctrl+V to paste
 alias clip="xclip -selection clipboard"
 
+# utility : thefuck
 alias fuck='$(thefuck $(fc -ln -1))'
+
+# utility : show cron log, from syslog
+alias cronlog='less /var/log/syslog | grep -i cron'
 
 # ROS : ros.org
 source /opt/ros/indigo/setup.zsh
