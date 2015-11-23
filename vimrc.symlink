@@ -93,12 +93,16 @@ let g:mapleader=","
 
 " the write shortcut
 nmap <leader>w :w<cr>
+nmap <leader>W :w<cr>
 
 " indent the whole file
 nmap <leader>i gg=G<cr>
 
 nmap <leader>z :w<cr>ZZ
+nmap <leader>Z :w<cr>Z
 
+nmap <leader>sp :set paste<cr>i
+nmap <leader>snp :set nopaste<cr>ii
 " indent the whole file, write and exit vim.
 nmap <leader>x gg=G:w<cr>ZZ
 
