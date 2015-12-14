@@ -101,6 +101,12 @@ alias gd="git diff"
 # gr
 alias gr="git remote"
 
+# gm
+alias gm="git merge"
+
+# gp
+alias gp="git push"
+
 # gco
 alias gco="git checkout"
 
@@ -162,14 +168,18 @@ alias fuck='$(thefuck $(fc -ln -1))'
 # utility : show cron log, from syslog
 alias cronlog='less /var/log/syslog | grep -i cron'
 
+# utility : run for long running tasks like grunt
+# run as grunt; alert
+alias alert="notify-send -t 2000 'Command executed'"
+
 # ROS : ros.org
 source /opt/ros/indigo/setup.zsh
 export ROS_WORKSPACE=~/ros_workspace
 export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
 # added by travis gem
 [ -f /home/siddharth/.travis/travis.sh ] && source /home/siddharth/.travis/travis.sh
@@ -186,7 +196,11 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export NVM_DIR="/home/siddharth/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# export http_proxy="http://10.3.100.207:8080"
 # export https_proxy="http://10.3.100.207:8080"
+
+## set default editor for Cron
+export EDITOR="vim"
 
 ## Main Highlighter
 
@@ -215,6 +229,16 @@ source $ZSH/oh-my-zsh.sh
 
 alias gru="git remote update"
 
-plugins=(rails git zsh-syntax-highlighting)
+# Load zsh-syntax-highlighting.
+# source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+# Load zsh-autosuggestions.
+source ~/.zsh/zsh-autosuggestions/autosuggestions.zsh
+
+# Enable autosuggestions automatically.
+zle-line-init() {
+    zle autosuggest-start
+}
+zle -N zle-line-init
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
