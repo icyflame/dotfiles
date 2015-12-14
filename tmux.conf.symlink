@@ -1,0 +1,45 @@
+# List of plugins
+# Supports `github_username/repo` or full git repo URLs
+set -g @tpm_plugins '              \
+  tmux-plugins/tpm                 \
+	tmux-plugins/tmux-resurrect      \
+	tmux-plugins/tmux-yank           \
+	tmux-plugins/tmux-copycat        \
+	tmux-plugins/tmux-continuum			 \
+'
+# Other examples:
+# github_username/plugin_name    \
+# git@github.com/user/plugin     \
+# git@bitbucket.com/user/plugin  \
+
+# renumber windows sequentially after closing any of them
+set -g renumber-windows on
+
+# configuration file from: https://github.com/NdYAG/dotfiles/blob/master/_tmux.conf
+
+set -g prefix C-b
+setw -g mode-mouse on
+set -g mouse-select-pane on
+set -g mouse-resize-pane on
+
+
+set -g pane-border-fg black
+set -g pane-active-border-fg blue
+
+
+setw -g window-status-format "#[fg=white]#[bg=blue] #I #[bg=blue]#[fg=white] #W "
+setw -g window-status-current-format "#[bg=brightmagenta]#[fg=white] *#I #[fg=white,bold]#[bg=cyan] [#W] "
+
+
+# set-option -g status-position top
+set -g status-fg white
+set -g status-bg blue
+set -g status-right '#(is-online) | #(acpi | cut -d ',' -f 2) | %a %d-%m %H:%M'
+
+# use ctrl to jump words
+set-window-option -g xterm-keys on
+
+# Initializes TMUX plugin manager.
+# Keep this line at the very bottom of tmux.conf.
+run-shell '~/.tmux/plugins/tpm/tpm'
+
