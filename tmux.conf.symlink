@@ -16,6 +16,10 @@ set -g @tpm_plugins '              \
 set -g renumber-windows on
 
 
+# setup continuum to automatically restore everything when
+# tmux is started
+set -g @continuum-restore 'on'
+
 # bind alt-r to reloading source-file
 unbind r
 bind r source-file ~/.tmux.conf
