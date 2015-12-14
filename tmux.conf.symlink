@@ -22,6 +22,9 @@ setw -g mode-mouse on
 set -g mouse-select-pane on
 set -g mouse-resize-pane on
 
+# start window index of 1
+set-option -g base-index 1
+setw -g pane-base-index 1
 
 set -g pane-border-fg black
 set -g pane-active-border-fg blue
