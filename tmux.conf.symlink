@@ -15,6 +15,9 @@ set -g @tpm_plugins '              \
 # renumber windows sequentially after closing any of them
 set -g renumber-windows on
 
+# Don't auto rename windows
+set-window-option -g automatic-rename off
+set-option -g allow-rename off
 
 # setup continuum to automatically restore everything when
 # tmux is started
