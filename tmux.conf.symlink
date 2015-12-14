@@ -16,6 +16,10 @@ set -g @tpm_plugins '              \
 set -g renumber-windows on
 
 
+# bind alt-r to reloading source-file
+unbind r
+bind r source-file ~/.tmux.conf
+
 # open new windows with the same path as the present one
 bind '"' split-window -c "#{pane_current_path}"
 bind % split-window -h -c "#{pane_current_path}"
