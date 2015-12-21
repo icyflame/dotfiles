@@ -47,6 +47,10 @@ setw -g pane-base-index 1
 set -g pane-border-fg white
 set -g pane-active-border-fg  green
 
+# changing the key-bindings to move windows around
+# http://superuser.com/a/552493/207372
+bind-key -n C-S-Left swap-window -t -1
+bind-key -n C-S-Right swap-window -t +1
 
 setw -g window-status-format "#[fg=white]#[bg=blue] #I #[bg=blue]#[fg=white] #W "
 setw -g window-status-current-format "#[bg=brightmagenta]#[fg=white] *#I #[fg=white,bold]#[bg=cyan] [#W] "
