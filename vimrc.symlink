@@ -93,6 +93,10 @@ autocmd BufRead,BufNewFile *.launch setfiletype roslaunch
 " remap leader to , character
 let g:mapleader=","
 
+" shortcut for opening and closing NERDTree
+nmap <C-n><C-t> :NERDTree<cr>
+nmap <C-n><C-e> :NERDTreeClose<cr>
+
 " the write shortcut
 nmap <leader>w :w<cr>
 nmap <leader>W :w<cr>
@@ -101,7 +105,7 @@ nmap <leader>W :w<cr>
 nmap <leader>i gg=G<cr>
 
 nmap <leader>z :w<cr>ZZ
-nmap <leader>Z :w<cr>Z
+nmap <leader>Z :w<cr>ZZ
 
 nmap <leader>sp :set paste<cr>i
 nmap <leader>snp :set nopaste<cr>ii
