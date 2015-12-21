@@ -36,3 +36,5 @@
 	protocol = https
 [alias]
 	cleanup = !git fetch -p && git branch -D $(git branch --merged) && git push origin --all --prune && git fetch -p
+[push]
+	default = matching
