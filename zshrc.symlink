@@ -172,6 +172,9 @@ alias cronlog='less /var/log/syslog | grep -i cron'
 # run as grunt; alert
 alias alert="notify-send -t 2000 'Command executed'"
 
+# todo.txt cli
+alias t="bash todo.sh"
+
 # ROS : ros.org
 source /opt/ros/indigo/setup.zsh
 export ROS_WORKSPACE=~/ros_workspace
