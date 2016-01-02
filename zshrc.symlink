@@ -175,6 +175,10 @@ alias alert="notify-send -t 2000 'Command executed'"
 # todo.txt cli
 alias t="bash todo.sh"
 
+# OpenSubtitlesDownload.py
+# https://github.com/emericg/OpenSubtitlesDownload
+alias findsub="python /usr/local/bin/OpenSubtitlesDownload.py"
+
 # ROS : ros.org
 source /opt/ros/indigo/setup.zsh
 export ROS_WORKSPACE=~/ros_workspace
