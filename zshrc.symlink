@@ -79,7 +79,7 @@ alias connectalum="ssh -X alumni@10.3.103.247"
 # switch drives and filesystem
 alias drived="cd /media/New\ Volume/"
 alias drivee="cd /media/General/"
-alias acads="cd /media/New\ Volume/KGP/KGP\ Acads/KGP\ Academics/Sem\ 5\ --\ Autumn\ 2015"
+alias acads="cd /media/New\ Volume/KGP/KGP\ Acads/KGP\ Academics/Sem\ 6\ --\ Spring\ 2016/"
 
 # git <3
 
@@ -115,6 +115,9 @@ alias gpoa="git push origin --all"
 
 # gpot : Push all tags to origin
 alias gpot="git push origin --tags"
+
+# gpia : Push all branches to the fork
+alias gpia="git push icyflame --all"
 
 # gru : Remote the status of all remote repositories
 alias gru="git remote update"
@@ -179,6 +182,9 @@ alias t="bash todo.sh"
 # https://github.com/emericg/OpenSubtitlesDownload
 alias findsub="python /usr/local/bin/OpenSubtitlesDownload.py"
 
+# indenting PHP using vim
+alias indent_all_php="find . -name '*.php' -printf \"echo -e \"G=gg\n:wq\n\" | vim %p\n\" | sh"
+
 # ROS : ros.org
 source /opt/ros/indigo/setup.zsh
 export ROS_WORKSPACE=~/ros_workspace
@@ -203,9 +209,10 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export NVM_DIR="/home/siddharth/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# export http_proxy="http://10.3.100.207:8080"
-# export https_proxy="http://10.3.100.207:8080"
-
+export http_proxy="http://10.3.100.207:8080"
+export https_proxy="http://10.3.100.207:8080"
+export HTTP_PROXY="http://10.3.100.207:8080"
+export HTTPS_PROXY="http://10.3.100.207:8080"
 ## set default editor for Cron
 export EDITOR="vim"
 
@@ -249,3 +256,5 @@ zle-line-init() {
 zle -N zle-line-init
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/pear/bin"
+export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin"
