@@ -110,6 +110,9 @@ alias gp="git push"
 # gco
 alias gco="git checkout"
 
+# gru
+alias gru="git remote update"
+
 # gpoa : Push all branches to origin
 alias gpoa="git push origin --all"
 
@@ -171,10 +174,6 @@ alias fuck='$(thefuck $(fc -ln -1))'
 # utility : show cron log, from syslog
 alias cronlog='less /var/log/syslog | grep -i cron'
 
-# utility : run for long running tasks like grunt
-# run as grunt; alert
-alias alert="notify-send -t 2000 'Command executed'"
-
 # todo.txt cli
 alias t="bash todo.sh"
 
@@ -184,6 +183,14 @@ alias findsub="python /usr/local/bin/OpenSubtitlesDownload.py"
 
 # indenting PHP using vim
 alias indent_all_php="find . -name '*.php' -printf \"echo -e \"G=gg\n:wq\n\" | vim %p\n\" | sh"
+
+# function for long running commands
+# run as `long git push origin --all`
+function long {
+	eval $@;
+	# echo "This command was executed"
+	notify-send -t 2000 --urgency=low -i "terminal" "$@ done!"
+}
 
 # ROS : ros.org
 source /opt/ros/indigo/setup.zsh
@@ -240,8 +247,6 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 source $ZSH/oh-my-zsh.sh
-
-alias gru="git remote update"
 
 # Load zsh-syntax-highlighting.
 # source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
