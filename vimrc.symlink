@@ -46,6 +46,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'itchyny/lightline.vim'
+Plugin 'mhinz/vim-startify'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -113,6 +115,9 @@ nmap <leader>sp :set paste<cr>i
 nmap <leader>snp :set nopaste<cr>ii
 " indent the whole file, write and exit vim.
 nmap <leader>x gg=G:w<cr>ZZ
+
+" make sure that vim-airline works
+set laststatus=2
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
