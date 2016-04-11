@@ -179,7 +179,8 @@ alias t="bash todo.sh"
 
 # OpenSubtitlesDownload.py
 # https://github.com/emericg/OpenSubtitlesDownload
-alias findsub="python /usr/local/bin/OpenSubtitlesDownload.py"
+# alias findsub="python /usr/local/bin/OpenSubtitlesDownload.py"
+alias findsub="subliminal download -l en $1"
 
 # indenting PHP using vim
 alias indent_all_php="find . -name '*.php' -printf \"echo -e \"G=gg\n:wq\n\" | vim %p\n\" | sh"
@@ -191,6 +192,15 @@ function long {
 	# echo "This command was executed"
 	notify-send -t 2000 --urgency=low -i "terminal" "$@ done!"
 }
+
+# findtodo
+alias findtodo="grep -i todo -r ."
+
+# install from apt-get
+alias agi="sudo apt-get install $1"
+
+# update apt-get
+alias agu="sudo apt-get update"
 
 # ROS : ros.org
 source /opt/ros/indigo/setup.zsh
