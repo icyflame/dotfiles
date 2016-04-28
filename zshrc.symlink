@@ -202,6 +202,12 @@ alias agi="sudo apt-get install $1"
 # update apt-get
 alias agu="sudo apt-get update"
 
+# find the size of ./ (pwd)
+alias dir_size="du -hs"
+
+# find a breakdown of all subdirs in ./
+alias breakdown="du -h --max-depth=1"
+
 # ROS : ros.org
 source /opt/ros/indigo/setup.zsh
 export ROS_WORKSPACE=~/ros_workspace
@@ -273,3 +279,5 @@ zle -N zle-line-init
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/pear/bin"
 export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin"
+
+export ANDROID_HOME="/home/siddharth/Android/Sdk"
