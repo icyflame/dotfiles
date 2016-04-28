@@ -6,7 +6,7 @@ echo $olddir
 
 mkdir -p ~/$olddir
 
-for file in `ls ~/dotfiles/*.symlink`; do
+for file in `ls ~/dotfiles/**/*.symlink`; do
 	# echo $file
 	filename=$(basename "$file")
 	extension="${filename##*.}"
@@ -17,4 +17,8 @@ for file in `ls ~/dotfiles/*.symlink`; do
 	rm ~/.$dotfile
 	# echo "ln -s $file ~/.$dotfile"
 	ln -s $file ~/.$dotfile
+done
+
+for file in `ls ~/dotfiles/**/*.sh`; do
+	cp --remove-destination $file /usr/local/bin/
 done
