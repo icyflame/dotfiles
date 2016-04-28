@@ -45,27 +45,11 @@ ZSH_THEME="agnoster"
 # User configuration
 
 export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/siddharth/.rvm/bin:/home/siddharth/.rvm/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-#
+export DOTFILE_LOC=$HOME/dotfiles
 
 # Source all the zsh files in this dir
-all_files=`ls ~/dotfiles/**/*.zsh`
+all_files=`ls $DOTFILE_LOC/**/*.zsh`
 
 for i in $all_files; do
 	source $i;

@@ -6,7 +6,13 @@ echo $olddir
 
 mkdir -p ~/$olddir
 
-for file in `ls ~/dotfiles/**/*.symlink`; do
+declare -r dotfiles_loc="$HOME/dotfiles"
+
+# include the yesno function
+
+source $dotfiles_loc/yesno.sh
+
+for file in `ls $dotfiles_loc/**/*.symlink`; do
 	# echo $file
 	filename=$(basename "$file")
 	extension="${filename##*.}"
@@ -19,6 +25,11 @@ for file in `ls ~/dotfiles/**/*.symlink`; do
 	ln -s $file ~/.$dotfile
 done
 
-for file in `ls ~/dotfiles/**/*.sh`; do
-	cp --remove-destination $file /usr/local/bin/
-done
+if yesno "Copy all the shell scripts from bin to /usr/local/bin (requires sudo) ? "; then
+
+	for file in `ls $dotfiles_loc/**/*.sh`; do
+		cp --remove-destination $file /usr/local/bin/
+	done
+else
+	echo "Okay! Didn't copy, Done for now."
+fi

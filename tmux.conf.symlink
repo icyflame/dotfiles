@@ -27,6 +27,9 @@ set -g @continuum-restore 'on'
 unbind r
 bind r source-file ~/.tmux.conf
 
+# Prompt for the window name on window creation
+bind-key C command-prompt -p "Name of new window: " "new-window -n '%%'"
+
 # open new windows with the same path as the present one
 bind '"' split-window -c "#{pane_current_path}"
 bind % split-window -h -c "#{pane_current_path}"
