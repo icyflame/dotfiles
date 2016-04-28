@@ -125,6 +125,20 @@ else
 	echo "Okay! Didn't copy, Done for now."
 fi
 
+## install the compiled component of YouCompleteMe
+# Not really required on throwaway DigitalOcean droplets. (Takes a whole lot of time on DO)
+# And if there is less RAM, ends up not compiling.
+
+if yesno "Do you *really* need the compiled component of YCM? "; then
+	sudo apt-get install build-essential cmake
+	sudo apt-get install python-dev python3-dev
+	cd ~/.vim/bundle/YouCompleteMe
+	git submodule update --init --recursive
+	./install.py --clang-completer
+else
+	sed -ie "s/Plugin 'Valloric\/YouCompleteMe'/ /g" $dotfiles_loc/vim/vimrc.symlink
+fi
+
 vim +PluginInstall
 
 ### Done!
