@@ -53,6 +53,17 @@ sudo apt-get install -y ruby-full
 # Installing the Vundle: Vim Bundle, the vim Package Manager
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+# install and configure zsh
+# https://gist.github.com/tsabat/1498393
+
+sudo apt-get install zsh
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+
+# setup the OH-MY-ZSH Plugins
+
+git clone git://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 ### Optional package installation begin
 
 if [[ $machine != $DIGITAL_OCEAN ]]; then
@@ -64,21 +75,6 @@ if [[ $machine != $DIGITAL_OCEAN ]]; then
 	sudo gem install rails --verbose
 	sudo gem install devise --verbose
 	sudo gem install zeus --verbose
-
-	# install and configure zsh
-	# https://gist.github.com/tsabat/1498393
-
-	#### Zsh : change the shell?
-
-	# TODO: Ask if user wants zsh
-
-	sudo apt-get install zsh
-	wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-
-	echo "zsh has been installed. You have to change the shell and then restart the machine."
-	echo "Run the following commands:"
-	echo "chsh -s `which zsh` # will change the default shell"
-	echo "sudo shutdown -r 0 # will reboot your machine"
 
 	#### The solarized color scheme
 
@@ -139,3 +135,8 @@ echo "zsh has been installed. You have to change the shell and then restart the 
 echo "Run the following commands:"
 echo "chsh -s `which zsh` # will change the default shell"
 echo "sudo shutdown -r 0 # will reboot your machine"
+
+if yesno "Change the default shell to zsh and reboot this machine (requires sudo) ? "; then
+	chsh -s `which zsh`
+	sudo shutdown -r 0
+fi
