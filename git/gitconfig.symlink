@@ -1,0 +1,40 @@
+[user]
+	email = siddharthkannan@protonmail.com
+	name = Siddharth Kannan
+
+[sendemail]
+	smtpserver = /usr/bin/msmtp
+
+[core]
+	editor = vim
+	excludesfile = /home/siddharth/.gitignore_global
+	autocrlf = input
+[url "https://"]
+	insteadOf = git://
+;[http]
+	;proxy = http://10.3.100.207:8080
+;[https]
+	;proxy = http://10.3.100.207:8080
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[credential]
+	helper = cache --timeout 36000
+[hub]
+	protocol = ssh
+[alias]
+	cleanup = !git fetch -p && git branch -D $(git branch --merged) && git push origin --all --prune && git fetch -p
+[push]
+	default = matching
