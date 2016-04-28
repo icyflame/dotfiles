@@ -1,1 +1,0 @@
-/home/siddharth/.config/fish/config.fish
