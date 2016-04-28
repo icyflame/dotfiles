@@ -28,7 +28,7 @@ declare -r dotfiles_loc="$HOME/dotfiles"
 
 # include the yesno function
 
-source $dotfiles_loc/yesno.sh
+source $dotfiles_loc/helpers/yesno.sh
 
 ### Install all the basic packages that are always required
 
