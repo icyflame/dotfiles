@@ -48,6 +48,10 @@ sudo apt-get install -y vim
 sudo apt-get install -y nodejs
 sudo apt-get install -y ruby-full
 
+# install ag : the silver searcher
+# a better grep
+sudo apt-get install -y silversearcher-ag
+
 # Installing Vundle
 
 # Installing the Vundle: Vim Bundle, the vim Package Manager
