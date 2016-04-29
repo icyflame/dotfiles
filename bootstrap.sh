@@ -56,7 +56,7 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # install and configure zsh
 # https://gist.github.com/tsabat/1498393
 
-sudo apt-get install zsh
+sudo apt-get install -y zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
 # setup the OH-MY-ZSH Plugins
