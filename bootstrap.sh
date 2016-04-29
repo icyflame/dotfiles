@@ -151,7 +151,7 @@ if [[ $machine == $DIGITAL_OCEAN ]]; then
 	chsh -s `which zsh`
 	sudo shutdown -r 0
 else
-	if yesno --timeout 5 -- default yes "Change the default shell to zsh and reboot this machine (requires sudo) ? "; then
+	if yesno --timeout 5 --default yes "Change the default shell to zsh and reboot this machine (requires sudo) ? "; then
 		chsh -s `which zsh`
 		sudo shutdown -r 0
 	fi
