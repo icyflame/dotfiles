@@ -143,7 +143,11 @@ else
 	fi
 fi
 
-vim +PluginInstall
+## This requires the user to press ZZ at the end of the process
+## for exiting properly
+if [[ $machine != $DIGITAL_OCEAN ]]; then
+	vim +PluginInstall
+fi
 
 ### Done!
 
