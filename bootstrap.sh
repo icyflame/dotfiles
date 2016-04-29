@@ -116,8 +116,8 @@ for file in `ls $dotfiles_loc/**/*.symlink`; do
 	# echo "ln -s $file ~/.$dotfile"
 	ln -s $file ~/.$dotfile
 done
-if yesno "Copy all the shell scripts from bin to /usr/local/bin (requires sudo) ? "; then
 
+if yesno --timeout 5 --default yes "Copy all the shell scripts from bin to /usr/local/bin (requires sudo) ? "; then
 	for file in `ls $dotfiles_loc/**/*.sh`; do
 		sudo cp --remove-destination $file /usr/local/bin/
 	done
@@ -129,28 +129,30 @@ fi
 # Not really required on throwaway DigitalOcean droplets. (Takes a whole lot of time on DO)
 # And if there is less RAM, ends up not compiling.
 
-if yesno "Do you *really* need the compiled component of YCM? "; then
-	sudo apt-get install build-essential cmake
-	sudo apt-get install python-dev python3-dev
-	cd ~/.vim/bundle/YouCompleteMe
-	git submodule update --init --recursive
-	./install.py --clang-completer
-else
+if [[ $machine == $DIGITAL_OCEAN ]]; then
 	sed -ie "s/Plugin 'Valloric\/YouCompleteMe'/ /g" $dotfiles_loc/vim/vimrc.symlink
+else
+	if yesno --timeout 5 --default no "Do you *really* need the compiled component of YCM? "; then
+		sudo apt-get install build-essential cmake
+		sudo apt-get install python-dev python3-dev
+		cd ~/.vim/bundle/YouCompleteMe
+		git submodule update --init --recursive
+		./install.py --clang-completer
+	else
+		sed -ie "s/Plugin 'Valloric\/YouCompleteMe'/ /g" $dotfiles_loc/vim/vimrc.symlink
+	fi
 fi
 
 vim +PluginInstall
 
 ### Done!
 
-# TODO: If zsh was installed, then tell them this:
-
-echo "zsh has been installed. You have to change the shell and then restart the machine."
-echo "Run the following commands:"
-echo "chsh -s `which zsh` # will change the default shell"
-echo "sudo shutdown -r 0 # will reboot your machine"
-
-if yesno "Change the default shell to zsh and reboot this machine (requires sudo) ? "; then
+if [[ $machine == $DIGITAL_OCEAN ]]; then
 	chsh -s `which zsh`
 	sudo shutdown -r 0
+else
+	if yesno --timeout 5 -- default yes "Change the default shell to zsh and reboot this machine (requires sudo) ? "; then
+		chsh -s `which zsh`
+		sudo shutdown -r 0
+	fi
 fi
