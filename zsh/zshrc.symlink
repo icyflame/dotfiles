@@ -12,109 +12,12 @@ export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/
 export DOTFILE_LOC=$HOME/dotfiles
 
 # Source all the zsh files in this dir
-all_files=`ls $DOTFILE_LOC/**/*.zsh`
-
-for i in $all_files; do
+for i in `ls $DOTFILE_LOC/**/*.zsh`; do
 	source $i;
 done;
 
-# temporary
-alias hiper="drived && cd hiperware/"
-alias anet="drived && cd alumni-cell-git-repo/networking-rails/"
-alias amentor="drived && cd alumni-cell-git-repo/mentorship-portal/mentorship-portal-private-repo"
-
 # zsh
 alias zshconfig="vim ~/.zshrc"
-
-# ssh
-alias v="ssh -X teamauv@192.168.10.12"
-alias connectauv="ssh -X teamauv@192.168.10.12"
-alias connectalum="ssh -X alumni@10.3.103.247"
-
-# switch drives and filesystem
-alias drived="cd /media/New\ Volume/"
-alias drivee="cd /media/General/"
-alias acads="cd /media/New\ Volume/KGP/KGP\ Acads/KGP\ Academics/Sem\ 6\ --\ Spring\ 2016/"
-
-
-# terminal-wallet : NPM module
-alias wd="wallet debit"
-alias ws="wallet stats"
-
-# getvideo : getvideo URL 
-# URL : Video URL | Playlist URL | video on playlist URL
-alias getvideo="youtube-dl -citk --max-quality FORMAT "
-
-# serve port_number : Create a Simple HTTP Server
-# Using Python. Port defaults to 8000.
-alias serve="python -m SimpleHTTPServer $1"
-alias serve_php="php -S localhost:8000"
-alias serve_django="python manage.py runserver"
-
-# Generate a random string
-alias rand="echo `date` | sha256sum"
-
-# Generate a random sequence
-alias randseq="seq 1 100 | sort -R"
-
-# srnm : sudo restart network-manager
-alias srnm="sudo restart network-manager"
-
-# extract : extract tar archives
-alias extract="tar -zxvf"
-
-# always open tmux with utf character support
-alias tmux="tmux -u"
-
-# copy output of a command to the clipboard
-# solve stats | clip
-# then use Ctrl+V to paste
-alias clip="xclip -selection clipboard"
-
-# utility : thefuck
-alias fuck='$(thefuck $(fc -ln -1))'
-
-# utility : show cron log, from syslog
-alias cronlog='less /var/log/syslog | grep -i cron'
-
-# todo.txt cli
-alias t="bash todo.sh"
-
-# OpenSubtitlesDownload.py
-# https://github.com/emericg/OpenSubtitlesDownload
-# alias findsub="python /usr/local/bin/OpenSubtitlesDownload.py"
-alias findsub="subliminal download -l en $1"
-
-# indenting PHP using vim
-alias indent_all_php="find . -name '*.php' -printf \"echo -e \"G=gg\n:wq\n\" | vim %p\n\" | sh"
-
-# function for long running commands
-# run as `long git push origin --all`
-function long {
-	eval $@;
-	# echo "This command was executed"
-	notify-send -t 2000 --urgency=low -i "terminal" "$@ done!"
-}
-
-# findtodo
-alias findtodo="grep -i todo -r ."
-
-# install from apt-get
-alias agi="sudo apt-get install $1"
-
-# update apt-get
-alias agu="sudo apt-get update"
-
-# find the size of ./ (pwd)
-alias dir_size="du -hs"
-
-# find a breakdown of all subdirs in ./
-alias breakdown="du -h --max-depth=1"
-
-# ROS : ros.org
-source /opt/ros/indigo/setup.zsh
-export ROS_WORKSPACE=~/ros_workspace
-export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
 
 # rbenv
 # export PATH="$HOME/.rbenv/bin:$PATH"
@@ -135,10 +38,6 @@ MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 export NVM_DIR="/home/siddharth/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export http_proxy="http://10.3.100.207:8080"
-export https_proxy="http://10.3.100.207:8080"
-export HTTP_PROXY="http://10.3.100.207:8080"
-export HTTPS_PROXY="http://10.3.100.207:8080"
 ## set default editor for Cron
 export EDITOR="vim"
 
