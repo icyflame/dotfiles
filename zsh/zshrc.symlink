@@ -16,6 +16,11 @@ for i in `ls $DOTFILE_LOC/**/*.zsh`; do
 	source $i;
 done;
 
+# TODO: remove this.
+#for i in `ls $DOTFILE_LOC/.local/*.zsh`; do
+	#source $i;
+#done;
+source ~/.localrc
 # zsh
 alias zshconfig="vim ~/.zshrc"
 
@@ -69,9 +74,18 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:$HOME/pear/bin"
 export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin"
-export PATH="$PATH:~/dotfiles/sh"
+export PATH="$PATH:$HOME/dotfiles/bin"
+export PATH="$PATH:/usr/local/go/bin"
+export GOPATH="$HOME/go_workspace"
 
 export ANDROID_HOME="/home/siddharth/Android/Sdk"
 
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export ANDROID_HOME="/home/siddharth/Android/Sdk"
+export ANDROID_SDK="/home/siddharth/Android/Sdk"
+export USER_HOME=$USER
+
+source /opt/ros/indigo/setup.zsh || echo "Could not load the ROS setup file, probably not installed?"
+export ROS_WORKSPACE=~/ros_workspace
+export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
