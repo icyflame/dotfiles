@@ -9,6 +9,7 @@
 	editor = vim
 	excludesfile = /home/siddharth/.gitignore_global
 	autocrlf = input
+	filemode = true
 [url "https://"]
 	insteadOf = git://
 ;[http]
