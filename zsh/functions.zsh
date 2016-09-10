@@ -6,3 +6,20 @@ function long {
 	notify-send -t 2000 --urgency=low -i "terminal" "$@ done!"
 }
 
+# function for searching the history for the string
+# that is passed as a parameter
+function hist {
+	history | ag $@
+}
+
+function calc {
+	echo $(($@));
+}
+
+function compile {
+	gcc $@ && ./a.out
+}
+
+function verifyApk {
+	jarsigner -verify -verbose -certs $@ | less
+}

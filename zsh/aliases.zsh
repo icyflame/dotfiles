@@ -37,3 +37,5 @@ alias getvideo="youtube-dl -citk --max-quality FORMAT "
 alias wd="wallet debit"
 alias ws="wallet stats"
 
+# heroku
+alias hl="heroku logs --tail"
