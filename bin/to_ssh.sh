@@ -7,43 +7,43 @@
 # Thanks to @m14t, @michaelsilver and @chuckbjones.
 
 http_to_ssh(){
-    echo ""
-    echo "Checking for $1..."
+	echo ""
+	echo "Checking for $1..."
 
-    REPO_URL=`git remote -v | grep -m1 "^$1" | sed -Ene's#.*(https://[^[:space:]]*).*#\1#p'`
-    if [ -z "$REPO_URL" ]; then
-	if [ "$1" == "upstream" ]; then
-	    echo "-- No upstream found"
-	    exit
-	else
-	    echo "-- ERROR:  Could not identify Repo url."
-	    echo "   It is possible this repo is already using SSH instead of HTTPS."
-	    exit
+	REPO_URL=`git remote -v | grep -m1 "^$1" | sed -Ene's#.*(https://[^[:space:]]*).*#\1#p'`
+	if [ -z "$REPO_URL" ]; then
+		if [ "$1" == "upstream" ]; then
+			echo "-- No upstream found"
+			return
+		else
+			echo "-- ERROR:  Could not identify Repo url."
+			echo "   It is possible this repo is already using SSH instead of HTTPS."
+			return
+		fi
 	fi
-    fi
 
-    USER=`echo $REPO_URL | sed -Ene's#https://github.com/([^/]*)/(.*).git#\1#p'`
-    if [ -z "$USER" ]; then
-	echo "-- ERROR:  Could not identify User."
-	exit
-    fi
+	USER=`echo $REPO_URL | sed -Ene's#https://github.com/([^/]*)/(.*).git#\1#p'`
+	if [ -z "$USER" ]; then
+		echo "-- ERROR:  Could not identify User."
+		return
+	fi
 
-    REPO=`echo $REPO_URL | sed -Ene's#https://github.com/([^/]*)/(.*).git#\2#p'`
-    if [ -z "$REPO" ]; then
-	echo "-- ERROR:  Could not identify Repo."
-	exit
-    fi
+	REPO=`echo $REPO_URL | sed -Ene's#https://github.com/([^/]*)/(.*).git#\2#p'`
+	if [ -z "$REPO" ]; then
+		echo "-- ERROR:  Could not identify Repo."
+		return
+	fi
 
-    NEW_URL="git@github.com:$USER/$REPO.git"
-    echo "Changing repo url from "
-    echo "  '$REPO_URL'"
-    echo "      to "
-    echo "  '$NEW_URL'"
-    echo ""
+	NEW_URL="git@github.com:$USER/$REPO.git"
+	echo "Changing repo url from "
+	echo "  '$REPO_URL'"
+	echo "      to "
+	echo "  '$NEW_URL'"
+	echo ""
 
-    CHANGE_CMD="git remote set-url $1 $NEW_URL"
-    echo "$CHANGE_CMD"
-    `$CHANGE_CMD`
+	CHANGE_CMD="git remote set-url $1 $NEW_URL"
+	echo "$CHANGE_CMD"
+	`$CHANGE_CMD`
 }
 
 for i in `git remote`; do

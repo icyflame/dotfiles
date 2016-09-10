@@ -11,19 +11,19 @@ ssh_to_https(){
 	if [ -z "$REPO_URL" ]; then
 		echo "-- ERROR:  Could not identify Repo url."
 		echo "   It is possible this repo is already using HTTPS instead of SSH."
-		exit
+		return
 	fi
 
 	USER=`echo $REPO_URL | sed -Ene's#git@github.com:([^/]*)/(.*).git#\1#p'`
 	if [ -z "$USER" ]; then
 		echo "-- ERROR:  Could not identify User."
-		exit
+		return
 	fi
 
 	REPO=`echo $REPO_URL | sed -Ene's#git@github.com:([^/]*)/(.*).git#\2#p'`
 	if [ -z "$REPO" ]; then
 		echo "-- ERROR:  Could not identify Repo."
-		exit
+		return
 	fi
 
 	#NEW_URL="git@github.com:$USER/$REPO.git"
