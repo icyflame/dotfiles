@@ -20,6 +20,10 @@ function compile {
 	gcc $@ && ./a.out
 }
 
+function gmp_compile {
+	g++ $@ -lgmpxx -lgmp && ./a.out
+}
+
 function verifyApk {
 	jarsigner -verify -verbose -certs $@ | less
 }
