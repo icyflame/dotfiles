@@ -45,3 +45,12 @@ function cutVideo {
 function getAudio {
 	youtube-dl --extract-audio --prefer-ffmpeg --audio-format mp3 $@;
 }
+
+# usage: ssh-setup user@IP
+# tasks: will create .ssh and .ssh/authorized_keys with appropriate permissions
+# tasks: and then copy over this computer's pub key to remote IP
+# https://github.com/TwP/dotfiles/blob/e8294e2330f3375516acf07e9cbf5fc0a72c4fb7/bash/aliases.bash#L142-L145
+function ssh-setup {
+	ssh $1 'mkdir -p -m 700 .ssh; touch .ssh/authorized_keys; chmod 600 .ssh/authorized_keys';
+	cat ~/.ssh/id_rsa.pub | ssh $1 'cat - >> ~/.ssh/authorized_keys'
+}
