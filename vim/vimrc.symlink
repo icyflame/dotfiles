@@ -46,6 +46,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
 Plugin 'itchyny/lightline.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'fatih/vim-go'
