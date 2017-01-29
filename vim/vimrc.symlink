@@ -81,17 +81,15 @@ set incsearch		" Incremental search
 "set hidden             " Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
 " size of a hard tabstop
-set tabstop=2
-"
-" size of an "indent"
+" set tabstop=2
+" http://vim.wikia.com/wiki/Indenting_source_code
+set expandtab
 set shiftwidth=2
-
+set softtabstop=2
+"
 " set the width of text in the editor
 set tw=80
 "
-" " a combination of spaces and tabs are used to simulate tab stops at a width
-" " other than the (hard)tabstop
-set softtabstop=2
 syntax on
 filetype plugin on
 filetype plugin indent on
