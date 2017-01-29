@@ -75,6 +75,8 @@ export PATH="$PATH:$HOME/dotfiles/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export GOPATH="$HOME/go_workspace"
 
+export PATH="$PATH:$HOME/.cargo/bin"
+
 export ANDROID_HOME="/home/siddharth/Android/Sdk"
 
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
