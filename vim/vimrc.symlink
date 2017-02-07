@@ -127,8 +127,12 @@ nmap <leader>x gg=G:w<cr>ZZ
 " make sure that vim-airline works
 set laststatus=2
 
+let g:system_copy#copy_command='xsel --clipboard --input'
+
+autocmd FileType c,cpp,java,php,rb,py autocmd BufWritePre <buffer> %s/\s\+$//e
+
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
 	source /etc/vim/vimrc.local
 endif
-
+set secure exrc
