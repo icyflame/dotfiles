@@ -47,7 +47,7 @@ alias gru="git remote update"
 alias glod="git log --oneline --decorate"
 
 # pl : Pretty git log for humans. (Name on Date : Commit subject)
-alias pl="git log --pretty=format:'%an on %cd: %s' --date=short" 
+alias pl="git log --pretty=format:'(%h) %an on %ai: %s' --date=short"
 
 # gpo/u/h : git push aliases
 alias gpo="git push origin"
