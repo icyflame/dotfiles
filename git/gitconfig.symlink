@@ -39,3 +39,5 @@
 	default = matching
 [hub]
 	protocol = ssh
+[log]
+	decorate = auto
