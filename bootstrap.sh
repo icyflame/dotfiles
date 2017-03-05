@@ -12,6 +12,11 @@ declare -r UBUNTU=1
 declare -r DIGITAL_OCEAN=2
 declare -r CUSTOM=3
 
+INSTALLER="sudo apt-get"
+if [ `which apt-fast` ]; then
+	INSTALLER="apt-fast"
+fi
+
 if [[ "$1" == "ubuntu" ]]; then
 	machine=$UBUNTU
 else
@@ -36,21 +41,23 @@ echo "Installing core packages."
 
 # install git
 
-sudo apt-get install -y git-core
-sudo apt-get install -y gitg
+$INSTALLER install --yes git-core
 
 # install vim
 
-sudo apt-get install -y vim
+$INSTALLER install --yes vim
 
 # install ruby
 
-sudo apt-get install -y nodejs
-sudo apt-get install -y ruby-full
+$INSTALLER install --yes nodejs
+$INSTALLER install --yes ruby-full
 
 # install ag : the silver searcher
 # a better grep
-sudo apt-get install -y silversearcher-ag
+$INSTALLER install --yes silversearcher-ag
+
+# install nmap: port scanning util
+$INSTALLER install nmap
 
 # Installing Vundle
 
@@ -60,7 +67,7 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # install and configure zsh
 # https://gist.github.com/tsabat/1498393
 
-sudo apt-get install -y zsh
+sudo $INSTALLER install zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
 # setup the OH-MY-ZSH Plugins
@@ -137,8 +144,8 @@ if [[ $machine == $DIGITAL_OCEAN ]]; then
 	sed -ie "s/Plugin 'Valloric\/YouCompleteMe'/ /g" $dotfiles_loc/vim/vimrc.symlink
 else
 	if yesno --timeout 5 --default no "Do you *really* need the compiled component of YCM? "; then
-		sudo apt-get install build-essential cmake
-		sudo apt-get install python-dev python3-dev
+		sudo $INSTALLER install --yes build-essential cmake
+		sudo $INSTALLER install --yes python-dev python3-dev
 		cd ~/.vim/bundle/YouCompleteMe
 		git submodule update --init --recursive
 		./install.py --clang-completer
