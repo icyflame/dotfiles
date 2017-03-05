@@ -85,7 +85,9 @@ export ANDROID_HOME="/home/siddharth/Android/Sdk"
 export ANDROID_SDK="/home/siddharth/Android/Sdk"
 export USER_HOME=$USER
 
-source /opt/ros/indigo/setup.zsh || echo "Could not load the ROS setup file, probably not installed?"
+if [ -e "/opt/ros/indigo/setup.zsh" ]; then
+  source /opt/ros/indigo/setup.sh
+fi
 export ROS_WORKSPACE=~/ros_workspace
 export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
 
