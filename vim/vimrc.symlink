@@ -49,7 +49,6 @@ Plugin 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 Plugin 'itchyny/lightline.vim'
 Plugin 'mhinz/vim-startify'
-Plugin 'fatih/vim-go'
 Plugin 'vim-scripts/JavaScript-Indent'
 Plugin 'christoomey/vim-system-copy'
 "
