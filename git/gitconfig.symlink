@@ -12,10 +12,6 @@
 	filemode = true
 [url "https://"]
 	insteadOf = git://
-;[http]
-	;proxy = http://10.3.100.207:8080
-;[https]
-	;proxy = http://10.3.100.207:8080
 [credential]
 	helper = cache --timeout 36000
 [alias]
