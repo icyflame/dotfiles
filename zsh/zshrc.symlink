@@ -85,6 +85,8 @@ export ANDROID_HOME="/home/siddharth/Android/Sdk"
 export ANDROID_SDK="/home/siddharth/Android/Sdk"
 export USER_HOME=$USER
 
+
+# ROS related setup
 if [ -e "/opt/ros/indigo/setup.zsh" ]; then
   source /opt/ros/indigo/setup.sh
 fi
@@ -94,3 +96,22 @@ export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
 export no_proxy="$no_proxy,10.0.0.0/8"
 # Sets the Mail Environment Variable
 export MAIL=/var/spool/mail/siddharth
+
+# Node.js and NPM related setup
+export NPM_PACKAGES="/home/siddharth/.npm-packages"
+export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"
+export PATH="$NPM_PACKAGES/bin:$PATH"
+# Unset manpath so we can inherit from /etc/manpath via the `manpath`
+# command
+unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
+export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# Rust related setup
+if [ -e "$HOME/.cargo/env" ]; then
+  source $HOME/.cargo/env
+fi
+
+[[ -s /home/siddharth/.autojump/etc/profile.d/autojump.sh ]] && source /home/siddharth/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
+
