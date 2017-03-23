@@ -17,7 +17,7 @@ echo $(($@));
 }
 
 function compile {
-gcc $@ && ./a.out
+gcc -g $@ -lm && ./a.out
 }
 
 function gmp_compile {
