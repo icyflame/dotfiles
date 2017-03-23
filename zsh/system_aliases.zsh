@@ -1,5 +1,5 @@
 # srnm : sudo restart network-manager
-alias srnm="sudo restart network-manager"
+alias srnm="sudo service network-manager restart"
 
 # install from apt-get
 alias agi="sudo apt-get install $1"
