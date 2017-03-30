@@ -9,18 +9,6 @@ ZSH_THEME="ys"
 
 export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/siddharth/.rvm/bin:/home/siddharth/.rvm/bin"
 
-export DOTFILE_LOC=$HOME/dotfiles
-
-# Source all the zsh files in this dir
-for i in `ls $DOTFILE_LOC/**/*.zsh`; do
-	source $i;
-done;
-
-# TODO: remove this.
-#for i in `ls $DOTFILE_LOC/.local/*.zsh`; do
-	#source $i;
-#done;
-source ~/.localrc
 # zsh
 alias zshconfig="vim ~/.zshrc"
 
@@ -86,14 +74,8 @@ export ANDROID_SDK="/home/siddharth/Android/Sdk"
 export USER_HOME=$USER
 
 
-# ROS related setup
-if [ -e "/opt/ros/indigo/setup.zsh" ]; then
-  source /opt/ros/indigo/setup.sh
-fi
-export ROS_WORKSPACE=~/ros_workspace
-export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
 
-export no_proxy="$no_proxy,10.0.0.0/8"
+
 # Sets the Mail Environment Variable
 export MAIL=/var/spool/mail/siddharth
 
@@ -106,12 +88,27 @@ export PATH="$NPM_PACKAGES/bin:$PATH"
 unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
-# Rust related setup
-if [ -e "$HOME/.cargo/env" ]; then
-  source $HOME/.cargo/env
-fi
-
-[[ -s /home/siddharth/.autojump/etc/profile.d/autojump.sh ]] && source /home/siddharth/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.cargo/env ]] && source $HOME/.cargo/env
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
+
+export DOTFILE_LOC=$HOME/dotfiles
+
+# Load all the local settings
+if [ -e "$HOME/.localrc" ]; then
+  source $HOME/.localrc
+else
+  echo "You don't have a local config file. Edit ~/.localrc if required"
+  # TODO: Copy a template from dotfiles to this location
+  touch $HOME/.localrc
+fi
+
+for i in `ls $DOTFILE_LOC/.local/*.zsh`; do
+	source $i;
+done;
+# Source all the zsh files in this dir
+for i in `ls $DOTFILE_LOC/**/*.zsh`; do
+	source $i;
+done;
 
