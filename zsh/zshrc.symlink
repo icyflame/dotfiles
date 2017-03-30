@@ -102,6 +102,7 @@ else
   echo "You don't have a local config file. Edit ~/.localrc if required"
   # TODO: Copy a template from dotfiles to this location
   touch $HOME/.localrc
+  cp $DOTFILE_LOC/zsh/localrc.template $HOME/.localrc
 fi
 
 for i in `ls $DOTFILE_LOC/.local/*.zsh`; do
