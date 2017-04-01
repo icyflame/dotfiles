@@ -69,3 +69,13 @@ markdown $1 > "$FILE_NAME.html";
 wkhtmltopdf "$FILE_NAME.html" "$FILE_NAME.pdf"
 rm "$FILE_NAME.html"
 }
+
+function open_latest {
+  DIR_NAME=${1:-"."}
+  $EDITOR $DIR_NAME/`ls -t $DIR_NAME | head -n1`
+}
+
+function open_oldest {
+  DIR_NAME=${1:-"."}
+  $EDITOR $DIR_NAME/`ls -t $DIR_NAME | tail -n1`
+}
