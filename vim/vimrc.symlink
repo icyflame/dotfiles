@@ -37,17 +37,31 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-rails'
+" --------
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '/home/siddharth/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+" --------
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'git_patch_tags.vim'
 Plugin 'terryma/vim-multiple-cursors'
+" --------
 Plugin 'scrooloose/nerdcommenter'
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" --------
 Plugin 'godlygeek/tabular'
+" --------
 Plugin 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
+" --------
 Plugin 'itchyny/lightline.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'vim-scripts/JavaScript-Indent'
