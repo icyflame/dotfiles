@@ -38,9 +38,9 @@ bind c new-window -c "#{pane_current_path}"
 # configuration file from: https://github.com/NdYAG/dotfiles/blob/master/_tmux.conf
 
 set -g prefix C-b
-setw -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
+
+# this option has been changed with version 2.1
+set -g mouse on
 
 # start window index of 1
 set-option -g base-index 1
