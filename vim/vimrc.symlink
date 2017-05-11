@@ -42,6 +42,12 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '/home/siddharth/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 " --------
 Plugin 'kien/ctrlp.vim'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](node_modules|\.git)$',
+  \ 'file': '\v\.(exe|so|dll|out)$',
+  \ }
+" --------
 Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'git_patch_tags.vim'
@@ -66,6 +72,8 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'vim-scripts/JavaScript-Indent'
 Plugin 'christoomey/vim-system-copy'
+Plugin 'moll/vim-node'
+Plugin 'jelera/vim-javascript-syntax'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
