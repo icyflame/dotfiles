@@ -79,3 +79,15 @@ function open_oldest {
   DIR_NAME=${1:-"."}
   $EDITOR $DIR_NAME/`ls -t $DIR_NAME | tail -n1`
 }
+
+function get_ip {
+  if [[ -x `which curl` ]]; then
+    curl icanhazip.com
+  else
+    if [[ -x `which wget` ]]; then
+      wget -q -O- icanhazip.com
+    else
+      echo "curl and wget not found"
+    fi
+  fi
+}
