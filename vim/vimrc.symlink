@@ -143,7 +143,7 @@ set laststatus=2
 
 let g:system_copy#copy_command='xsel --clipboard --input'
 
-autocmd FileType c,cpp,java,php,rb,py autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,php,rb,py,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
