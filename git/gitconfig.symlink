@@ -15,7 +15,8 @@
 [credential]
 	helper = cache --timeout 36000
 [alias]
-	cleanup = !git fetch -p && git branch -D $(git branch --merged) && git push origin --all --prune && git fetch -p
+  cleanup = !git fetch -p && git branch -D $(git branch --merged) && git push origin --all --prune && git fetch -p
+  cp = cherry-pick
 [push]
 	default = matching
 [hub]
