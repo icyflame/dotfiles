@@ -74,6 +74,7 @@ Plugin 'vim-scripts/JavaScript-Indent'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'moll/vim-node'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'rking/ag.vim'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
