@@ -91,3 +91,8 @@ function get_ip {
     fi
   fi
 }
+
+function copy_commit {
+  COMMIT=$@
+  git log -1 $COMMIT | head -n5 | clipcopy;
+}
