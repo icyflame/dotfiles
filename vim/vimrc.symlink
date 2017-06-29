@@ -37,9 +37,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-rails'
+
 " --------
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '/home/siddharth/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+Plugin 'ervandew/supertab'
+" --------
+" --------
+" Plugin 'Valloric/YouCompleteMe'
+" let g:ycm_global_ycm_extra_conf = '/home/siddharth/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 " --------
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -70,11 +74,11 @@ let g:vim_markdown_folding_disabled = 1
 " --------
 Plugin 'itchyny/lightline.vim'
 Plugin 'mhinz/vim-startify'
-Plugin 'vim-scripts/JavaScript-Indent'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'moll/vim-node'
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'rking/ag.vim'
+" Plugin 'javascript.vim--Frstenberg'
+Plugin 'javascript.vim--welshare'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -117,6 +121,10 @@ syntax on
 filetype plugin on
 filetype plugin indent on
 
+set smartindent
+set autoindent
+set cindent
+
 set hlsearch " highlight the search results
 
 " Activate syntax highlighting for roslaunch files
@@ -153,6 +161,8 @@ set laststatus=2
 let g:system_copy#copy_command='xsel --clipboard --input'
 
 autocmd FileType c,cpp,java,php,rb,py,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
+
+set omnifunc=syntaxcomplete#Complete
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
