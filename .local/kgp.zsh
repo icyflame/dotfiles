@@ -1,7 +1,8 @@
 # proxy for KGP
 if [ $KGP ]; then
-  PROXY_STRING="http://10.3.100.207:8080"
+  PROXY_STRING="http://172.16.2.30:8080"
   export no_proxy="$no_proxy,10.0.0.0/8"
+  export NO_PROXY="$NO_PROXY,10.0.0.0/8"
   echo "LOCAL: Importing KGP proxy settings"
 else
   PROXY_STRING=""
