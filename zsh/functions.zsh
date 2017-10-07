@@ -96,3 +96,10 @@ function copy_commit {
   COMMIT=$@
   git log -1 $COMMIT | head -n5 | clipcopy;
 }
+
+function next_screenshot {
+  PICTURE=`ls -t ~/Pictures/Screenshot*.png | head -n1`
+  echo "Moving $PICTURE to public/img/$1"
+  mv $PICTURE public/img/$1
+  xdg-open "public/img/$1"
+}
