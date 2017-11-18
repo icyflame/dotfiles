@@ -79,6 +79,9 @@ Plugin 'moll/vim-node'
 Plugin 'rking/ag.vim'
 " Plugin 'javascript.vim--Frstenberg'
 Plugin 'javascript.vim--welshare'
+Plugin 'jamessan/vim-gnupg'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'mizuchi/stl-syntax'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -160,7 +163,7 @@ set laststatus=2
 
 let g:system_copy#copy_command='xsel --clipboard --input'
 
-autocmd FileType c,cpp,java,php,rb,py,javascript autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11 autocmd BufWritePre <buffer> %s/\s\+$//e
 
 set omnifunc=syntaxcomplete#Complete
 
