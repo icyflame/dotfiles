@@ -103,3 +103,10 @@ function next_screenshot {
   mv $PICTURE public/img/$1
   xdg-open "public/img/$1"
 }
+
+function random_ep {
+  FILE="`find . -iname *.avi -o -iname *.mkv -o -iname *.mp4 -o -iname *.flv | shuf | head -n1`";
+  echo $FILE;
+  echo $FILE >> ~/random_ep.log;
+  vlc $FILE;
+}
