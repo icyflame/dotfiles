@@ -42,3 +42,6 @@ node_modules
 
 # Fuse Files
 .fuse*
+
+# Python compiled
+*.pyc
