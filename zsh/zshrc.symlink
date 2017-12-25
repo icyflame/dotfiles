@@ -7,7 +7,7 @@ ZSH_THEME="ys"
 
 # User configuration
 
-export PATH="/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/siddharth/.rvm/bin:/home/siddharth/.rvm/bin"
+export PATH="$PATH:/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 mkdir -p $HOME/bin
 export PATH="$PATH:$HOME/bin"
 
@@ -58,8 +58,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/pear/bin"
 export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin"
 export PATH="$PATH:$HOME/dotfiles/bin"
 export PATH="$PATH:/usr/local/go/bin"
