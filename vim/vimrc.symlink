@@ -111,7 +111,7 @@ set incsearch		" Incremental search
 "set hidden             " Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
 " size of a hard tabstop
-" set tabstop=2
+set tabstop=2
 " http://vim.wikia.com/wiki/Indenting_source_code
 set expandtab
 set shiftwidth=2
@@ -163,7 +163,7 @@ set laststatus=2
 
 let g:system_copy#copy_command='xsel --clipboard --input'
 
-autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11 autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
 
 set omnifunc=syntaxcomplete#Complete
 
