@@ -14,7 +14,7 @@ declare -r CUSTOM=3
 
 INSTALLER="sudo apt-get"
 if [ `which apt-fast` ]; then
-	INSTALLER="apt-fast"
+	INSTALLER="sudo apt-fast"
 fi
 
 if [[ "$1" == "ubuntu" ]]; then
@@ -57,7 +57,7 @@ $INSTALLER install --yes ruby-full
 $INSTALLER install --yes silversearcher-ag
 
 # install nmap: port scanning util
-$INSTALLER install nmap
+$INSTALLER install -y nmap
 
 # Installing Vundle
 
@@ -67,7 +67,7 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # install and configure zsh
 # https://gist.github.com/tsabat/1498393
 
-sudo $INSTALLER install zsh
+$INSTALLER install -y zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
 # setup the OH-MY-ZSH Plugins
