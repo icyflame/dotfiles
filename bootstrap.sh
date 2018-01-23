@@ -47,9 +47,14 @@ $INSTALLER install --yes git-core
 
 $INSTALLER install --yes vim
 
+# install nvm and node.js
+
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+source ~/.bashrc
+nvm install stable
+
 # install ruby
 
-$INSTALLER install --yes nodejs
 $INSTALLER install --yes ruby-full
 
 # install ag : the silver searcher
