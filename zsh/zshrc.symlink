@@ -62,6 +62,7 @@ export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin"
 export PATH="$PATH:$HOME/dotfiles/bin"
 export PATH="$PATH:/usr/local/go/bin"
 export GOPATH="$HOME/go_workspace"
+export PATH="$PATH:$GOPATH/bin"
 
 export PATH="$PATH:$HOME/.cargo/bin"
 
@@ -117,3 +118,8 @@ done;
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# [[ $TERM != "screen" ]] && exec tmux
+
+JAVA_HOME=/home/siddharth/Downloads/jdk1.8.0_161/bin
+PATH="$PATH:$JAVA_HOME"
