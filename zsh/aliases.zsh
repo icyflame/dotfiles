@@ -1,6 +1,6 @@
 # serve port_number : Create a Simple HTTP Server
 # Using Python. Port defaults to 8000.
-alias serve="python -m SimpleHTTPServer $1"
+alias serve_simple="python -m SimpleHTTPServer $1"
 alias serve_php="php -S localhost:8000"
 alias serve_django="python manage.py runserver"
 
@@ -39,3 +39,15 @@ alias ws="wallet stats"
 
 # heroku
 alias hl="heroku logs --tail"
+
+# prettify
+alias prettify="js -s '' $1"
+
+# ssh_direct
+alias ssh_direct="ssh -o 'ProxyCommand none'"
+
+# ssh_default
+alias ssh_default="ssh -o 'ProxyCommand none' -p 22"
+
+# ls_except
+alias ls_except="ls -tr | head -n $((`ls -tr | wc -l`-1))"
