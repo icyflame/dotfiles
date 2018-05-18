@@ -32,10 +32,11 @@ call vundle#begin()
 "
 " " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
+
+" syntax checking for several languages
 Plugin 'scrooloose/syntastic'
-Plugin 'jistr/vim-nerdtree-tabs'
+
+" rails syntax highlighting and some more features
 Plugin 'tpope/vim-rails'
 
 " --------
@@ -78,10 +79,18 @@ Plugin 'christoomey/vim-system-copy'
 Plugin 'moll/vim-node'
 Plugin 'rking/ag.vim'
 " Plugin 'javascript.vim--Frstenberg'
-Plugin 'javascript.vim--welshare'
+" Plugin 'javascript.vim--welshare'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'mizuchi/stl-syntax'
+
+Plugin 'fatih/vim-go'
+
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -133,6 +142,9 @@ set hlsearch " highlight the search results
 " Activate syntax highlighting for roslaunch files
 autocmd BufRead,BufNewFile *.launch setfiletype roslaunch
 
+" remember where to go after entering a buffer
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " remap leader to , character
 let g:mapleader=","
 
@@ -154,12 +166,39 @@ nmap <leader>Z :w<cr>ZZ
 nmap <leader>time :r! date<cr>
 
 nmap <leader>sp :set paste<cr>i
-nmap <leader>snp :set nopaste<cr>ii
+nmap <leader>np :set nopaste<cr>ii
 " indent the whole file, write and exit vim.
 nmap <leader>x gg=G:w<cr>ZZ
 
 " make sure that vim-airline works
 set laststatus=2
+
+function! AirlineInit()
+    " let g:airline_section_a = ''
+    " let g:airline_section_b = ''
+    " let g:airline_section_c = ''
+    " let g:airline_section_x = ''
+    " let g:airline_section_y = ''
+    let g:airline_section_z = airline#section#create(['%l', ':', '%c', '/', '%L', ' - ', '%p%%'])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
+let g:airline_symbols_ascii = 1
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#default#section_truncate_width = {
+            \ 'b': 79,
+            \ 'x': 60,
+            \ 'y': 88,
+            \ 'z': 45,
+            \ 'warning': 80,
+            \ 'error': 80,
+            \ }
+silent! call airline#extensions#whitespace#disable()
+
+
+" run and build go files
+nmap <leader>gob :GoBuild<cr>
+nmap <leader>gor :GoRun<cr>
 
 let g:system_copy#copy_command='xsel --clipboard --input'
 
