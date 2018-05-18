@@ -1,5 +1,5 @@
 [user]
-	email = kannan.siddharth12@gmail.com
+	email = mail@siddharthkannan.in
 	name = Siddharth Kannan
 
 [sendemail]
@@ -10,6 +10,7 @@
 	excludesfile = /home/siddharth/.gitignore_global
 	autocrlf = input
 	filemode = true
+	pager = less -x1,5
 [url "https://"]
 	insteadOf = git://
 [credential]
