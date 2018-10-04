@@ -7,7 +7,7 @@ echo "Symlinking all the dotfiles"
 
 cd
 
-declare -r olddir="dotfiles_old"
+declare -r olddir="dotfiles_old_$(date +%s)"
 
 echo $olddir
 
@@ -19,8 +19,11 @@ for file in `ls $dotfiles_loc/**/*.symlink`; do
 	extension="${filename##*.}"
 	dotfile="${filename%.*}"
 	# echo $dotfile
-	# echo "--remove-destination ~/.$dotfile $olddir/$dotfile.old"
-	cp -u -v --remove-destination ~/.$dotfile ~/$olddir/$dotfile.old
+
+    # Destination file is not removed, remove/rename the file manually if you
+    # want that. Anyway, the old dotfiles are put in a folder that has a unique
+    # name, so you probably don't need to worry about this.
+	cp -v ~/.$dotfile ~/$olddir/$dotfile.old
 	rm ~/.$dotfile
 	# echo "ln -s $file ~/.$dotfile"
 	ln -s $file ~/.$dotfile
