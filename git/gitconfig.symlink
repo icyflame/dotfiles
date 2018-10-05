@@ -7,7 +7,7 @@
 
 [core]
 	editor = vim
-	excludesfile = /home/siddharth/.gitignore_global
+	excludesfile = /Users/kannan.siddharth/.gitignore_global
 	autocrlf = input
 	filemode = true
 	pager = less -x1,5
