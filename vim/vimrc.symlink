@@ -47,6 +47,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'git_patch_tags.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-fugitive'
 " --------
 Plugin 'scrooloose/nerdcommenter'
 " Add spaces after comment delimiters by default
@@ -81,6 +82,8 @@ Plugin 'mxw/vim-jsx'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+Bundle 'uarun/vim-protobuf'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
