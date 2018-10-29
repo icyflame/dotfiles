@@ -195,7 +195,7 @@ nmap <leader>gob :GoBuild<cr>
 nmap <leader>gor :GoRun<cr>
 nmap <leader>got :GoTest<cr>
 
-let g:system_copy#copy_command='xsel --clipboard --input'
+let g:system_copy#copy_command='pbcopy --clipboard --input'
 
 autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
 
