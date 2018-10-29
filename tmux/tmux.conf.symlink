@@ -19,10 +19,6 @@ set -g renumber-windows on
 set-window-option -g automatic-rename off
 set-option -g allow-rename off
 
-# setup continuum to automatically restore everything when
-# tmux is started
-set -g @continuum-restore 'on'
-
 # bind alt-r to reloading source-file
 unbind r
 bind r source-file ~/.tmux.conf
@@ -66,6 +62,11 @@ set -g status-right '#(is-online) | #(acpi | cut -d ',' -f 2) | %a %d-%m %H:%M'
 
 # use ctrl to jump words
 set-window-option -g xterm-keys on
+
+# setup continuum to automatically restore everything when
+# tmux is started
+set -g @continuum-restore 'on'
+
 
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
