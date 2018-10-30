@@ -36,22 +36,12 @@ Plugin 'gmarik/Vundle.vim'
 " syntax checking for several languages
 Plugin 'scrooloose/syntastic'
 
-" rails syntax highlighting and some more features
-Plugin 'tpope/vim-rails'
-
 " --------
-Plugin 'ervandew/supertab'
-" --------
-" --------
-" Plugin 'Valloric/YouCompleteMe'
-" let g:ycm_global_ycm_extra_conf = '/home/siddharth/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
-" --------
-Plugin 'kien/ctrlp.vim'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](node_modules|\.git)$',
-  \ 'file': '\v\.(exe|so|dll|out)$',
-  \ }
+" Use fzf for file searching
+" Remap to Ctrl-P
+set rtp+=~/.fzf
+nmap <C-p> :FZF<cr>
+nmap <C-P> :FZF<cr>
 " --------
 Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
@@ -113,8 +103,8 @@ call vundle#end()
 " differently from regular Vi. They are highly recommended though.
 "set showcmd		" Show (partial) command in status line.
 "set showmatch		" Show matching brackets.
+set smartcase		" Do smart case matching
 set ignorecase		" Do case insensitive matching
-"set smartcase		" Do smart case matching
 set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden             " Hide buffers when they are abandoned
@@ -166,12 +156,16 @@ nmap <leader>Z :w<cr>ZZ
 nmap <leader>time :r! date<cr>
 
 nmap <leader>sp :set paste<cr>i
-nmap <leader>np :set nopaste<cr>ii
+nmap <leader>np :set nopaste<cr>
 " indent the whole file, write and exit vim.
 nmap <leader>x gg=G:w<cr>ZZ
 
 " make sure that vim-airline works
 set laststatus=2
+
+" add some tab related shortcuts
+nmap <C-t> :tab new<cr>
+nmap <leader>ct :tab close<cr>
 
 function! AirlineInit()
     " let g:airline_section_a = ''
@@ -199,12 +193,14 @@ silent! call airline#extensions#whitespace#disable()
 " run and build go files
 nmap <leader>gob :GoBuild<cr>
 nmap <leader>gor :GoRun<cr>
+nmap <leader>got :GoTest<cr>
 
 let g:system_copy#copy_command='xsel --clipboard --input'
 
 autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
 
 set omnifunc=syntaxcomplete#Complete
+set backspace=2
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
