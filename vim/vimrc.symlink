@@ -39,7 +39,7 @@ Plugin 'scrooloose/syntastic'
 " --------
 " Use fzf for file searching
 " Remap to Ctrl-P
-set rtp+=~/.fzf
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 nmap <C-p> :FZF<cr>
 nmap <C-P> :FZF<cr>
 " --------
