@@ -107,7 +107,6 @@ call vundle#end()
 "set showcmd		" Show (partial) command in status line.
 "set showmatch		" Show matching brackets.
 set smartcase		" Do smart case matching
-set ignorecase		" Do case insensitive matching
 set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden             " Hide buffers when they are abandoned
@@ -141,10 +140,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " remap leader to , character
 let g:mapleader=","
 
-" shortcut for opening and closing NERDTree
-nmap <C-n><C-t> :NERDTree<cr>
-nmap <C-n><C-e> :NERDTreeClose<cr>
-
 " the write shortcut
 nmap <leader>w :w<cr>
 nmap <leader>W :w<cr>
@@ -162,6 +157,9 @@ nmap <leader>sp :set paste<cr>i
 nmap <leader>np :set nopaste<cr>
 " indent the whole file, write and exit vim.
 nmap <leader>x gg=G:w<cr>ZZ
+
+" open a new tab
+nmap <C-t> :tab new<cr>
 
 " make sure that vim-airline works
 set laststatus=2
@@ -198,7 +196,11 @@ nmap <leader>gob :GoBuild<cr>
 nmap <leader>gor :GoRun<cr>
 nmap <leader>got :GoTest<cr>
 
+" PLATFORM: this will change on the basis of the platform
+" ubuntu: xsel
+" mac: pbcopy
 let g:system_copy#copy_command='pbcopy --clipboard --input'
+" let g:system_copy#copy_command='xsel --clipboard --input'
 
 autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
