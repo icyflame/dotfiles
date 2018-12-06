@@ -117,3 +117,7 @@ function no_proxy_act {
     export socks_proxy="";
     export SOCKS_PROXY="";
 }
+
+function what_cmd {
+    cat `which $1`
+}
