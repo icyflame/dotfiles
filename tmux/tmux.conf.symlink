@@ -27,9 +27,11 @@ bind r source-file ~/.tmux.conf
 bind-key C command-prompt -p "Name of new window: " "new-window -n '%%'"
 
 # open new windows with the same path as the present one
-bind '"' split-window -c "#{pane_current_path}"
-bind % split-window -h -c "#{pane_current_path}"
+bind x split-window -c "#{pane_current_path}"
+bind v split-window -h -c "#{pane_current_path}"
 bind c new-window -c "#{pane_current_path}"
+bind '"' ''
+bind '%' ''
 
 # configuration file from: https://github.com/NdYAG/dotfiles/blob/master/_tmux.conf
 
@@ -50,6 +52,13 @@ set -g pane-active-border-fg  green
 # http://superuser.com/a/552493/207372
 bind-key -n C-S-Left swap-window -t -1
 bind-key -n C-S-Right swap-window -t +1
+
+# move around with vim-like bindings
+# https://stackoverflow.com/a/30719312
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
 
 setw -g window-status-format "#[fg=white]#[bg=blue] #I #[bg=blue]#[fg=white] #W "
 setw -g window-status-current-format "#[bg=brightmagenta]#[fg=white] *#I #[fg=white,bold]#[bg=cyan] [#W] "
