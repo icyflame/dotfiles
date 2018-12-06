@@ -76,6 +76,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'mizuchi/stl-syntax'
 
 Plugin 'fatih/vim-go'
+let g:go_fmt_command = "goimports"
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -101,12 +102,15 @@ call vundle#end()
 "if has("autocmd")
 "  filetype plugin indent on
 "endif
+"
+set noswapfile
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
 "set showcmd		" Show (partial) command in status line.
 "set showmatch		" Show matching brackets.
-set smartcase		" Do smart case matching
+" set smartcase		" Do smart case matching
+set ignorecase      " Ignore case while searching
 set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden             " Hide buffers when they are abandoned
@@ -196,11 +200,16 @@ nmap <leader>gob :GoBuild<cr>
 nmap <leader>gor :GoRun<cr>
 nmap <leader>got :GoTest<cr>
 
+" show the full path of an open buffer
+nmap <leader>fp :echo expand('%:p')<cr>
+
 " PLATFORM: this will change on the basis of the platform
 " ubuntu: xsel
 " mac: pbcopy
 let g:system_copy#copy_command='pbcopy --clipboard --input'
 " let g:system_copy#copy_command='xsel --clipboard --input'
+
+command FormatCurl s/-H/\\\r-H/g
 
 autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
