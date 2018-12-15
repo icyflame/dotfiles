@@ -51,3 +51,9 @@ alias ssh_default="ssh -o 'ProxyCommand none' -p 22"
 
 # ls_except
 alias ls_except="ls -tr | head -n $((`ls -tr | wc -l`-1))"
+
+# jqcl
+alias jqcl="jq -C . | less"
+
+# c = clear
+alias c="clear"
