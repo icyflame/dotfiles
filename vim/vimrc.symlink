@@ -84,7 +84,8 @@ Plugin 'mxw/vim-jsx'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-Bundle 'uarun/vim-protobuf'
+Plugin 'uarun/vim-protobuf'
+Plugin 'christoomey/vim-tmux-navigator'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
