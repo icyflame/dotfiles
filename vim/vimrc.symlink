@@ -64,13 +64,11 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 " --------
-Plugin 'itchyny/lightline.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'moll/vim-node'
 Plugin 'rking/ag.vim'
-" Plugin 'javascript.vim--Frstenberg'
-" Plugin 'javascript.vim--welshare'
+
 Plugin 'jamessan/vim-gnupg'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'mizuchi/stl-syntax'
@@ -81,16 +79,25 @@ let g:go_fmt_command = "goimports"
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
 Plugin 'uarun/vim-protobuf'
 Plugin 'christoomey/vim-tmux-navigator'
+
+Plugin 'itchyny/lightline.vim'
+
+Plugin 'edkolev/tmuxline.vim'
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = {
+        \ 'a': '[#S]',
+        \ 'win': '#I:#W#F',
+        \ 'cwin': '#I:#W#F',
+        \ 'z': '%a %e %b %Y %H:%M',
+        \ 'options': {
+        \ 'status-justify': 'left' } }
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-"set background=dark
+set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -157,14 +164,12 @@ nmap <leader>Z :w<cr>ZZ
 
 " insert the present timestamp into the buffer
 nmap <leader>time :r! date<cr>
+nmap <leader> date :r! date<cr>
 
 nmap <leader>sp :set paste<cr>i
 nmap <leader>np :set nopaste<cr>
 " indent the whole file, write and exit vim.
 nmap <leader>x gg=G:w<cr>ZZ
-
-" open a new tab
-nmap <C-t> :tab new<cr>
 
 " make sure that vim-airline works
 set laststatus=2
@@ -200,6 +205,7 @@ silent! call airline#extensions#whitespace#disable()
 nmap <leader>gob :GoBuild<cr>
 nmap <leader>gor :GoRun<cr>
 nmap <leader>got :GoTest<cr>
+nmap <leader>gfs :GoFillStruct<cr>
 
 " show the full path of an open buffer
 nmap <leader>fp :echo expand('%:p')<cr>
@@ -212,12 +218,20 @@ let g:system_copy#copy_command='pbcopy --clipboard --input'
 
 command FormatCurl s/-H/\\\r-H/g
 
+command MakePlaintext s/\n/ /g
+
+nmap <leader>mpt :MakePlaintext<cr>
+
 autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
 
 set omnifunc=syntaxcomplete#Complete
 set backspace=2
+
+if !has('gui_running')
+  set t_Co=256
+endif
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")

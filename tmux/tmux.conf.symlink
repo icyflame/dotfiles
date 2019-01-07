@@ -6,6 +6,7 @@ set -g @tpm_plugins '                \
 	tmux-plugins/tmux-yank           \
 	tmux-plugins/tmux-copycat        \
 	tmux-plugins/tmux-continuum		 \
+    christoomey/vim-tmux-navigator   \
 '
 # Other examples:
 # github_username/plugin_name    \
@@ -61,27 +62,13 @@ unbind j
 unbind k
 unbind l
 
-# Smart pane switching with awareness of Vim splits.
-# See: https://github.com/christoomey/vim-tmux-navigator
-is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-        | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'" bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
-bind-key -n C-h if-shell "$is_vim" "send-keys C-\\" "select-pane -L"
-bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
-bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
-bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
-bind-key -T copy-mode-vi C-h select-pane -L
-bind-key -T copy-mode-vi C-j select-pane -D
-bind-key -T copy-mode-vi C-k select-pane -U
-bind-key -T copy-mode-vi C-l select-pane -R
-
 setw -g window-status-format "#[fg=white]#[bg=blue] #I #[bg=blue]#[fg=white] #W "
 setw -g window-status-current-format "#[bg=brightmagenta]#[fg=white] *#I #[fg=white,bold]#[bg=cyan] [#W] "
-
 
 # set-option -g status-position top
 set -g status-fg white
 set -g status-bg blue
-set -g status-right '#(is-online) | #(acpi | cut -d ',' -f 2) | %a %d-%m %H:%M'
+set -g status-right '%a %d-%m %H:%M'
 
 # use ctrl to jump words
 set-window-option -g xterm-keys on
@@ -90,6 +77,8 @@ set-window-option -g xterm-keys on
 # tmux is started
 set -g @continuum-restore 'on'
 
+# source tmux statusline
+if-shell "test -f ~/.tmux.statusline" "source ~/.tmux.statusline"
 
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
