@@ -52,7 +52,7 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
 ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
 ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
 
-plugins=(rails zsh-autosuggestions)
+plugins=(rails zsh-autosuggestions vi-mode)
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 

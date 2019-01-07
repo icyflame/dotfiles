@@ -121,3 +121,7 @@ function no_proxy_act {
 function what_cmd {
     cat `which $1`
 }
+
+function sum_all {
+    awk '{ sum += $1 } END { print sum }' -
+}
