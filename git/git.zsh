@@ -5,7 +5,7 @@
 alias gst="git status"
 
 # gb
-alias gb="git branch"
+alias gb="git branch --color | cat"
 
 # gc
 alias gc="git commit"
