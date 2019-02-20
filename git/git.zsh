@@ -1,11 +1,13 @@
-
 # git <3
 
 # gst : Status of the repository
 alias gst="git status"
 
 # gb
-alias gb="git branch --color | cat"
+alias gb="git branch"
+
+# gbl
+alias gbl="git branch --color | cat"
 
 # gc
 alias gc="git commit"
@@ -54,3 +56,5 @@ alias gpo="git push origin"
 alias gpu="git push upstream"
 alias gph="git push heroku"
 alias gpi="git push icyflame"
+
+alias hpr="hub pull-request"
