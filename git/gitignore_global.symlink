@@ -9,6 +9,7 @@ _site
 *.rej
 *.swo
 *.swp
+.*.swp
 *.vi
 *.zip
 *~
