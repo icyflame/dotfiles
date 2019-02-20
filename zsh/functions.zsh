@@ -125,3 +125,9 @@ function what_cmd {
 function sum_all {
     awk '{ sum += $1 } END { print sum }' -
 }
+
+function pretty_print_inplace {
+    jq . "$1" > "$1.e"
+    rm "$1"
+    mv "$1.e" "$1"
+}
