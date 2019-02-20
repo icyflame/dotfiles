@@ -61,9 +61,6 @@ let g:NERDTrimTrailingWhitespace = 1
 " --------
 Plugin 'godlygeek/tabular'
 " --------
-Plugin 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled = 1
-" --------
 Plugin 'mhinz/vim-startify'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'moll/vim-node'
@@ -93,6 +90,10 @@ let g:tmuxline_preset = {
         \ 'z': '%a %e %b %Y %H:%M',
         \ 'options': {
         \ 'status-justify': 'left' } }
+" ----
+Plugin 'tpope/vim-surround'
+" ----
+Plugin 'mtth/scratch.vim'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -177,6 +178,21 @@ set laststatus=2
 " add some tab related shortcuts
 nmap <C-t> :tab new<cr>
 nmap <leader>ct :tab close<cr>
+
+let g:markdown_fenced_languages = [
+            \ 'css',
+            \ 'javascript',
+            \ 'js=javascript',
+            \ 'json=javascript',
+            \ 'ruby',
+            \ 'sass',
+            \ 'xml',
+            \ 'html',
+            \ 'java',
+            \ 'plaintext=nosyntax'
+            \ 'sql'
+            \ 'sh'
+            \ ]
 
 function! AirlineInit()
     " let g:airline_section_a = ''
