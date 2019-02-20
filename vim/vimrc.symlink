@@ -189,8 +189,8 @@ let g:markdown_fenced_languages = [
             \ 'xml',
             \ 'html',
             \ 'java',
-            \ 'plaintext=nosyntax'
-            \ 'sql'
+            \ 'plaintext=nosyntax',
+            \ 'sql',
             \ 'sh'
             \ ]
 
@@ -234,13 +234,20 @@ let g:system_copy#copy_command='pbcopy --clipboard --input'
 
 command FormatCurl s/-H/\\\r-H/g
 
-command MakePlaintext s/\n/ /g
+let @m='ggVG:s/^\n/\r\r/ggg:normal€kb€kb€kb€kb€kb€kb%normal! vipJ:noh'
 
-nmap <leader>mpt :MakePlaintext<cr>
+nmap <leader>pt :normal! @m<cr>
 
-autocmd FileType c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
+iab <expr> dts# strftime("%G-%m-%d %H:%M, %A, Week %U")
+iab <expr> time# strftime("%H:%M")
+
+autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
+
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
+
+autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
+autocmd BufWritePre *.notes autocmd BufWritePre <buffer> %s/\s\+$//e
 
 set omnifunc=syntaxcomplete#Complete
 set backspace=2
