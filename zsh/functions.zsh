@@ -127,7 +127,5 @@ function sum_all {
 }
 
 function pretty_print_inplace {
-    jq . "$1" > "$1.e"
-    rm "$1"
-    mv "$1.e" "$1"
+    jq . "$1" > "$1.e" && rm "$1" && mv "$1.e" "$1"
 }
