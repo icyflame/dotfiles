@@ -1,4 +1,7 @@
 alias kgpods="kubectl get pods"
+alias pods="kubectl get pods"
+alias podw="watch kubectl get pods"
+
 alias kgsvc="kubectl get services"
 
 alias kgpod="kubectl get pod -o json"
@@ -15,8 +18,8 @@ alias kst="stern --exclude-container istio-proxy --since 1s"
 
 alias kg="kubectl get"
 
-alias st="stern --exclude-container istio-proxy --since 1s"
-alias sts="stern --exclude-container istio-proxy"
+alias st="stern --exclude-container istio-proxy"
+alias sts="stern --exclude-container istio-proxy --since 1s"
 
 alias kcon="kubectx"
 alias kns="kubens"

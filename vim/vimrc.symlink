@@ -87,7 +87,7 @@ let g:tmuxline_preset = {
         \ 'a': '[#S]',
         \ 'win': '#I:#W#F',
         \ 'cwin': '#I:#W#F',
-        \ 'z': '%a %e %b %Y %H:%M',
+        \ 'z': '[#{window_width},#{window_height}] [#{pane_width},#{pane_height}] %a %e %b %Y %H:%M',
         \ 'options': {
         \ 'status-justify': 'left' } }
 " ----
