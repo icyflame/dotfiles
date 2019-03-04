@@ -129,3 +129,62 @@ function sum_all {
 function pretty_print_inplace {
     jq . "$1" > "$1.e" && rm "$1" && mv "$1.e" "$1"
 }
+
+function colorize_go_tests {
+    sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/''
+}
+
+# go_test ./handler NewPromote
+# -> go test -v ./handler -run NewPromote
+# -> will run all tests matching the second argument (regex) inside the first
+# argument (package)
+function go_test {
+    PACKAGE="$1";
+    TEST_REGEX="$2";
+
+    if [[ "$PACKAGE" == "" ]]; then
+        go test -v ./...
+    elif [[ "$TEST_REGEX" == "" ]]; then
+        go test -v $PACKAGE
+    else
+        go test -v $PACKAGE -run $TEST_REGEX
+    fi
+}
+
+# got
+# -> runs for all packages and prints a summary of what happened
+# got ./handler
+# -> runs for this package and prints a summary
+# got ./handler NewPromote
+# -> runs for this package and prints a summary
+# got ./handler -v
+# -> runs and doesn't change the output of `go test`
+# got ./handler NewPromote -v
+# -> runs and doesn't change the output of `go test`
+function got {
+    if [[ "$2" == "-v" ]]; then
+        go_test "$1" ""
+    elif [[ "$3" == "-v" ]]; then
+        go_test "$1" "$2"
+    else
+        TEST_OUTPUT=`go_test "$1" "$2" | ag "^---"`
+
+        FAILED=`echo "$TEST_OUTPUT" | ag "FAIL"`
+        FAILED_COUNT=`echo "$FAILED" | wc -l`
+
+        PASSED=`echo "$TEST_OUTPUT" | ag "PASS"`
+        PASSED_COUNT=`echo "$PASSED" | wc -l`
+
+        SKIPPED=`echo "$TEST_OUTPUT" | ag "SKIP"`
+        SKIPPED_COUNT=`echo "$SKIPPED" | wc -l`
+
+        if [[ $FAILED_COUNT -eq 0 ]]; then
+            echo "ALL $PASSED_COUNT PASSED";
+        else
+            echo "$FAILED" | colorize_go_tests
+            echo
+            echo "$FAILED_COUNT FAILED; $PASSED_COUNT PASSED; $SKIPPED_COUNT SKIPPED"
+            echo
+        fi
+    fi
+}
