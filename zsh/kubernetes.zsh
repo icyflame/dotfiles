@@ -1,5 +1,6 @@
 alias kgpods="kubectl get pods"
 alias pods="kubectl get pods"
+alias podj="kubectl get pods -ojson | jqcl"
 alias podw="watch kubectl get pods"
 
 alias kgsvc="kubectl get services"
@@ -24,4 +25,4 @@ alias sts="stern --exclude-container istio-proxy --since 1s"
 alias kcon="kubectx"
 alias kns="kubens"
 
-alias kdef="kubens default"
+alias kdef="kubectl config set-context --current --namespace default"
