@@ -27,6 +27,11 @@ bind r source-file ~/.tmux.conf
 # Prompt for the window name on window creation
 bind-key C command-prompt -p "Name of new window: " "new-window -n '%%'"
 
+bind-key W command-prompt -p "W #{pane_width} #{window_width}:" "resize-pane -x '%%'"
+bind-key H command-prompt -p "H #{pane_height} #{window_height}:" "resize-pane -y '%%'"
+
+bind-key T select-layout tiled
+
 # open new windows with the same path as the present one
 bind x split-window -c "#{pane_current_path}"
 bind v split-window -h -c "#{pane_current_path}"
@@ -49,6 +54,9 @@ setw -g pane-base-index 1
 # change the color of the borders
 set -g pane-border-fg white
 set -g pane-active-border-fg  green
+
+# use vim bindings for moving around in Copy mode
+set -g mode-keys vi
 
 # changing the key-bindings to move windows around
 # http://superuser.com/a/552493/207372
