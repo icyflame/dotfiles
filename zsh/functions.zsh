@@ -151,6 +151,10 @@ function go_test {
     fi
 }
 
+function col1 {
+    awk '{ print $1 }'
+}
+
 # got
 # -> runs for all packages and prints a summary of what happened
 # got ./handler
@@ -170,13 +174,25 @@ function got {
         TEST_OUTPUT=`go_test "$1" "$2" | ag "^---"`
 
         FAILED=`echo "$TEST_OUTPUT" | ag "FAIL"`
-        FAILED_COUNT=`echo "$FAILED" | wc -l`
+        FAILED_COUNT=0
+
+        if [[ "$FAILED" != "" ]]; then
+            FAILED_COUNT=`echo "$FAILED" | wc -l`
+        fi
 
         PASSED=`echo "$TEST_OUTPUT" | ag "PASS"`
-        PASSED_COUNT=`echo "$PASSED" | wc -l`
+        PASSED_COUNT=0
 
-        SKIPPED=`echo "$TEST_OUTPUT" | ag "SKIP"`
-        SKIPPED_COUNT=`echo "$SKIPPED" | wc -l`
+        if [[ "$PASSED" != "" ]]; then
+            PASSED_COUNT=`echo "$PASSED" | wc -l`
+        fi
+
+        SKIPED=`echo "$TEST_OUTPUT" | ag "SKIP"`
+        SKIPED_COUNT=0
+
+        if [[ "$SKIPED" != "" ]]; then
+            SKIPED_COUNT=`echo "$SKIPED" | wc -l`
+        fi
 
         if [[ $FAILED_COUNT -eq 0 ]]; then
             echo "ALL $PASSED_COUNT PASSED";
@@ -187,4 +203,10 @@ function got {
             echo
         fi
     fi
+}
+
+function tmp_file {
+    FILE_NAME="/tmp/tmp-$RANDOM"
+    $EDITOR $FILE_NAME
+    echo "$FILE_NAME"
 }
