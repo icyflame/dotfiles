@@ -94,6 +94,8 @@ let g:tmuxline_preset = {
 Plugin 'tpope/vim-surround'
 " ----
 Plugin 'mtth/scratch.vim'
+" ---
+Plugin 'ludovicchabant/vim-gutentags'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -245,6 +247,8 @@ autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd Bu
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
+
+autocmd FileType go set tw=100
 
 autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
 autocmd BufWritePre *.notes autocmd BufWritePre <buffer> %s/\s\+$//e
