@@ -7,16 +7,9 @@ ZSH_THEME="ys"
 
 # User configuration
 
-export PATH="$PATH:/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 mkdir -p $HOME/bin
-export PATH="$PATH:$HOME/bin"
-
-# zsh
-alias zshconfig="vim ~/.zshrc"
-
-# rbenv
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(rbenv init -)"
+export PATH="$PATH:/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin"
+PATH="$NPM_PACKAGES/bin:$PATH"
 
 # added by travis gem
 [ -f /home/siddharth/.travis/travis.sh ] && source /home/siddharth/.travis/travis.sh
@@ -24,7 +17,6 @@ export NODE_PATH=~/local/:~/local/node_modules
 
 NPM_PACKAGES="/home/siddharth/.npm-packages"
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-PATH="$NPM_PACKAGES/bin:$PATH"
 # Unset manpath so we can inherit from /etc/manpath via the `manpath`
 # command
 unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
@@ -58,24 +50,14 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin"
-export PATH="$PATH:$HOME/dotfiles/bin"
-export PATH="$PATH:/usr/local/go/bin"
 export GOPATH="$HOME/go_workspace"
-export PATH="$PATH:$GOPATH/bin"
-
-export PATH="$PATH:$HOME/.cargo/bin"
-
-export ANDROID_HOME="/home/siddharth/Android/Sdk"
+export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin:$HOME/dotfiles/bin:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin"
 
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export ANDROID_HOME="/home/siddharth/Android/Sdk"
 export ANDROID_SDK="/home/siddharth/Android/Sdk"
 export USER_HOME=$USER
-
-
-
 
 # Sets the Mail Environment Variable
 export MAIL=/var/spool/mail/siddharth
@@ -90,6 +72,7 @@ unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 [[ -s $HOME/.cargo/env ]] && source $HOME/.cargo/env
+
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
@@ -99,14 +82,13 @@ export DOTFILE_LOC=$HOME/dotfiles
 # Load all the local settings
 [ -e "$HOME/.localrc" ] && source $HOME/.localrc
 
-for i in `ls $DOTFILE_LOC/.local/*.zsh`; do
-	source $i;
-done;
+# for i in `ls $DOTFILE_LOC/.local/*.zsh`; do
+	# source $i;
+# done;
 # Source all the zsh files in this dir
 for i in `ls $DOTFILE_LOC/**/*.zsh`; do
 	source $i;
 done;
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -115,7 +97,7 @@ export NVM_DIR="$HOME/.nvm"
 # [[ $TERM != "screen" ]] && exec tmux
 
 JAVA_HOME=/home/siddharth/Downloads/jdk1.8.0_161/bin
-PATH="$PATH:$JAVA_HOME"
+[ -d "$JAVA_HOME" ] && PATH="$PATH:$JAVA_HOME"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/kannan.siddharth/work/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kannan.siddharth/work/google-cloud-sdk/path.zsh.inc'; fi
@@ -135,5 +117,3 @@ export KEYTIMEOUT=1
 
 alias agc="ag --color"
 alias jqc="jq -C"
-
-export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
