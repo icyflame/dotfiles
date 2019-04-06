@@ -130,6 +130,8 @@ function pretty_print_inplace {
     jq . "$1" > "$1.e" && rm "$1" && mv "$1.e" "$1"
 }
 
+alias ppi="pretty_print_inplace"
+
 function colorize_go_tests {
     sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/''
 }

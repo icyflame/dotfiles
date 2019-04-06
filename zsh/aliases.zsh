@@ -57,3 +57,6 @@ alias jqcl="jq -C . | less"
 
 # c = clear
 alias c="clear"
+
+# watch ...: make watch work with aliases
+alias watch="watch "
