@@ -97,14 +97,7 @@ autoload -U compinit && compinit -u
 export DOTFILE_LOC=$HOME/dotfiles
 
 # Load all the local settings
-if [ -e "$HOME/.localrc" ]; then
-  source $HOME/.localrc
-else
-  echo "You don't have a local config file. Edit ~/.localrc if required"
-  # TODO: Copy a template from dotfiles to this location
-  touch $HOME/.localrc
-  cp $DOTFILE_LOC/zsh/localrc.template $HOME/.localrc
-fi
+[ -e "$HOME/.localrc" ] && source $HOME/.localrc
 
 for i in `ls $DOTFILE_LOC/.local/*.zsh`; do
 	source $i;
@@ -142,3 +135,5 @@ export KEYTIMEOUT=1
 
 alias agc="ag --color"
 alias jqc="jq -C"
+
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
