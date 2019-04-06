@@ -95,7 +95,6 @@ Plugin 'tpope/vim-surround'
 " ----
 Plugin 'mtth/scratch.vim'
 " ---
-Plugin 'ludovicchabant/vim-gutentags'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -255,6 +254,10 @@ autocmd BufWritePre *.notes autocmd BufWritePre <buffer> %s/\s\+$//e
 
 set omnifunc=syntaxcomplete#Complete
 set backspace=2
+
+" Put a line at the 80 column mark
+set colorcolumn=+1
+highlight ColorColumn ctermbg=8
 
 if !has('gui_running')
   set t_Co=256
