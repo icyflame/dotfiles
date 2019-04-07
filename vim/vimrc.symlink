@@ -230,8 +230,8 @@ nmap <leader>fp :echo expand('%:p')<cr>
 " PLATFORM: this will change on the basis of the platform
 " ubuntu: xsel
 " mac: pbcopy
-let g:system_copy#copy_command='pbcopy --clipboard --input'
-" let g:system_copy#copy_command='xsel --clipboard --input'
+" let g:system_copy#copy_command='pbcopy --clipboard --input'
+let g:system_copy#copy_command='xsel --clipboard --input'
 
 command FormatCurl s/-H/\\\r-H/g
 
