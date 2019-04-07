@@ -212,3 +212,7 @@ function tmp_file {
     $EDITOR $FILE_NAME
     echo "$FILE_NAME"
 }
+
+function v {
+    vim $@
+}
