@@ -1,3 +1,3 @@
 [submodule ".zprezto"]
 	path = .zprezto
-	url = git@github.com:icyflame/zprezto
+	url = git@github.com:icyflame/prezto
