@@ -1,3 +1,6 @@
 [submodule "mercari"]
 	path = mercari
 	url = ./mercari
+[submodule ".zprezto"]
+	path = .zprezto
+	url = git@github.com:icyflame/zprezto
