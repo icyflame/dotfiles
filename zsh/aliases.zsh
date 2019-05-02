@@ -1,3 +1,5 @@
+alias less="less -Ri"
+
 # serve port_number : Create a Simple HTTP Server
 # Using Python. Port defaults to 8000.
 alias serve_simple="python -m SimpleHTTPServer $1"
