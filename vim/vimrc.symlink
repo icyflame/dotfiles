@@ -72,6 +72,8 @@ Plugin 'mizuchi/stl-syntax'
 
 Plugin 'fatih/vim-go'
 let g:go_fmt_command = "goimports"
+let g:go_def_mode = 'guru'
+let g:go_echo_command_info = 0
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -95,6 +97,7 @@ Plugin 'tpope/vim-surround'
 " ----
 Plugin 'mtth/scratch.vim'
 " ---
+Plugin 'shime/vim-livedown'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -230,8 +233,8 @@ nmap <leader>fp :echo expand('%:p')<cr>
 " PLATFORM: this will change on the basis of the platform
 " ubuntu: xsel
 " mac: pbcopy
-" let g:system_copy#copy_command='pbcopy --clipboard --input'
-let g:system_copy#copy_command='xsel --clipboard --input'
+let g:system_copy#copy_command='pbcopy --clipboard --input'
+" let g:system_copy#copy_command='xsel --clipboard --input'
 
 command FormatCurl s/-H/\\\r-H/g
 
