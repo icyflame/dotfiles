@@ -58,3 +58,45 @@ alias gph="git push heroku"
 alias gpi="git push icyflame"
 
 alias hpr="hub pull-request"
+
+# returns the current branch that you are on
+function git-current-branch {
+    echo `git branch | ag '\*' | awk '{ print $2 }'`
+}
+
+# push to origin/current-branch if it is not master
+# This command does NOT provide a --force option. You should run `gpo master` by
+# hand if that is what you want to do.
+function gpoc {
+    current_branch=`git-current-branch`
+    if [[ "$current_branch" =~ ".*master.*" ]]; then
+        echo "Current branch $current_branch is master! can not push directly to master!"
+        return 255
+    fi
+
+    echo "Pushing to $current_branch"
+
+    git push origin $current_branch;
+}
+
+# delete all merged branches if the current branch _is_ master
+# this command provides a `--dry-run` and `--force` option
+function gbDm {
+    forced="$1"
+    dry_run="$1"
+    current_branch=`git-current-branch`
+
+    if [[ "$current_branch" =~ ".*master.*" || "$forced" = "--force" ]]; then
+        git branch --merged | grep -v master | while read p; do
+        if [[ "$dry_run" == "--dry-run" ]]; then
+            echo "$p"
+        else
+            git branch -d "$p";
+        fi
+        done;
+    else
+        echo "Not on branch master; can't delete merged branches; run with --force if you want to do that"
+    fi
+}
+
+alias gbDmd="gbDm --dry-run"
