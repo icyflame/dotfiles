@@ -153,10 +153,6 @@ function go_test {
     fi
 }
 
-function col1 {
-    awk '{ print $1 }'
-}
-
 # got
 # -> runs for all packages and prints a summary of what happened
 # got ./handler
@@ -215,4 +211,22 @@ function tmp_file {
 
 function v {
     vim $@
+}
+
+function col1 { awk '{ print $1 }' }
+function col2 { awk '{ print $2 }' }
+function col3 { awk '{ print $3 }' }
+function col4 { awk '{ print $4 }' }
+function col5 { awk '{ print $5 }' }
+function col6 { awk '{ print $6 }' }
+function col7 { awk '{ print $7 }' }
+function col8 { awk '{ print $8 }' }
+function col9 { awk '{ print $9 }' }
+
+function replace_all {
+    PATTERN="$1"
+    REPLACEMENT="$2"
+    cmd='ag -l "'$PATTERN'" | xargs sed -ie "s/'$PATTERN'/'$REPLACEMENT'/g"'
+    echo $cmd >&2
+    eval $cmd
 }
