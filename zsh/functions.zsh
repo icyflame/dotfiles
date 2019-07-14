@@ -223,6 +223,15 @@ function col7 { awk '{ print $7 }' }
 function col8 { awk '{ print $8 }' }
 function col9 { awk '{ print $9 }' }
 
+function drop_top {
+    DROP_LINES="$@"
+    if [[ -z "$DROP_LINES" ]] {
+        DROP_LINES=1
+    }
+
+    awk '{ if (NR > '"$DROP_LINES"') print $0 }'
+}
+
 function replace_all {
     PATTERN="$1"
     REPLACEMENT="$2"
