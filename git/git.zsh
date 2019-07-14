@@ -100,3 +100,10 @@ function gbDm {
 }
 
 alias gbDmd="gbDm --dry-run"
+
+# gfm = git find merge commit => Prints the merge commit in which the given
+# commit was merged into master
+function gfm {
+    git log --oneline master...$@ \
+        --ancestry-path --merges | tail -n1
+}
