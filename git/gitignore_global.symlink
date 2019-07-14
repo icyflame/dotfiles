@@ -45,3 +45,7 @@ node_modules
 
 # Python compiled
 *.pyc
+
+.env
+tmp/
+*.tmp
