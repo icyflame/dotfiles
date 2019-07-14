@@ -89,6 +89,7 @@ if [ -f '/Users/kannan.siddharth/work/google-cloud-sdk/completion.zsh.inc' ]; th
 
 bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey -M vicmd v edit-command-line
 
 [ -d $HOME/dotfiles/mercari/bin ] && PATH="$PATH:$HOME/dotfiles/mercari/bin"
 
