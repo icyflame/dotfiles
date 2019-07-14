@@ -98,6 +98,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'mtth/scratch.vim'
 " ---
 Plugin 'shime/vim-livedown'
+" ---
+Plugin 'jparise/vim-graphql'
+" ---
+Plugin 'voldikss/vim-search-me'
+let g:vsm_search_engine = 'duckduckgo'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -223,25 +228,22 @@ silent! call airline#extensions#whitespace#disable()
 " clean up commands copied from the shell
 command ShellClean g/^#/norm "_dd
 
-" run and build go files
-nmap <leader>gob :GoBuild<cr>
-nmap <leader>gor :GoRun<cr>
-nmap <leader>got :GoTest<cr>
 nmap <leader>gfs :GoFillStruct<cr>
 
 " show the full path of an open buffer
 nmap <leader>fp :echo expand('%:p')<cr>
 
 " PLATFORM: this will change on the basis of the platform
-" ubuntu: xsel
+" default: xsel (ubuntu)
 " mac: pbcopy
-let g:system_copy#copy_command='pbcopy --clipboard --input'
-" let g:system_copy#copy_command='xsel --clipboard --input'
+let g:system_copy#copy_command='xsel --clipboard --input'
+if has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^darwin'
+    let g:system_copy#copy_command='pbcopy --clipboard --input'
+endif
 
 command FormatCurl s/-H/\\\r-H/g
 
 let @m='ggVG:s/^\n/\r\r/ggg:normal€kb€kb€kb€kb€kb€kb%normal! vipJ:noh'
-
 nmap <leader>pt :normal! @m<cr>
 
 iab <expr> dts# strftime("%G-%m-%d %H:%M, %A, Week %U")
@@ -252,7 +254,7 @@ autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd Bu
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
 
-autocmd FileType go set tw=100
+autocmd FileType go,javascript set tw=100
 
 autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
 autocmd BufWritePre *.notes autocmd BufWritePre <buffer> %s/\s\+$//e
