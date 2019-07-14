@@ -2,8 +2,28 @@
 alias st="stern --exclude-container istio-proxy"
 alias sts="stern --exclude-container istio-proxy --since 1s"
 
-# Shorthands
-alias kg="kubectl get"
+function kl {
+    PARAM="$1"
+    pod l "$PARAM" | col1 | while read p; do
+        kubectl logs "$p";
+    done
+}
+
+function klf {
+    PARAM="$1"
+    pod l "$PARAM" | head -n1 | col1 | while read p; do
+        kubectl logs -f "$p";
+    done
+}
+
+function kg {
+    PARAM="$@"
+    if [[ "$PARAM" == "" ]]; then
+        kubectl get all
+    else
+        kubectl get "$@"
+    fi
+}
 
 function kns {
     PARAM="$@"
@@ -32,4 +52,3 @@ alias kex="kubectl exec -it"
 alias klog="kubectl logs -f"
 
 alias kcon="kubectx"
-
