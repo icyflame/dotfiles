@@ -93,11 +93,7 @@ let g:tmuxline_preset = {
         \ 'options': {
         \ 'status-justify': 'left' } }
 " ----
-Plugin 'tpope/vim-surround'
-" ----
 Plugin 'mtth/scratch.vim'
-" ---
-Plugin 'shime/vim-livedown'
 " ---
 Plugin 'jparise/vim-graphql'
 " ---
