@@ -99,6 +99,12 @@ Plugin 'jparise/vim-graphql'
 " ---
 Plugin 'voldikss/vim-search-me'
 let g:vsm_search_engine = 'duckduckgo'
+" ---
+Plugin 'aklt/plantuml-syntax'
+" ---
+"
+"  PLUGINS UNDER TESTING
+"
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
