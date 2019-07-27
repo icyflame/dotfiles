@@ -1,37 +1,9 @@
-## General
+## @icyflame's dotfiles
 
-- VLC Media Player
-- Google Chrome (?) Read [this](http://icyflame.github.io/blog/linux/2015/10/03/chromium-vs-firefox/)!
+> Configuration files to setup any new computer in a few minutes
 
-## From the terminal
-- zsh 
-    - ~/.zshrc file
-- git
-    - ~/.gitignore_global file
-    - ~/.gitconfig file
-- vim
-		- Install Vundle
-    - vimrc file
-- htop
-- node
-- npm
-    - terminal-wallet
-    - CLI Cube Timer
-    - vtop
+### Setup experiences
 
-## Programming
+- [2019-07 Setting up Ubuntu 18.04][1]
 
-- Atom
-
-## Files
-
-- LinuxDCPP
-- FileZilla
-- PuddleTag
-- Skype
-
-## Open Source
-
-- ROS
-- heroku-toolbelt
-- msmtp
+[1]: https://gist.github.com/icyflame/1399a7462f4c56103f8417b26875f5c5
