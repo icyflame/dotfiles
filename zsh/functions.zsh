@@ -13,7 +13,8 @@ function hist {
 }
 
 function calc {
-    echo $(($@));
+    perl -e 'print '"$@"';'
+    echo;
 }
 
 function compile {
