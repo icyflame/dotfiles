@@ -11,6 +11,7 @@ alias gbl="git branch --color | cat"
 
 # gc
 alias gc="git commit"
+alias gca="git commit --amend"
 
 # ga
 alias ga="git add"
@@ -68,6 +69,7 @@ function git-current-branch {
 # This command does NOT provide a --force option. You should run `gpo master` by
 # hand if that is what you want to do.
 function gpoc {
+    forced="$1"
     current_branch=`git-current-branch`
     if [[ "$current_branch" =~ ".*master.*" ]]; then
         echo "Current branch $current_branch is master! can not push directly to master!"
@@ -76,7 +78,15 @@ function gpoc {
 
     echo "Pushing to $current_branch"
 
-    git push origin $current_branch;
+    if [[ "$forced" = "--force" ]]; then
+        git push origin --force $current_branch;
+    else
+        git push origin $current_branch;
+    fi
+}
+
+function gpofc {
+    gpoc --force
 }
 
 # delete all merged branches if the current branch _is_ master
