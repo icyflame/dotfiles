@@ -73,10 +73,8 @@ for i in `ls $DOTFILE_LOC/**/*.zsh`; do
 done;
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# [[ $TERM != "screen" ]] && exec tmux
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 JAVA_HOME=/home/siddharth/Downloads/jdk1.8.0_161/bin
 [ -d "$JAVA_HOME" ] && PATH="$PATH:$JAVA_HOME"
@@ -101,3 +99,11 @@ export KEYTIMEOUT=1
 alias agc="ag --color"
 alias jqc="jq -C"
 
+export LANG="en_US"
+
+# mac only
+PATH="/Users/kannan.siddharth/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/kannan.siddharth/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/kannan.siddharth/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/kannan.siddharth/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/kannan.siddharth/perl5"; export PERL_MM_OPT;
