@@ -240,3 +240,7 @@ function replace_all {
     echo $cmd >&2
     eval $cmd
 }
+
+function hdate {
+    date +%Y-%m-%d-%H-%M-%S
+}
