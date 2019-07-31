@@ -244,3 +244,18 @@ function replace_all {
 function hdate {
     date +%Y-%m-%d-%H-%M-%S
 }
+
+# sample n
+# > will print 1 out of every 10^n lines from the given stream
+#
+# Usage:
+#     stern test-pod | sample 2
+#     > print 1 out of every 100 log lines from a kubernetes pod
+#
+#     cat transaction-logs | sort | uniq | sample 3
+#     > print 1 out of every 1000 log lines from a given file
+function sample {
+    ARG="$1"
+    ARG=${ARG:-2}
+    cat -n | ag "^\s+[1-9]+0{$ARG,}\b"
+}
