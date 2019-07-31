@@ -190,6 +190,11 @@ set laststatus=2
 nmap <C-t> :tab new<cr>
 nmap <leader>ct :tab close<cr>
 
+" yank the complete buffer while maintaining position
+nmap fy ggyG``<cr>
+" copy the complete buffer to system clipboard using vim-system-copy
+nmap fcp ggcpG``<cr>
+
 let g:markdown_fenced_languages = [
             \ 'css',
             \ 'javascript',
@@ -270,7 +275,6 @@ endif
 command FormatCurl s/-H/\\\r-H/g
 command FormatSQL :<c-u>call BeautifySQL()<CR>
 
-
 let @m='ggVG:s/^\n/\r\r/ggg:normal€kb€kb€kb€kb€kb€kb%normal! vipJ:noh'
 nmap <leader>pt :normal! @m<cr>
 
@@ -282,7 +286,7 @@ autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd Bu
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
 
-autocmd FileType go,javascript set tw=100
+autocmd FileType proto,go,javascript set tw=100
 
 autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
 autocmd BufWritePre *.notes autocmd BufWritePre <buffer> %s/\s\+$//e
