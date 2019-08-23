@@ -259,3 +259,10 @@ function sample {
     ARG=${ARG:-2}
     cat -n | ag "^\s+[1-9]+0{$ARG,}\b"
 }
+
+# dir_size
+# > print the size of all sub directories of .
+function dir_size {
+    CMD="du -h --max-depth=1 2>/dev/null | sort -h"
+    eval "$CMD"
+}

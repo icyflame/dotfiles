@@ -8,7 +8,7 @@ alias agi="sudo apt-get install $1"
 alias agu="sudo apt-get update"
 
 # find the size of ./ (pwd)
-alias dir_size="du -hs"
+# alias dir_size="du -hs"
 
 # find a breakdown of all subdirs in ./
 alias breakdown="du -h --max-depth=1"
