@@ -258,6 +258,7 @@ silent! call airline#extensions#whitespace#disable()
 
 " clean up commands copied from the shell
 command ShellClean g/^#/norm "_dd
+nmap <leader>sc :ShellClean<cr>
 
 nmap <leader>gfs :GoFillStruct<cr>
 
