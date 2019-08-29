@@ -79,6 +79,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
 Plugin 'uarun/vim-protobuf'
+
 Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'itchyny/lightline.vim'
@@ -105,6 +106,8 @@ Plugin 'aklt/plantuml-syntax'
 "
 "  PLUGINS UNDER TESTING
 "
+Plugin 'sirver/ultisnips'
+let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
