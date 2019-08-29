@@ -49,3 +49,4 @@ node_modules
 .env
 tmp/
 *.tmp
+fresh_config
