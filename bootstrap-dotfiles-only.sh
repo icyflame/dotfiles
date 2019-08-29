@@ -1,38 +1,51 @@
-### Dotfile setup in the $HOME directory
+# Setup all the dotfiles in the $HOME directory
 
-declare -r dotfiles_loc="$HOME/dotfiles"
-source $dotfiles_loc/helpers/yesno.sh
+function echo_eval {
+    CMD="$1"
+    echo "$CMD"
 
-echo "Symlinking all the dotfiles"
+    DEBUG="$2"
+    if [[ "$DEBUG" == "$RUN_STR" ]]; then
+        eval "$CMD"
+    fi
+}
 
-cd
+RUN_STR="--run"
+HELP_STR="--help"
 
-declare -r olddir="dotfiles_old_$(date +%s)"
+GLOBAL_DEBUG="$1"
 
-echo $olddir
+if [[ "$GLOBAL_DEBUG" == "$RUN_STR" ]]; then
+    echo "TRUE RUN: will run all the commands that follow"
+else
+    echo "DRY RUN: will not run any command"
+fi
 
-mkdir -p ~/$olddir
+DOTFILES_LOC="$HOME/dotfiles"
 
-for file in `ls $dotfiles_loc/**/*.symlink`; do
-	# echo $file
-	filename=$(basename "$file")
+DATE=`date +%Y-%m-%d-%H-%M-%S`
+OLD_DOTFILES_LOC="$HOME/dotfiles_old/$DATE"
+
+echo "Symlinking all the dotfiles:"
+echo_eval "mkdir -p \"$OLD_DOTFILES_LOC\"" "$GLOBAL_DEBUG"
+
+for file in `ls $DOTFILES_LOC/**/*.symlink`; do
+	filename=`basename "$file"`
 	extension="${filename##*.}"
 	dotfile="${filename%.*}"
-	# echo $dotfile
 
-    # Destination file is not removed, remove/rename the file manually if you
-    # want that. Anyway, the old dotfiles are put in a folder that has a unique
-    # name, so you probably don't need to worry about this.
-	cp -v ~/.$dotfile ~/$olddir/$dotfile.old
-	rm ~/.$dotfile
-	# echo "ln -s $file ~/.$dotfile"
-	ln -s $file ~/.$dotfile
+	echo_eval "cp -v $HOME/.$dotfile $OLD_DOTFILES_LOC/$dotfile.old" "$GLOBAL_DEBUG"
+	echo_eval "rm -f  $HOME/.$dotfile" "$GLOBAL_DEBUG"
+	echo_eval "ln -s $file $HOME/.$dotfile" "$GLOBAL_DEBUG"
 done
 
-if yesno --timeout 5 --default yes "Copy all the shell scripts from bin to /usr/local/bin (requires sudo) ? "; then
-	for file in `ls $dotfiles_loc/**/*.sh`; do
-		sudo cp --remove-destination $file /usr/local/bin/
-	done
-else
-	echo "Okay! Didn't copy, Done for now."
-fi
+echo "Symlinking all the snippets files:"
+SNIPPETS_LOC="$HOME/.vim/custom-snippets"
+echo_eval "mkdir -p \"$SNIPPETS_LOC\"" "$GLOBAL_DEBUG"
+
+for file in `ls $DOTFILES_LOC/**/*.snippets`; do
+    file_name=`basename $file`
+	dst_file="$SNIPPETS_LOC/$file_name"
+    echo_eval "rm -f \"$dst_file\"" "$GLOBAL_DEBUG"
+	echo_eval "ln -s \"$file\" \"$dst_file\"" "$GLOBAL_DEBUG"
+done
