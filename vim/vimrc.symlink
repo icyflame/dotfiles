@@ -108,6 +108,8 @@ Plugin 'aklt/plantuml-syntax'
 "
 Plugin 'sirver/ultisnips'
 let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
