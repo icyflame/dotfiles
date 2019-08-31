@@ -92,12 +92,15 @@ function last_screenshot {
 }
 
 function random_ep {
-    PATH=${1:"."}
-    COMMAND="find $PATH -type f | ag \"\.(avi|mkv|mp4|flv)$\" | shuf | head -n1"
-    FILE=`eval $COMMAND`;
-    echo $FILE;
-    echo $FILE >> ~/random_ep.log;
-    vlc $FILE;
+    BASE_PATH="."
+
+    COMMAND="find $BASE_PATH -type f | ag \"\.(avi|mkv|mp4|flv)\$\" | shuf | head -n1"
+
+    FILE=`eval $COMMAND`
+    echo $FILE
+    echo $FILE >> ~/random_ep.log
+
+    vlc $FILE
 }
 
 function no_proxy_act {
