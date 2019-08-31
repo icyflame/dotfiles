@@ -84,23 +84,17 @@ function copy_commit {
     git log -1 $COMMIT | head -n5 | clipcopy;
 }
 
-function next_screenshot {
-    PICTURE=`ls -t ~/Pictures/Screenshot*.png | head -n1`
-    echo "Moving $PICTURE to public/img/$1"
-    mv $PICTURE public/img/$1
-    xdg-open "public/img/$1"
-}
-
 function last_screenshot {
     PICTURE=`ls -t ~/Pictures/Screenshot*.png | head -n1`
-    echo "Moving $PICTURE to public/img/$1"
+    echo "Moving $PICTURE to $1"
     mv $PICTURE $1
     xdg-open "$1"
 }
 
 function random_ep {
-    COMMAND="find -iname \"*.avi\" -o -iname \"*.mkv\" -o -iname \"*.mp4\" -o -iname \"*.flv\" | shuf | head -n1";
-    FILE="`eval $COMMAND`";
+    PATH=${1:"."}
+    COMMAND="find $PATH -type f | ag \"\.(avi|mkv|mp4|flv)$\" | shuf | head -n1"
+    FILE=`eval $COMMAND`;
     echo $FILE;
     echo $FILE >> ~/random_ep.log;
     vlc $FILE;
