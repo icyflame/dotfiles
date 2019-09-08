@@ -8,9 +8,12 @@ mkdir -p $HOME/bin
 
 export PATH="$PATH:/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin"
 
-export GOPATH="$HOME/go_workspace"
 export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin:$HOME/dotfiles/bin:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin"
 
+export PATH="$PATH:$HOME/.rbenv/bin"
+export PATH="$PATH:$HOME/.rbenv/shims"
+
+export GOPATH="$HOME/go_workspace"
 # added by travis gem
 [ -f /home/siddharth/.travis/travis.sh ] && source /home/siddharth/.travis/travis.sh
 export NODE_PATH=~/local/:~/local/node_modules
@@ -110,3 +113,6 @@ PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
 alias python="python3"
+
+DMD_LOCATION="$HOME/dlang/dmd-2.088.0/activate"
+[ -f $DMD_LOCATIOn ] && source $DMD_LOCATION
