@@ -1,4 +1,4 @@
-alias less="less -Ri"
+# alias less="less -Ri"
 
 # serve port_number : Create a Simple HTTP Server
 # Using Python. Port defaults to 8000.
@@ -56,6 +56,10 @@ alias ls_except="ls -tr | head -n $((`ls -tr | wc -l`-1))"
 
 # jqcl
 alias jqcl="jq -C . | less"
+alias jqc="jq -C"
+
+# agc: activate color even when piping to another command
+alias agc="ag --color"
 
 # c = clear
 alias c="clear"

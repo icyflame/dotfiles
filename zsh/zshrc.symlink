@@ -1,37 +1,15 @@
+# Core shell setup
+
+# Prezto
 ZDOTDIR="$HOME/dotfiles"
-# User configuration
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+PREZTO_INIT_LOCATION="${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+[ -s "$PREZTO_INIT_LOCATION" ] && source "$PREZTO_INIT_LOCATION"
 
-mkdir -p $HOME/bin
-
-export PATH="$PATH:/usr/local/heroku/bin:/opt/ros/hydro/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin"
-
-export PATH="$PATH:/home/siddharth/.nvm/versions/node/v4.0.0/bin:$HOME/dotfiles/bin:/usr/local/go/bin:$GOPATH/bin:$HOME/.cargo/bin"
-
-export PATH="$PATH:$HOME/.rbenv/bin"
-export PATH="$PATH:$HOME/.rbenv/shims"
-
-export GOPATH="$HOME/go_workspace"
-# added by travis gem
-[ -f /home/siddharth/.travis/travis.sh ] && source /home/siddharth/.travis/travis.sh
-export NODE_PATH=~/local/:~/local/node_modules
-
-# Node.js and NPM related setup
-NPM_PACKAGES="/home/siddharth/.npm-packages"
-NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-PATH="$NPM_PACKAGES/bin:$PATH"
-# Unset manpath so we can inherit from /etc/manpath via the `manpath`
-# command
-unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
-MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-
-## set default editor for Cron
-export EDITOR="vim"
+# Vim mode in the command line
+bindkey -v
+bindkey -M vicmd v edit-command-line
 
 ## Main Highlighter
-
 typeset -A ZSH_HIGHLIGHT_STYLES
 
 # To differentiate aliases from other command types
@@ -49,38 +27,55 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
 ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
 ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
 
-export ANDROID_HOME="/home/siddharth/Android/Sdk"
-export ANDROID_SDK="/home/siddharth/Android/Sdk"
-export USER_HOME=$USER
-
+# Set environment variables
 # Sets the Mail Environment Variable
 export MAIL=/var/spool/mail/siddharth
+# set default editor
+export EDITOR="vim"
 
+# ??
+export KEYTIMEOUT=1
+
+# Set the locale to en_US
+export LANG="en_US"
+
+# Android
+export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_SDK="$HOME/Android/Sdk"
+export USER_HOME="$USER"
+
+
+# PATH variable basic additions
+
+mkdir -p $HOME/bin
+export PATH="$PATH:$HOME/bin"
+
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/usr/bin"
+export PATH="$PATH:/sbin"
+export PATH="$PATH:/bin"
+export PATH="$PATH:/usr/games"
+
+# CLI-Plugin specific setup
+
+# heroku
+export PATH="$PATH:/usr/local/heroku/bin"
+
+# ros
+export PATH="$PATH:/opt/ros/hydro/bin"
+
+# lightdm
+export PATH="$PATH:/usr/lib/lightdm/lightdm"
+
+# Travis gem
+[ -f /home/siddharth/.travis/travis.sh ] && source /home/siddharth/.travis/travis.sh
+export NODE_PATH=~/local/:~/local/node_modules
+
+# Cargo
+export PATH="$PATH:$HOME/.cargo/bin"
 [[ -s $HOME/.cargo/env ]] && source $HOME/.cargo/env
-
-[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
-
-autoload -U compinit && compinit -u
-
-export DOTFILE_LOC=$HOME/dotfiles
-
-# Load all the local settings
-[ -e "$HOME/.localrc" ] && source $HOME/.localrc
-
-# for i in `ls $DOTFILE_LOC/.local/*.zsh`; do
-	# source $i;
-# done;
-# Source all the zsh files in this dir
-for i in `ls $DOTFILE_LOC/**/*.zsh`; do
-	source $i;
-done;
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-JAVA_HOME=/home/siddharth/Downloads/jdk1.8.0_161/bin
-[ -d "$JAVA_HOME" ] && PATH="$PATH:$JAVA_HOME"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/kannan.siddharth/work/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kannan.siddharth/work/google-cloud-sdk/path.zsh.inc'; fi
@@ -88,22 +83,31 @@ if [ -f '/Users/kannan.siddharth/work/google-cloud-sdk/path.zsh.inc' ]; then . '
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/kannan.siddharth/work/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kannan.siddharth/work/google-cloud-sdk/completion.zsh.inc'; fi
 
-bindkey -v
-bindkey -M vicmd v edit-command-line
-
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -d $HOME/dotfiles/mercari/bin ] && PATH="$PATH:$HOME/dotfiles/mercari/bin"
+# Autojump
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
+
+# Load binaries from dotfiles
+# Load all the local settings
+[ -e "$HOME/.localrc" ] && source $HOME/.localrc
+
+# for i in `ls $ZDOTDIR/.local/*.zsh`; do
+	# source $i;
+# done;
+# Source all the zsh files in this dir
+for i in `ls $ZDOTDIR/**/*.zsh`; do
+	source $i;
+done;
+
+# company-specific dotfiles
+[ -d $ZDOTDIR/mercari/bin ] && PATH="$PATH:$ZDOTDIR/mercari/bin"
 
 # https://stackoverflow.com/a/26069
-LESS=-Ri
-
-export KEYTIMEOUT=1
-
-alias agc="ag --color"
-alias jqc="jq -C"
-
-export LANG="en_US"
+export LESS="-QRI"
 
 # mac only
 PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
@@ -112,7 +116,29 @@ PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
 PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
+# Programming Language specific setup
+
+# Node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Java
+JAVA_HOME=$HOME/Downloads/jdk1.8.0_161/bin
+[ -d "$JAVA_HOME" ] && PATH="$PATH:$JAVA_HOME"
+
+
+# Golang
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+export GOPATH="$HOME/go_workspace"
+
+# Ruby
+export PATH="$PATH:$HOME/.rbenv/bin:$HOME/.rbenv/shims"
+
+
+# Python
 alias python="python3"
 
+# D
 DMD_LOCATION="$HOME/dlang/dmd-2.088.0/activate"
-[ -f $DMD_LOCATIOn ] && source $DMD_LOCATION
+[ -f $DMD_LOCATION ] && source $DMD_LOCATION
