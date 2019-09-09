@@ -111,6 +111,14 @@ let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "
+Plugin 'jgdavey/tslime.vim'
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+" TODO: Find some other key combination
+" vmap <C-c><C-c> <Plug>SendSelectionToTmux
+" nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+" nmap <C-c>r <Plug>SetTmuxVars
+"
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -287,7 +295,7 @@ nmap <leader>pt :normal! @m<cr>
 iab <expr> dts# strftime("%G-%m-%d %H:%M, %A, Week %U")
 iab <expr> time# strftime("%H:%M")
 
-autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml,vue autocmd BufWritePre <buffer> %s/\s\+$//e
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
