@@ -15,62 +15,71 @@ function selector_string_json {
     fi
 }
 
-function pod {
+function kr {
     HELP_TEXT='
-pod
+kr
 
-A utility to print your Kubernetes pod information with concise commands
+A utility to print your Kubernetes resource information with concise commands
 
-options:
-    l / ls -> List all pods in current namespace
-    w      -> Watch all pods in the current namespace
-    la     -> List pods in all namespaces
-    j      -> List all pods in current namespace in json format
-    jl     -> List all pods in json format, pipe to less
-    jq     -> List all pods in json format, pipe to jq then less
+usage:
+    kr [resource] [command] [pattern] [w]
 
-pattern matching:
-    pod <option> <pattern>
+    command options
+        l / ls -> List all resources in current namespace
+        w      -> Watch all resources in the current namespace
+        la     -> List resources in all namespaces
+        j      -> List all resources in current namespace in json format
+        jl     -> List all resources in json format, pipe to less
+        jq     -> List all resources in json format, pipe to jq then less
 
-watch:
-    pod <option> <pattern> w
+    resource options
+        pod, rs, deployments, hpa, cronjobs, secrets, all
+
+        You can get the list of all resources using kubectl api-resources
+
+    pattern options
+        you can provide text or regular expressions. be careful about the way
+        your shell handles quotation marks
 
 examples:
-    $ pod l
+    $ kr pod l
     > show all pods in the current namespace
 
-    $ pod l canary
+    $ kr pod l canary
     > show all pods that have canary in their name
 
-    $ pod l api w
-    > watch the list of pods with api in their name
+    $ kr deployments l api w
+    > watch the list of deployments with api in their name
 
-    $ pod w api
+    $ kr pod w api
     > alias for pod l api w
 
-    $ pod l . w
+    $ kr pod l . w
     > watch the list of all pods in the current namespace
 
-    $ pod w
+    $ kr pod w
     > alias for pod l . w
 
-    $ pod jq
+    $ kr pod jq
     > pretty-prints the JSON description of all pods in the current namespace
 
-    $ pod jq canary
+    $ kr pod jq canary
     > pretty-prints the JSON description all pods with the string canary in
     > their name
 
-pod prints the command that will be run to stderr for easy inspection.
+kr prints the command that will be run to stderr for easy inspection.
 
 Siddharth Kannan 2019 <www.siddharthkannan.in>
     '
 
-    COMMAND=("kubectl get pods")
+    COMMAND=("kubectl get")
     
-    SUBCOMMAND="$1"
-    REGEX="$2"
-    WATCH="$3"
+    RESOURCE="$1"
+    SUBCOMMAND="$2"
+    REGEX="$3"
+    WATCH="$4"
+
+    COMMAND+=("$1")
 
     case "$SUBCOMMAND" in
         "h" | "-h" | "--help")
