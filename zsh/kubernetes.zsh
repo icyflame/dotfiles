@@ -4,14 +4,14 @@ alias sts="stern --exclude-container istio-proxy --since 1s"
 
 function kl {
     PARAM="$1"
-    pod l "$PARAM" | col1 | while read p; do
+    kr pod l "$PARAM" | col1 | while read p; do
         kubectl logs "$p";
     done
 }
 
 function klf {
     PARAM="$1"
-    pod l "$PARAM" | head -n1 | col1 | while read p; do
+    kr pod l "$PARAM" | head -n1 | col1 | while read p; do
         kubectl logs -f "$p";
     done
 }
