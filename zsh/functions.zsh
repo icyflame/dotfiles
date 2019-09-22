@@ -263,3 +263,8 @@ function dir_size {
     CMD="du -h --max-depth=1 2>/dev/null | sort -h"
     eval "$CMD"
 }
+
+# json_to_csv: convert json to csv
+function json_to_csv {
+    jq -r '(map(keys) | add | unique) as $headers | (map(. as $row | $headers | map($row[.]))) as $values | $headers, $values[] | @csv'
+}
