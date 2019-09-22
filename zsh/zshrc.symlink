@@ -48,7 +48,7 @@ export USER_HOME="$USER"
 # PATH variable basic additions
 
 mkdir -p $HOME/bin
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/bin:$HOME/bin/tsv-utils"
 
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:/usr/local/bin"
