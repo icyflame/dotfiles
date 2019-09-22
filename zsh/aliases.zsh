@@ -11,14 +11,8 @@ alias serve_django="python manage.py runserver"
 # then use Ctrl+V to paste
 alias clip="xclip -selection clipboard"
 
-# utility : thefuck
-alias fuck='$(thefuck $(fc -ln -1))'
-
 # utility : show cron log, from syslog
 alias cronlog='less /var/log/syslog | grep -i cron'
-
-# todo.txt cli
-alias t="bash todo.sh"
 
 # OpenSubtitlesDownload.py
 # https://github.com/emericg/OpenSubtitlesDownload
