@@ -65,28 +65,37 @@ function git-current-branch {
     echo `git branch | ag '\*' | awk '{ print $2 }'`
 }
 
-# push to origin/current-branch if it is not master
-# This command does NOT provide a --force option. You should run `gpo master` by
-# hand if that is what you want to do.
-function gpoc {
-    forced="$1"
+# push to $1/current-branch
+# will not push if current-branch =~ master
+function gpc {
+    remote="$1"
+    forced="$2"
     current_branch=`git-current-branch`
     if [[ "$current_branch" =~ ".*master.*" ]]; then
         echo "Current branch $current_branch is master! can not push directly to master!"
         return 255
     fi
 
-    echo "Pushing to $current_branch"
+    echo "Pushing to $remote/$current_branch"
 
     if [[ "$forced" = "--force" ]]; then
-        git push origin --force $current_branch;
+        git push "$remote" --force $current_branch;
     else
-        git push origin $current_branch;
+        git push "$remote" $current_branch;
     fi
 }
 
+function gpoc {
+    gpc "origin"
+}
+
+
 function gpofc {
-    gpoc --force
+    gpc "origin" "--force"
+}
+
+function gpic {
+    gpc "icyflame"
 }
 
 # delete all merged branches if the current branch _is_ master
