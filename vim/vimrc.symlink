@@ -256,6 +256,29 @@ function BeautifySQL()
     let formatted_lines = systemlist(cmd, select_text)
     call append(lnum-1, formatted_lines)
 endfunction
+command FormatSQL :<c-u>call BeautifySQL()<CR>
+
+function JsonWhere()
+    let cursor = getcurpos()
+    let lnum = cursor[1]
+    let colnum = cursor[2]
+
+    let cmd_list = [ ]
+    let cmd_list += [ 'json-where' ]
+    let cmd_list += [ expand('%:p') ]
+    let cmd_list += [ lnum ]
+    let cmd_list += [ colnum ]
+
+    let cmd = join(cmd_list, ' ')
+    let json_where_output = systemlist(cmd)
+
+    if len(json_where_output) > 0
+        return json_where_output[len(json_where_output)-1]
+    else
+        return 'ERROR: json-where output is invalid'
+    endif
+endfunction
+nmap <leader>jw :echo JsonWhere()<cr>
 
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#wordcount#enabled = 1
@@ -287,7 +310,6 @@ if has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^da
 endif
 
 command FormatCurl s/-H/\\\r-H/g
-command FormatSQL :<c-u>call BeautifySQL()<CR>
 
 let @m='ggVG:s/^\n/\r\r/ggg:normal€kb€kb€kb€kb€kb€kb%normal! vipJ:noh'
 nmap <leader>pt :normal! @m<cr>
