@@ -95,6 +95,13 @@ let g:tmuxline_preset = {
         \ 'status-justify': 'left' } }
 " ----
 Plugin 'mtth/scratch.vim'
+let g:scratch_filetype = "markdown"
+let g:scratch_height = 0.4
+let g:scratch_no_mappings = 1
+nmap gs :Scratch<cr>
+nmap gS :Scratch!<cr>
+vmap gs :ScratchSelection<cr>
+vmap gS :ScratchSelection!<cr>
 " ---
 Plugin 'jparise/vim-graphql'
 " ---
@@ -199,14 +206,12 @@ nmap <leader>x gg=G:w<cr>ZZ
 " make sure that vim-airline works
 set laststatus=2
 
-" add some tab related shortcuts
-nmap <C-t> :tab new<cr>
-nmap <leader>ct :tab close<cr>
-
 " yank the complete buffer while maintaining position
 nmap fy ggyG``<cr>
 " copy the complete buffer to system clipboard using vim-system-copy
 nmap fcp ggcpG``<cr>
+" highlight the complete buffer
+nmap fv ggVG
 
 let g:markdown_fenced_languages = [
             \ 'css',
@@ -305,6 +310,7 @@ nmap <leader>fp :echo expand('%:p')<cr>
 " default: xsel (ubuntu)
 " mac: pbcopy
 let g:system_copy#copy_command='xsel --clipboard --input'
+
 if has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^darwin'
     let g:system_copy#copy_command='pbcopy --clipboard --input'
 endif
