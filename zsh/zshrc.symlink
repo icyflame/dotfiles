@@ -7,6 +7,8 @@ PREZTO_INIT_LOCATION="${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # Vim mode in the command line
 bindkey -v
+
+## When in command line normal mode, v will open the command in vim
 bindkey -M vicmd v edit-command-line
 
 ## Main Highlighter
@@ -48,15 +50,10 @@ export USER_HOME="$USER"
 # PATH variable basic additions
 
 mkdir -p $HOME/bin
-export PATH="$PATH:$HOME/bin:$HOME/bin/tsv-utils"
 
-export PATH="$PATH:/usr/local/sbin"
-export PATH="$PATH:/usr/local/bin"
-export PATH="$PATH:/usr/sbin"
-export PATH="$PATH:/usr/bin"
-export PATH="$PATH:/sbin"
-export PATH="$PATH:/bin"
-export PATH="$PATH:/usr/games"
+## A single export statement is faster than multiple export statements
+## Benchmark: https://gist.github.com/icyflame/5809a23c0e391943be7451daaf61f1c9
+export PATH="$PATH:$HOME/bin:$HOME/bin/tsv-utils:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 
 # CLI-Plugin specific setup
 
