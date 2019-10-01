@@ -57,6 +57,7 @@ set -g pane-active-border-fg  green
 
 # use vim bindings for moving around in Copy mode
 set -g mode-keys vi
+bind-key -T copy-mode-vi 'v' send -X begin-selection
 
 # changing the key-bindings to move windows around
 # http://superuser.com/a/552493/207372
