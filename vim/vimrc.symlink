@@ -118,13 +118,13 @@ let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "
-Plugin 'jgdavey/tslime.vim'
-let g:tslime_always_current_session = 1
-let g:tslime_always_current_window = 1
-" TODO: Find some other key combination
-" vmap <C-c><C-c> <Plug>SendSelectionToTmux
-" nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-" nmap <C-c>r <Plug>SetTmuxVars
+Plugin 'epeli/slimux'
+" TODO: Get <Leader>Space> to work for line and selection
+" map <Leader><Space> :SlimuxREPLSendLine<CR>
+" vmap <Leader><Space> :SlimuxREPLSendSelection<CR>
+
+" fr = evaluate full buffer in REPL
+map fr :SlimuxREPLSendBuffer<CR>
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
