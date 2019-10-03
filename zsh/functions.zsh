@@ -207,10 +207,6 @@ function tmp_file {
     echo "$FILE_NAME"
 }
 
-function v {
-    vim $@
-}
-
 function col1 { awk '{ print $1 }' }
 function col2 { awk '{ print $2 }' }
 function col3 { awk '{ print $3 }' }

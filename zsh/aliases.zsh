@@ -67,3 +67,6 @@ alias gq="nocorrect gq"
 # depv: get the dependencies for a Go repository which manages dependencies
 # using dep
 alias depv="dep ensure -v"
+
+# v: a shortcut to vim
+alias v="vim"
