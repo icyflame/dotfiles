@@ -268,3 +268,23 @@ function dir_size {
 function json_to_csv {
     jq -r '(map(keys) | add | unique) as $headers | (map(. as $row | $headers | map($row[.]))) as $values | $headers, $values[] | @csv'
 }
+
+# current_ms: prints the number of milliseconds since the epoch using Node
+function current_ms {
+    node -p -e 'new Date() - 0'
+}
+
+# time_cmd_base: print the time taken to run a command
+function time_cmd_base {
+    start_ms=`current_ms`
+    eval "$@"
+    end_ms=`current_ms`
+    node -p -e "$end_ms-$start_ms + \" ms\""
+}
+
+alias time_cmd="time_cmd_base"
+
+# time_cmd_null: like time_cmd, but send all output to /dev/null
+function time_cmd_null {
+    time_cmd "$@ 2>&1 > /dev/null"
+}
