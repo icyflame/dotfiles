@@ -11,23 +11,23 @@ bindkey -v
 ## When in command line normal mode, v will open the command in vim
 bindkey -M vicmd v edit-command-line
 
-## Main Highlighter
-typeset -A ZSH_HIGHLIGHT_STYLES
-
-# To differentiate aliases from other command types
-ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold,underline'
-
-# To have paths colored instead of underlined
-ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
-
-# To disable highlighting of globbing expressions
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=crimson'
-
-# To define styles for nested brackets up to level 4
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
+# ## Main Highlighter
+# typeset -A ZSH_HIGHLIGHT_STYLES
+#
+# # To differentiate aliases from other command types
+# ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold,underline'
+#
+# # To have paths colored instead of underlined
+# ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+#
+# # To disable highlighting of globbing expressions
+# ZSH_HIGHLIGHT_STYLES[globbing]='fg=crimson'
+#
+# # To define styles for nested brackets up to level 4
+# ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
+# ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
+# ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
+# ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
 
 # Set environment variables
 # Sets the Mail Environment Variable
