@@ -234,6 +234,7 @@ function replace_all {
     eval $cmd
 }
 
+# hdate: print human-readable date
 function hdate {
     date +%Y-%m-%d-%H-%M-%S
 }
@@ -253,8 +254,7 @@ function sample {
     cat -n | ag "^\s+[1-9]+0{$ARG,}\b"
 }
 
-# dir_size
-# > print the size of all sub directories of .
+# dir_size: print the size of all sub directories of `pwd`
 function dir_size {
     CMD="du -h --max-depth=1 2>/dev/null | sort -h"
     eval "$CMD"
