@@ -75,10 +75,10 @@ export PATH="$PATH:$HOME/.cargo/bin"
 [[ -s $HOME/.cargo/env ]] && source $HOME/.cargo/env
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kannan.siddharth/work/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kannan.siddharth/work/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/work/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/work/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/kannan.siddharth/work/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kannan.siddharth/work/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/work/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/work/google-cloud-sdk/completion.zsh.inc"; fi
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -124,14 +124,12 @@ export NVM_DIR="$HOME/.nvm"
 JAVA_HOME=$HOME/Downloads/jdk1.8.0_161/bin
 [ -d "$JAVA_HOME" ] && PATH="$PATH:$JAVA_HOME"
 
-
 # Golang
 export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 export GOPATH="$HOME/go_workspace"
 
 # Ruby
 export PATH="$PATH:$HOME/.rbenv/bin:$HOME/.rbenv/shims"
-
 
 # Python
 alias python="python3"
