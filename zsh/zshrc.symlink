@@ -5,6 +5,12 @@ ZDOTDIR="$HOME/dotfiles"
 PREZTO_INIT_LOCATION="${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 [ -s "$PREZTO_INIT_LOCATION" ] && source "$PREZTO_INIT_LOCATION"
 
+# set default editor
+export EDITOR="vim"
+
+# edit commands in vm when v is pressed in command-line normal mode
+export VISUAL="vim"
+
 # Vim mode in the command line
 bindkey -v
 
@@ -32,8 +38,6 @@ bindkey -M vicmd v edit-command-line
 # Set environment variables
 # Sets the Mail Environment Variable
 export MAIL=/var/spool/mail/siddharth
-# set default editor
-export EDITOR="vim"
 
 # ??
 export KEYTIMEOUT=1
