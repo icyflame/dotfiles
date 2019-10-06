@@ -110,13 +110,13 @@ let g:vsm_search_engine = 'duckduckgo'
 " ---
 Plugin 'aklt/plantuml-syntax'
 " ---
-"
-"  PLUGINS UNDER TESTING
-"
 Plugin 'sirver/ultisnips'
 let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" ---
+"
+"  PLUGINS UNDER TESTING
 "
 Plugin 'epeli/slimux'
 
