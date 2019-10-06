@@ -1,30 +1,30 @@
 [user]
-	email = mail@siddharthkannan.in
-	name = Siddharth Kannan
+    email = mail@siddharthkannan.in
+    name = Siddharth Kannan
 
 [sendemail]
-	smtpserver = /usr/bin/msmtp
+    smtpserver = /usr/bin/msmtp
 
 [core]
-	editor = vim
-	excludesfile = /Users/kannan.siddharth/.gitignore_global
-	autocrlf = input
-	filemode = true
-	pager = less -x1,5
+    editor = vim
+    excludesfile = /Users/kannan.siddharth/.gitignore_global
+    autocrlf = input
+    filemode = true
+    pager = less -x1,5
 [url "https://"]
-	insteadOf = git://
+    insteadOf = git://
 [credential]
-	helper = cache --timeout 36000
+    helper = cache --timeout 36000
 [alias]
-  cp = cherry-pick
-  lc = !git rev-list --no-merges HEAD | head -n1 | xargs git show
-  back = reset --soft "HEAD^"
-  rH = reset HEAD
+    cp = cherry-pick
+    lc = !git rev-list --no-merges HEAD | head -n1 | xargs git show
+    back = reset --soft "HEAD^"
+    rH = reset HEAD
 [push]
-	default = matching
+    default = matching
 [hub]
-	protocol = ssh
+    protocol = ssh
 [log]
-	decorate = auto
+    decorate = auto
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
