@@ -119,12 +119,18 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "
 Plugin 'epeli/slimux'
-" TODO: Get <Leader>Space> to work for line and selection
-" map <Leader><Space> :SlimuxREPLSendLine<CR>
-" vmap <Leader><Space> :SlimuxREPLSendSelection<CR>
 
-" fr = evaluate full buffer in REPL
-map fr :SlimuxREPLSendBuffer<CR>
+" (normal) fr = evaluate full buffer in an REPL
+nmap fr :SlimuxREPLSendBuffer<CR>
+
+" fR = evaluate the current line in an REPL
+nmap fR :SlimuxREPLSendLine<CR>
+
+" fr = evaluate the highlighted part of a buffer in an REPL
+vmap fr :SlimuxREPLSendSelection<CR>
+
+" FR = Run the last command in the same shell again
+nmap FR :SlimuxShellLast<CR>
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
