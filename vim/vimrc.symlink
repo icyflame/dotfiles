@@ -59,8 +59,6 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 " --------
-Plugin 'godlygeek/tabular'
-" --------
 Plugin 'mhinz/vim-startify'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'moll/vim-node'
@@ -119,7 +117,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "  PLUGINS UNDER TESTING
 "
 Plugin 'epeli/slimux'
-
+"
 " (normal) fr = evaluate full buffer in an REPL
 nmap fr :SlimuxREPLSendBuffer<CR>
 
@@ -131,6 +129,7 @@ vmap fr :SlimuxREPLSendSelection<CR>
 
 " FR = Run the last command in the same shell again
 nmap FR :SlimuxShellLast<CR>
+"
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
