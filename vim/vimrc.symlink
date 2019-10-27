@@ -117,7 +117,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "  PLUGINS UNDER TESTING
 "
 Plugin 'epeli/slimux'
-"
 " (normal) fr = evaluate full buffer in an REPL
 nmap fr :SlimuxREPLSendBuffer<CR>
 
@@ -130,6 +129,7 @@ vmap fr :SlimuxREPLSendSelection<CR>
 " FR = Run the last command in the same shell again
 nmap FR :SlimuxShellLast<CR>
 "
+Plugin 'leafgarland/typescript-vim'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
@@ -330,27 +330,26 @@ nmap <leader>pt :normal! @m<cr>
 iab <expr> dts# strftime("%G-%m-%d %H:%M, %A, Week %U")
 iab <expr> time# strftime("%H:%M")
 
-autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml,vue autocmd BufWritePre <buffer> %s/\s\+$//e
+" remove trailing whiespace from as many file types as possible
+autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml,vue,typescript,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
 
-autocmd FileType proto,go,javascript set tw=100
-
-autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
+autocmd FileType proto,go,javascript,typescript set tw=100
 
 autocmd FileType markdown
             \ set comments=b:> |
             \ set flp=^\\s*\[-*+\]\\s
 
-autocmd BufWritePre *.notes autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
 
 set omnifunc=syntaxcomplete#Complete
 set backspace=2
 
 " Put a line at the 80 column mark
 set colorcolumn=+1
-highlight ColorColumn ctermbg=8
+highlight ColorColumn ctermbg=236
 
 if !has('gui_running')
   set t_Co=256
