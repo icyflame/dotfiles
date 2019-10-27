@@ -230,7 +230,9 @@ let g:markdown_fenced_languages = [
             \ 'java',
             \ 'plaintext=nosyntax',
             \ 'sql',
-            \ 'sh'
+            \ 'sh',
+            \ 'plantuml',
+            \ 'go'
             \ ]
 
 function! AirlineInit()
