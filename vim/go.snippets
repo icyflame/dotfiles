@@ -1,12 +1,12 @@
-snippet gotest
+snippet test_base
 func Test$1(t *testing.T) {
 	type testCase struct {
-		$0input Type1
-		wantOutput Type2
+		input string
+		wantOutput string
 	}
 
 	testCases := map[string]testCase{
-		{
+		"Base case": {
 			input: "Test",
 			wantOutput: "Test",
 		},
@@ -15,6 +15,11 @@ func Test$1(t *testing.T) {
 	for name, tc := range testCases {
 		t.Run(name, func (t *testing.T) {
 			got, err := $1(tc.input)
+
+			if err != nil {
+				t.Errorf("Unexpected error: %v", err)
+				return
+			}
 
 			if diff := pretty.Compare(got, tc.wantOutput); diff != "" {
 				t.Errorf("Unexpected result: (-got +want): %s", diff)
