@@ -338,6 +338,11 @@ autocmd FileType yaml setl indentkeys-=<:>
 autocmd FileType proto,go,javascript set tw=100
 
 autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
+
+autocmd FileType markdown
+            \ set comments=b:> |
+            \ set flp=^\\s*\[-*+\]\\s
+
 autocmd BufWritePre *.notes autocmd BufWritePre <buffer> %s/\s\+$//e
 
 set omnifunc=syntaxcomplete#Complete
