@@ -333,6 +333,10 @@ iab <expr> time# strftime("%H:%M")
 " remove trailing whiespace from as many file types as possible
 autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml,vue,typescript,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 
+if executable("pg_format")
+    autocmd FileType sql set formatprg=pg_format
+endif
+
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
 
