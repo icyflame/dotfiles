@@ -28,3 +28,5 @@
     decorate = auto
 [url "git@github.com:"]
     insteadOf = https://github.com/
+[tag]
+	sort = -taggerdate
