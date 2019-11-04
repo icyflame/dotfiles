@@ -271,6 +271,10 @@ endfunction
 command FormatSQL :<c-u>call BeautifySQL()<CR>
 
 function JsonWhere()
+    if executable("json-where") == 0
+        return 'ERROR: json-where not found'
+    endif
+
     let cursor = getcurpos()
     let lnum = cursor[1]
     let colnum = cursor[2]
