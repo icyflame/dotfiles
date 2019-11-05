@@ -50,3 +50,6 @@ node_modules
 tmp/
 *.tmp
 fresh_config
+
+# Ignore the tags file by default
+tags
