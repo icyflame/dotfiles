@@ -6,3 +6,9 @@
 3. Install iTerm 2. Import the colorscheme file inside the `color-schemes`
    directory with the extension `itermcolors`
 4. Install `golang`
+
+## IntelliJ IDEA
+
+1. [Solarized dark color scheme][1]
+
+[1]: https://github.com/jkaving/intellij-colors-solarized
