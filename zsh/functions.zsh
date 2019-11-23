@@ -284,3 +284,11 @@ alias time_cmd="time_cmd_base"
 function time_cmd_null {
     time_cmd "$@ 2>&1 > /dev/null"
 }
+
+function extensions {
+    if [[ -e `which gawk` ]]; then
+        ls | gawk '{ split($0, a, "."); printf("%s\n", a[length(a)]); }' | sort | uniq -c
+    else
+        echo "gawk: not found";
+    fi
+}
