@@ -1,0 +1,9 @@
+snippet help
+help: ## Show this help
+	@awk 'BEGIN {FS = ":.*?## "} \
+			/^[a-zA-Z0-9_-]+:.*?## / { \
+				sub("\\\\n", "", $\$2); \
+				printf "%-30s %s\n", $\$1, $\$2}' $(MAKEFILE_LIST)
+
+$0
+endsnippet
