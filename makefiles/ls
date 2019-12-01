@@ -1,0 +1,5 @@
+.PHONY: ls
+ls: ## Run ls in the source directory
+	$(cd-cmd); \
+		pwd; \
+		ls;
