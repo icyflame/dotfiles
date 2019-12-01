@@ -292,3 +292,7 @@ function extensions {
         echo "gawk: not found";
     fi
 }
+
+function mg {
+    source="$PWD" make -C "$ZDOTDIR" $@
+}
