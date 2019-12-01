@@ -12,6 +12,12 @@ RUN_STR="--run"
 GLOBAL_DEBUG="$1"
 DOTFILES_LOC="$HOME/dotfiles"
 
+if [[ "$GLOBAL_DEBUG" == "$RUN_STR" ]]; then
+    echo "Non Dry Run";
+else
+    echo "Dry Run";
+fi
+
 echo "Symlinking all the snippets files:"
 SNIPPETS_LOC="$HOME/.vim/custom-snippets"
 echo_eval "mkdir -p \"$SNIPPETS_LOC\"" "$GLOBAL_DEBUG"
