@@ -5,3 +5,6 @@
 .zprofile
 .zshenv
 .zcompdump*
+
+mercari
+makefile/mercari
