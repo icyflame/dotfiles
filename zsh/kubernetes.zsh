@@ -39,7 +39,7 @@ function k {
 }
 
 function kwhat {
-    kubectl config view -ojson | jq '.["current-context"] as $curctx | .contexts[] | select(.name == $curctx) | .context | {cluster,namespace}'
+    kubectl config view -ojson | jq '.["current-context"] as $curctx | .contexts[] | select(.name == $curctx) | .context | {alias:$curctx,cluster,namespace}'
 }
 
 functions kdef() {
