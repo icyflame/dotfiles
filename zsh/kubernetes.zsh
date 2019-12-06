@@ -34,6 +34,32 @@ function kns {
     fi
 }
 
+# Alias based namespace switching
+# Eg: kns_alias_based dev app-dev prod app-prod
+# -> check the current context's local name
+# -> if dev then switch to app-dev
+# -> if prod then switch to app-prod
+# -> if neither print an error message and exit
+function kns_alias_based {
+    DEV_ALIAS="$1"
+    DEV_NS="$2"
+    PROD_ALIAS="$3"
+    PROD_NS="$4"
+
+    ALIAS=`kwhat | jq -r '.alias'`
+
+    if [[ "$ALIAS" == "$DEV_ALIAS" ]]; then
+        kns "$DEV_NS"
+    elif [[ "$ALIAS" == "$PROD_ALIAS" ]]; then
+        kns "$PROD_NS"
+    else
+        echo "unrecognized alias: $ALIAS"
+        exit 42
+    fi
+
+    kwhat
+}
+
 function k {
     kubectl $@
 }
