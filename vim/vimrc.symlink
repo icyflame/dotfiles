@@ -289,6 +289,19 @@ function JsonWhere()
 endfunction
 nmap <leader>jw :echo JsonWhere()<cr>
 
+" Jq: Execute the given filter and replace the current buffer with the results
+" of the execution
+" https://github.com/cookie-s/dotfiles/blob/60e2a63fa1e0e58c87a86a0af37e365bcaaa8277/.vimrc#L188-L197
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq \"" . l:arg . "\""
+endfunction
+
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#default#section_truncate_width = {
