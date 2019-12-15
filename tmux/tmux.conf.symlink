@@ -51,10 +51,6 @@ set -g mouse on
 set-option -g base-index 1
 setw -g pane-base-index 1
 
-# change the color of the borders
-set -g pane-border-fg white
-set -g pane-active-border-fg  green
-
 # use vim bindings for moving around in Copy mode
 set -g mode-keys vi
 bind-key -T copy-mode-vi 'v' send -X begin-selection
@@ -75,9 +71,6 @@ setw -g window-status-format "#[fg=white]#[bg=blue] #I #[bg=blue]#[fg=white] #W 
 setw -g window-status-current-format "#[bg=brightmagenta]#[fg=white] *#I #[fg=white,bold]#[bg=cyan] [#W] "
 
 # set-option -g status-position top
-set -g status-fg white
-set -g status-bg blue
-set -g status-right '%a %d-%m %H:%M'
 
 # use ctrl to jump words
 set-window-option -g xterm-keys on
