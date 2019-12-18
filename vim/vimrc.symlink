@@ -355,7 +355,7 @@ endif
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType yaml setl indentkeys-=<:>
 
-autocmd FileType proto,go,javascript,typescript set tw=100
+autocmd FileType proto,go,javascript,typescript,sh,vue set tw=100
 
 autocmd FileType markdown
             \ set comments=b:> |
