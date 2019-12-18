@@ -2,6 +2,10 @@
 alias st="stern --exclude-container istio-proxy"
 alias sts="stern --exclude-container istio-proxy --since 1s"
 
+function ste {
+    sts -ojson "$1" | jq '.message | fromjson? | select(.level == "error")'
+}
+
 function kl {
     PARAM="$1"
     kr pod l "$PARAM" | col1 | while read p; do
