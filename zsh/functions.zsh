@@ -296,3 +296,7 @@ function extensions {
 function mg {
     source="$PWD" make -C "$ZDOTDIR" $@
 }
+
+function path_split {
+    echo $PATH | gawk '{ split($0, a, ":"); for (b in a) { print a[b] } }';
+}
