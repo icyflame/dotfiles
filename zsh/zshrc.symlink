@@ -134,8 +134,8 @@ export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 export GOPATH="$HOME/go_workspace"
 
 # Ruby
-export PATH="$PATH:$HOME/.rbenv/shims"
-eval "$(rbenv init -)"
+export PATH="$PATH:$HOME/.rbenv/bin"
+[[ -f $(which rbenv) ]] && eval "$(rbenv init -)"
 
 # Python
 alias python="python3"
