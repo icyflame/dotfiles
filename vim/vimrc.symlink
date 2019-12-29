@@ -237,31 +237,17 @@ function! AirlineInit()
     let g:airline_section_z = airline#section#create(['%l', ':', '%c', '/', '%L', ' - ', '%p%%'])
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
-
-function BeautifySQL()
-    try
-        let cursor = getcurpos()
-        let lnum = cursor[1]
-        normal! gv"ay
-        normal! gv"_d
-    finally
-        let select_text = getreg("a")
-    endtry
-
-    let cmd_list = [ ]
-    let cmd_list += [ 'perl -MSQL::Beautify -e' ]
-    let cmd_list += [ "'print SQL::Beautify->new(" ]
-    let cmd_list += [ '"query"=>join("",<>),' ]
-    let cmd_list += [ '"uc_keywords"=>1,' ]
-    let cmd_list += [ '"spaces"=>4,' ]
-    let cmd_list += [ "\"break\" => \"\n\")->beautify'" ]
-
-    let cmd = join(cmd_list, ' ')
-
-    let formatted_lines = systemlist(cmd, select_text)
-    call append(lnum-1, formatted_lines)
-endfunction
-command FormatSQL :<c-u>call BeautifySQL()<CR>
+let g:airline_symbols_ascii = 1
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#default#section_truncate_width = {
+            \ 'b': 79,
+            \ 'x': 60,
+            \ 'y': 88,
+            \ 'z': 45,
+            \ 'warning': 80,
+            \ 'error': 80,
+            \ }
+silent! call airline#extensions#whitespace#disable()
 
 function JsonWhere()
     if executable("json-where") == 0
@@ -307,17 +293,6 @@ command! -nargs=? Jq call s:E("jq .")
 command! -nargs=? Sort call s:E("sort")
 command! -nargs=? Uniq call s:E("uniq")
 
-let g:airline_symbols_ascii = 1
-let g:airline#extensions#wordcount#enabled = 1
-let g:airline#extensions#default#section_truncate_width = {
-            \ 'b': 79,
-            \ 'x': 60,
-            \ 'y': 88,
-            \ 'z': 45,
-            \ 'warning': 80,
-            \ 'error': 80,
-            \ }
-silent! call airline#extensions#whitespace#disable()
 
 " clean up commands copied from the shell
 command ShellClean g/^#/norm "_dd
