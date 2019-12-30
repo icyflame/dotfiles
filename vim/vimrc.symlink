@@ -335,6 +335,11 @@ command! -nargs=? SCE call s:Scratch("edit", <f-args>)
 command ShellClean g/^#/norm "_dd
 nmap <leader>sc :ShellClean<cr>
 
+" simplify creation of substitution and replacement commands
+nmap SS :%s//g<LEFT><LEFT>
+nmap <expr> SM ':%s/' . @/ . '//g<LEFT><LEFT>'
+nmap SW :%s/\<<C-r><C-w>\>//g<LEFT><LEFT>
+
 nmap <leader>gfs :GoFillStruct<cr>
 
 " show the full path of an open buffer
