@@ -293,6 +293,43 @@ command! -nargs=? Jq call s:E("jq .")
 command! -nargs=? Sort call s:E("sort")
 command! -nargs=? Uniq call s:E("uniq")
 
+" TODO(icyflame): Include the range keyword here function name(...) range {...}
+" so that the highlighted range is then copied into the new scratch file
+let g:scratch_file_location = "~/sandbox/scratch"
+function! s:Scratch(mode, ...)
+    let l:arg = a:0 >= 1 ? a:1 : ""
+    let l:components = split(l:arg, " ")
+
+    let l:file_stub = len(l:components) >= 1 ? printf("-%s", l:components[0]) : ""
+    let l:file_ext = len(l:components) >= 2 ? l:components[1] : "md"
+
+    let l:file_ts = strftime("%Y-%m-%d-%H-%M-%S")
+    let l:file_base_name = "scratch"
+
+    let l:file_name = printf("%s/%s-%s%s.%s", g:scratch_file_location, l:file_base_name, l:file_ts, l:file_stub, l:file_ext)
+    echo l:file_name
+
+    if a:mode == "write" || a:mode == "edit"
+        execute "write"
+        execute "write " . l:file_name
+    endif
+
+    if a:mode == "edit"
+        let cursor = getcurpos()
+        let lnum = cursor[1]
+        execute "edit " . "+" . lnum . " " . l:file_name
+    endif
+
+    if a:mode == "read"
+        echo "Not yet implemented"
+    endif
+endfunction
+
+command! -nargs=? SCW call s:Scratch("write", <f-args>)
+command! -nargs=? SCE call s:Scratch("edit", <f-args>)
+" TODO(icyflame): Read the first file inside scratch location which has the
+" given argument in it's name.
+" command! -nargs=? SCR call s:Scratch("read", <f-args>)
 
 " clean up commands copied from the shell
 command ShellClean g/^#/norm "_dd
