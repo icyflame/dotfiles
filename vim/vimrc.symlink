@@ -354,7 +354,7 @@ command FormatCurl s/-H/\\\r-H/g
 let @m='ggVG:s/^\n/\r\r/ggg:normal€kb€kb€kb€kb€kb€kb%normal! vipJ:noh'
 nmap <leader>pt :normal! @m<cr>
 
-iab <expr> dts# strftime("%G-%m-%d %H:%M, %A, Week %U")
+iab <expr> dts# strftime("%Y-%m-%d %H:%M, %A, Week %U")
 iab <expr> time# strftime("%H:%M")
 
 " remove trailing whiespace from as many file types as possible
