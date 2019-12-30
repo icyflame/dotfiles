@@ -279,7 +279,6 @@ nmap <leader>jw :echo JsonWhere()<cr>
 " of the buffer with the command's output
 " Inspired by @cookie-s's Jq:
 " https://github.com/cookie-s/dotfiles/blob/60e2a63fa1e0e58c87a86a0af37e365bcaaa8277/.vimrc#L188-L197
-command! -nargs=? E call s:E(<f-args>)
 function! s:E(...)
     if 0 == a:0
         echo "ERROR: Must provide at least one argument"
@@ -289,6 +288,7 @@ function! s:E(...)
     endif
 endfunction
 
+command! -nargs=? E call s:E(<f-args>)
 command! -nargs=? Jq call s:E("jq .")
 command! -nargs=? Sort call s:E("sort")
 command! -nargs=? Uniq call s:E("uniq")
