@@ -6,7 +6,7 @@ PREZTO_INIT_LOCATION="${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 [ -s "$PREZTO_INIT_LOCATION" ] && source "$PREZTO_INIT_LOCATION"
 
 # set default editor
-export EDITOR="vim"
+if [[ -f `which nvim` ]]; then export EDITOR="nvim"; else export EDITOR="vim"; fi
 
 # edit commands in vm when v is pressed in command-line normal mode
 export VISUAL="vim"
