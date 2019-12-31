@@ -359,6 +359,9 @@ nmap SS :%s//g<LEFT><LEFT>
 nmap <expr> SM ':%s/' . @/ . '//g<LEFT><LEFT>'
 nmap SW :%s/\<<C-r><C-w>\>//g<LEFT><LEFT>
 
+" stop highlighting the last search expression
+nmap <silent> <BS> :noh<CR>
+
 nmap <leader>gfs :GoFillStruct<cr>
 
 " show the full path of an open buffer
