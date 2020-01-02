@@ -309,8 +309,10 @@ command! -nargs=? Uniq call s:E("uniq")
 " words 'link text' and run :Link 3103 to which leads to [link text][3103]
 function! s:Link(...)
     let l:link_name = a:0 >= 1 ? a:1 : "temp_link_name"
-    exe "normal! i[\<Esc>ea][" . l:link_name . "]\<Esc>"
-    exe "normal! Go[" . l:link_name . "]:  \<Esc>"
+    silent exe "normal! i[\<Esc>ea][" . l:link_name . "]\<Esc>"
+    silent exe "set paste"
+    silent exe "normal! Go[" . l:link_name . "]:  \<Esc>"
+    silent exe "set nopaste"
 endfunction
 
 au FileType markdown command! -nargs=* Link call s:Link(<f-args>)
