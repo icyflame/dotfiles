@@ -138,6 +138,10 @@ endif
 "
 Plugin 'tyru/open-browser.vim'
 Plugin 'tyru/open-browser-github.vim'
+" ---
+"
+"
+Plugin 'icyflame/PersistentScratch.vim'
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
