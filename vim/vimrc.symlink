@@ -307,21 +307,24 @@ command! -nargs=? ASCII call s:E("iconv -c -t ascii//translit")
 " cursor to a position where you can paste the link into the buffer now.
 "
 " - Links are added at the end of the current buffer.
-"
-" TODO(icyflame): Enable running this when inside a word and not on the first
-" letter of a word.
-" TODO(icyflame): Enable running it in visual mode to do things like: mark two
-" words 'link text' and run :Link 3103 to which leads to [link text][3103]
-function! s:Link(...)
-    let l:link_name = a:0 >= 1 ? a:1 : "temp_link_name"
-    silent exe "normal! i[\<Esc>ea][" . l:link_name . "]\<Esc>"
+function! s:MarkdownLink(mode, ...) range
     silent exe "set paste"
+
+    let l:link_name = a:0 >= 1 ? a:1 : "temp_link_name"
+
+    if a:mode ==# "word"
+        silent exe "normal! i[\<Esc>ea][" . l:link_name . "]\<Esc>"
+    else
+        silent exe "normal! `<i[\<Esc>`>la][" . l:link_name . "]\<Esc>"
+    endif
+
     silent exe "normal! Go[" . l:link_name . "]:  \<Esc>"
+
     silent exe "set nopaste"
 endfunction
 
-au FileType markdown command! -nargs=* Link call s:Link(<f-args>)
-au FileType markdown command! -nargs=* L call s:Link(<f-args>)
+au FileType markdown command! -nargs=* Linkw call s:MarkdownLink("word", <f-args>)
+au FileType markdown command! -nargs=* -range Link call s:MarkdownLink("visual", <f-args>)
 
 " clean up commands copied from the shell
 command ShellClean g/^#/norm "_dd
