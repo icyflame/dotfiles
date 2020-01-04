@@ -299,6 +299,7 @@ command! -nargs=? E call s:E(<f-args>)
 command! -nargs=? Jq call s:E("jq .")
 command! -nargs=? Sort call s:E("sort")
 command! -nargs=? Uniq call s:E("uniq")
+command! -nargs=? ASCII call s:E("iconv -c -t ascii//translit")
 
 " Create Markdown links quickly
 " Usage: In normal mode, go to the first letter of the word you want to convert
