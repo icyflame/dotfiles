@@ -142,6 +142,9 @@ Plugin 'tyru/open-browser-github.vim'
 "
 "
 Plugin 'icyflame/PersistentScratch.vim'
+" ---
+Plugin 'tpope/vim-surround'
+" ---
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
