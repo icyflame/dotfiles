@@ -265,9 +265,16 @@ function JsonWhere()
     let lnum = cursor[1]
     let colnum = cursor[2]
 
+    let filename = expand('%:p')
+    if len(filename) == 0
+        let filename = tempname() + ".json"
+        silent exe("write! " . filename)
+        silent exe("edit " . filename)
+    endif
+
     let cmd_list = [ ]
     let cmd_list += [ 'json-where' ]
-    let cmd_list += [ expand('%:p') ]
+    let cmd_list += [ filename ]
     let cmd_list += [ lnum ]
     let cmd_list += [ colnum ]
 
