@@ -135,6 +135,8 @@ Plugin 'ludovicchabant/vim-gutentags'
 if !executable("ctags")
     let g:gutentags_enabled = 0
 endif
+" https://github.com/ludovicchabant/vim-gutentags/issues/178#issuecomment-547475742
+let g:gutentags_exclude_filetypes = ['sh', 'sql', 'markdown', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git']
 "
 Plugin 'tyru/open-browser.vim'
 Plugin 'tyru/open-browser-github.vim'
