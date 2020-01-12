@@ -389,7 +389,8 @@ autocmd FileType proto,go,javascript,typescript,sh,vue set tw=100
 
 autocmd FileType markdown
             \ set comments=b:> |
-            \ set flp=^\\s*\[-*+\]\\s
+            \ set flp=^\\s*\[-*+\]\\s |
+            \ set nocindent
 
 autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
 
