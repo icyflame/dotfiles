@@ -142,6 +142,7 @@ Plugin 'tyru/open-browser-github.vim'
 "
 "
 Plugin 'icyflame/PersistentScratch.vim'
+let g:persistent_scratch_file_location = "~/sandbox/scratch"
 " ---
 Plugin 'tpope/vim-surround'
 " ---
