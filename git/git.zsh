@@ -89,7 +89,6 @@ function gpoc {
     gpc "origin"
 }
 
-
 function gpofc {
     gpc "origin" "--force"
 }
@@ -125,4 +124,23 @@ alias gbDmd="gbDm --dry-run"
 function gfm {
     git log --oneline master...$@ \
         --ancestry-path --merges | tail -n1
+}
+
+function gup {
+    BRANCH="$1"
+    STRATEGY="$2"
+    current_branch=`git-current-branch`
+    if [[ "$current_branch" =~ ".*master.*" ]]; then
+        echo "Current branch is master!"
+        return 255
+    fi
+    git remote update
+    git checkout "$BRANCH"
+    git merge
+    git checkout -
+    if [[ "$STRATEGY" == "rebase" ]]; then
+        git rebase "$BRANCH"
+    else
+        git merge "$BRANCH"
+    fi
 }
