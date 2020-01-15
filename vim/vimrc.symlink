@@ -112,9 +112,6 @@ Plugin 'sirver/ultisnips'
 let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" ---
-"
-"  PLUGINS UNDER TESTING
 "
 Plugin 'epeli/slimux'
 " (normal) fr = evaluate full buffer in an REPL
@@ -128,6 +125,9 @@ vmap fr :SlimuxREPLSendSelection<CR>
 
 " FR = Run the last command in the same shell again
 nmap FR :SlimuxShellLast<CR>
+" ---
+"
+"  PLUGINS UNDER TESTING
 "
 Plugin 'leafgarland/typescript-vim'
 "
@@ -141,13 +141,16 @@ let g:gutentags_exclude_filetypes = ['sh', 'sql', 'markdown', 'gitcommit', 'gitc
 Plugin 'tyru/open-browser.vim'
 Plugin 'tyru/open-browser-github.vim'
 " ---
+Plugin 'tpope/vim-surround'
+" ---
+Plugin 'junegunn/goyo.vim'
 "
 "
+" My plugins
 Plugin 'icyflame/PersistentScratch.vim'
 let g:persistent_scratch_file_location = "~/sandbox/scratch"
 " ---
-Plugin 'tpope/vim-surround'
-" ---
+"  
 "
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
