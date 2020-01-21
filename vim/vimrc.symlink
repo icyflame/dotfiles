@@ -217,6 +217,9 @@ nmap <leader>np :set nopaste<cr>
 " indent the whole file, write and exit vim.
 nmap <leader>x gg=G:w<cr>ZZ
 
+nmap <silent> <RIGHT> :next<CR>
+nmap <silent> <LEFT> :prev<CR>
+
 " make sure that vim-airline works
 set laststatus=2
 
