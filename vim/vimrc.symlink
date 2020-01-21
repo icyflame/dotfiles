@@ -153,10 +153,7 @@ Plugin 'tpope/vim-repeat'
 "
 " My plugins
 Plugin 'icyflame/PersistentScratch.vim'
-let g:persistent_scratch_file_location = "~/sandbox/scratch"
-" ---
-"  
-"
+let g:persistent_scratch_file_location = "$HOME/sandbox/scratch"
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
