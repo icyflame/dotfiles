@@ -144,6 +144,11 @@ Plugin 'tyru/open-browser-github.vim'
 Plugin 'tpope/vim-surround'
 " ---
 Plugin 'junegunn/goyo.vim'
+" ---
+Plugin 'godlygeek/tabular'
+" ---
+Plugin 'tpope/vim-repeat'
+"
 "
 "
 " My plugins
