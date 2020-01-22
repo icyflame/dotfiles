@@ -382,7 +382,7 @@ iab <expr> dts# strftime("%Y-%m-%d %H:%M, %A, Week %U")
 iab <expr> time# strftime("%H:%M")
 
 " remove trailing whiespace from as many file types as possible
-autocmd FileType go,c,cpp,java,php,rb,py,javascript,cpp11,sh,erb,haml,vue,typescript,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType go,c,cpp,java,php,ruby,py,javascript,cpp11,sh,erb,haml,vue,typescript,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 
 if executable("pg_format")
     autocmd FileType sql set formatprg=pg_format
