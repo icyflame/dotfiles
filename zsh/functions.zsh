@@ -207,16 +207,6 @@ function tmp_file {
     echo "$FILE_NAME"
 }
 
-function col1 { awk '{ print $1 }' }
-function col2 { awk '{ print $2 }' }
-function col3 { awk '{ print $3 }' }
-function col4 { awk '{ print $4 }' }
-function col5 { awk '{ print $5 }' }
-function col6 { awk '{ print $6 }' }
-function col7 { awk '{ print $7 }' }
-function col8 { awk '{ print $8 }' }
-function col9 { awk '{ print $9 }' }
-
 function drop_top {
     DROP_LINES="$@"
     if [[ -z "$DROP_LINES" ]] {
