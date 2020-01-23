@@ -140,6 +140,8 @@ let g:gutentags_exclude_filetypes = ['sh', 'sql', 'markdown', 'gitcommit', 'gitc
 "
 Plugin 'tyru/open-browser.vim'
 Plugin 'tyru/open-browser-github.vim'
+cabbrev OGF OpenGithubFile
+let g:openbrowser_github_url_exists_check = "ignore"
 " ---
 Plugin 'tpope/vim-surround'
 " ---
