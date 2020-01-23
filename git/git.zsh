@@ -60,6 +60,19 @@ alias gpi="git push icyflame"
 
 alias hpr="hub pull-request"
 
+# gcshallow: clone a repository, but only the top commit of a single branch
+# this is much faster when you just want to build a repository and don't want
+# to download the commit history
+function gcshallow {
+    local branch="$2"
+    local remote="$1"
+    if [[ -z "$branch" || -z "$remote" ]]; then
+        echo "ERROR: gcshallow remote-url branch-name"
+        return 42
+    fi
+    git clone --single-branch --depth=1 --branch="$branch" "$remote"
+}
+
 # returns the current branch that you are on
 function git-current-branch {
     echo `git branch | ag '\*' | awk '{ print $2 }'`
