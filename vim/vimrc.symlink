@@ -166,6 +166,9 @@ Plugin 'tpope/vim-repeat'
 " My plugins
 Plugin 'icyflame/PersistentScratch.vim'
 let g:persistent_scratch_file_location = "$HOME/sandbox/scratch"
+" ---
+Plugin 'icyflame/MarkdownLinks.vim'
+" ---
 call vundle#end()
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -333,31 +336,6 @@ command! -nargs=? Jq call s:E("jq .")
 command! -nargs=? Sort call s:E("sort")
 command! -nargs=? Uniq call s:E("uniq")
 command! -nargs=? ASCII call s:E("iconv -c -t ascii//translit")
-
-" Create Markdown links quickly
-" Usage: In normal mode, go to the first letter of the word you want to convert
-" to a link. Now type, ':Link 3105' => This will link the word and move the
-" cursor to a position where you can paste the link into the buffer now.
-"
-" - Links are added at the end of the current buffer.
-function! s:MarkdownLink(mode, ...) range
-    silent exe "set paste"
-
-    let l:link_name = a:0 >= 1 ? a:1 : "temp_link_name"
-
-    if a:mode ==# "word"
-        silent exe "normal! i[\<Esc>ea][" . l:link_name . "]\<Esc>"
-    else
-        silent exe "normal! `<i[\<Esc>`>la][" . l:link_name . "]\<Esc>"
-    endif
-
-    silent exe "normal! Go[" . l:link_name . "]:  \<Esc>"
-
-    silent exe "set nopaste"
-endfunction
-
-au FileType markdown command! -nargs=* Linkw call s:MarkdownLink("word", <f-args>)
-au FileType markdown command! -nargs=* -range Link call s:MarkdownLink("visual", <f-args>)
 
 " clean up commands copied from the shell
 command ShellClean g/^#/norm "_dd
