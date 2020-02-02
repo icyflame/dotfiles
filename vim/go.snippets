@@ -1,7 +1,7 @@
-snippet test_base
+snippet test
 func Test$1(t *testing.T) {
 	type testCase struct {
-		input string
+		$0input string
 		wantOutput string
 	}
 
@@ -15,14 +15,13 @@ func Test$1(t *testing.T) {
 	for name, tc := range testCases {
 		t.Run(name, func (t *testing.T) {
 			got, err := $1(tc.input)
-
 			if err != nil {
 				t.Errorf("Unexpected error: %v", err)
 				return
 			}
 
 			if diff := pretty.Compare(got, tc.wantOutput); diff != "" {
-				t.Errorf("Unexpected result: (-got +want): %s", diff)
+				t.Errorf("unexpected result: (-got +want):\n%s", diff)
 			}
 		})
 	}
