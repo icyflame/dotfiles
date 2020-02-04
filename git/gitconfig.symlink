@@ -18,6 +18,7 @@
     lc = !git rev-list --no-merges HEAD | head -n1 | xargs git show
     back = reset --soft "HEAD^"
     rH = reset HEAD
+    empty = commit --allow-empty -m 'empty commit'
 [push]
     default = matching
 [hub]
