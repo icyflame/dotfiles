@@ -225,10 +225,6 @@ nmap <leader>i gg=G``<cr>
 nmap <leader>z :w<cr>ZZ
 nmap <leader>Z :w<cr>ZZ
 
-" insert the present timestamp into the buffer
-nmap <leader>time :r! date<cr>
-nmap <leader> date :r! date<cr>
-
 nmap <leader>sp :set paste<cr>i
 nmap <leader>np :set nopaste<cr>
 " indent the whole file, write and exit vim.
