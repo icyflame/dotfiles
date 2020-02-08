@@ -158,6 +158,8 @@ xmap S   <Plug>VSurround
 Plugin 'junegunn/goyo.vim'
 " ---
 Plugin 'godlygeek/tabular'
+au FileType markdown AddTabularPattern table /|/
+au FileType markdown nnoremap <leader>t m`vip:Tab table<CR>``
 " ---
 Plugin 'tpope/vim-repeat'
 "
