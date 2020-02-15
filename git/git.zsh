@@ -75,7 +75,7 @@ function gcshallow {
 
 # returns the current branch that you are on
 function git-current-branch {
-    echo `git branch | ag '\*' | awk '{ print $2 }'`
+    git rev-parse --abbrev-ref HEAD
 }
 
 # push to $1/current-branch
