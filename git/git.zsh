@@ -19,6 +19,9 @@ alias ga="git add"
 # gd
 alias gd="git diff"
 
+# gdls: List all the file which have changed
+alias gdls="git --no-pager diff --name-only ${1:-master}"
+
 # gr
 alias gr="git remote"
 
