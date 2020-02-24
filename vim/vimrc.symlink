@@ -323,17 +323,25 @@ nmap <leader>jw :echo JsonWhere()<cr>
 function! s:E(...)
     if 0 == a:0
         echo "ERROR: Must provide at least one argument"
-    else
-        let l:arg = a:1
-        execute "%! " . l:arg
+        return 1
     endif
+    let l:arg = a:1
+    execute "%! " . l:arg
 endfunction
+command! -nargs=+ E call s:E(<f-args>)
 
-command! -nargs=? E call s:E(<f-args>)
-command! -nargs=? Jq call s:E("jq .")
-command! -nargs=? Sort call s:E("sort")
-command! -nargs=? Uniq call s:E("uniq")
-command! -nargs=? ASCII call s:E("iconv -c -t ascii//translit")
+command! -nargs=? Sort call s:E("sort " . <q-args>)
+command! -nargs=? Uniq call s:E("uniq " . <q-args>)
+command! -nargs=0 ASCII call s:E("iconv -c -t ascii//translit")
+
+function! s:Jq(...)
+    if 0 == a:0
+        call s:E("jq .")
+    else
+        call s:E("jq " . join(a:000, ' '))
+    end
+endfunction
+command! -nargs=* Jq call s:Jq(<f-args>)
 
 " clean up commands copied from the shell
 command ShellClean g/^#/norm "_dd
