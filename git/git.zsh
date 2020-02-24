@@ -19,8 +19,11 @@ alias ga="git add"
 # gd
 alias gd="git diff"
 
-# gdls: List all the file which have changed
-alias gdls="git --no-pager diff --name-only ${1:-master}"
+# gdls: List all the file which have changed between the current branch and the
+# branch provided as the first parameter (or master, by default)
+function gdls() {
+    git --no-pager diff --name-only ${1:-master}
+}
 
 # gr
 alias gr="git remote"
