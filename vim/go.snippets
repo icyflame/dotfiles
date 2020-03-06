@@ -13,7 +13,10 @@ func Test$1(t *testing.T) {
 	}
 
 	for name, tc := range testCases {
+		name, tc := name, tc
 		t.Run(name, func (t *testing.T) {
+			t.Parallel()
+
 			got, err := $1(tc.input)
 			if err != nil {
 				t.Errorf("Unexpected error: %v", err)
