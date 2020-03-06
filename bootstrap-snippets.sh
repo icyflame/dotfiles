@@ -8,7 +8,7 @@ function echo_eval {
     fi
 }
 
-RUN_STR="--run"
+RUN_STR="--go"
 GLOBAL_DEBUG="$1"
 DOTFILES_LOC="$HOME/dotfiles"
 
@@ -16,6 +16,7 @@ if [[ "$GLOBAL_DEBUG" == "$RUN_STR" ]]; then
     echo "Non Dry Run";
 else
     echo "Dry Run";
+    echo "Run with --go suffix to actually execute these commands"
 fi
 
 echo "Symlinking all the snippets files:"
