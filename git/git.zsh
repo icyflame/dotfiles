@@ -163,3 +163,13 @@ function gup {
         git merge "$BRANCH"
     fi
 }
+
+function fix_conflicts {
+    FILES=$(git ls-files -u | col4 | sort -u | paste -s -d' ' -)
+    if [[ -z "$FILES" ]];
+    then
+        echo "No unmerged files"
+        return 0
+    fi
+    $EDITOR $FILES
+}
