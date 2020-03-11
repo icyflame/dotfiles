@@ -71,6 +71,9 @@ export PATH="$PATH:/opt/ros/hydro/bin"
 # lightdm
 export PATH="$PATH:/usr/lib/lightdm/lightdm"
 
+# Perl scripts
+export PATH="$PATH:$HOME/perl-scripts/script"
+
 # Travis gem
 [ -f /home/siddharth/.travis/travis.sh ] && source /home/siddharth/.travis/travis.sh
 export NODE_PATH=~/local/:~/local/node_modules
