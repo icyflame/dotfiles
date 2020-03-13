@@ -124,7 +124,7 @@ function gbDm {
     current_branch=`git-current-branch`
 
     if [[ "$current_branch" =~ ".*master.*" || "$forced" = "--force" ]]; then
-        git branch --merged | grep -v "$current_branch" | while read p; do
+        git branch --merged | grep -v "master" | grep -v "$current_branch" | while read p; do
         if [[ "$dry_run" == "--dry-run" ]]; then
             echo "$p"
         else
