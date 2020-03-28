@@ -391,6 +391,11 @@ autocmd FileType markdown
             \ set flp=^\\s*\[-*+\]\\s |
             \ set nocindent
 
+autocmd FileType gitcommit
+            \ set comments=b:> |
+            \ set flp=^\\s*\[-*+\]\\s |
+            \ set nocindent
+
 autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
 
 set omnifunc=syntaxcomplete#Complete
