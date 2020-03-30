@@ -155,6 +155,9 @@ au FileType markdown AddTabularPattern table /|/
 au FileType markdown nnoremap <leader>t m`vip:Tab table<CR>``
 " ---
 Plugin 'tpope/vim-repeat'
+" ---
+Plugin 'pearofducks/ansible-vim'
+Plugin 'stephpy/vim-yaml'
 "
 "
 "
