@@ -72,3 +72,5 @@ alias depv="dep ensure -v"
 if [[ -f `which nvim` ]]; then alias v="nvim"; else alias v="vim"; fi
 
 alias ts_str="date -u +\"%FT%H:%M:%S.000Z\""
+
+alias sd="say -v Victoria done"
