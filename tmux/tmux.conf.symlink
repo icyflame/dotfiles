@@ -13,6 +13,11 @@ set -g @tpm_plugins '                \
 # git@github.com/user/plugin     \
 # git@bitbucket.com/user/plugin  \
 
+## set the default TERM
+set -g default-terminal screen-256color
+
+set-option -sg escape-time 10
+
 # renumber windows sequentially after closing any of them
 set -g renumber-windows on
 
