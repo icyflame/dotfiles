@@ -372,14 +372,31 @@ endif
 
 command FormatCurl s/-H/\\\r-H/g
 
-let @m='ggVG:s/^\n/\r\r/ggg:normal€kb€kb€kb€kb€kb€kb%normal! vipJ:noh'
+let @m='ggVG:s/^\n/\r\r/ggg:normal€kb€kb€kb€kb€kb€kb%normal! vipJ:noh'
 nmap <leader>pt :normal! @m<cr>
+
+" Unfill several paragraphs of text each of which is a list item
+let @u=':g/^*/norm O:g/^*/norm vipJ:%s/\n^*/*/g:noh'
+
+" Recorded registers
+" Process:
+" Step 1 => Record the macro using `q + <letter key>`
+" Step 2 => After the recording, paste the register to the configuration using `" <letter key> p`
+" Note: Always use Escape at the end of the macro to ensure that focus does not shift to another
+" window after the completion of the macro
+"
+" f => Insert empty function comment for a function
+let @f='wyiwO// pa ...'
+" i => Insert empty function comment for an interface function
+let @i='/)wyiwO// pa ...:noh'
 
 iab <expr> dts# strftime("%Y-%m-%d %H:%M, %A, Week %U")
 iab <expr> time# strftime("%H:%M")
 
 " remove trailing whiespace from as many file types as possible
 autocmd FileType go,c,cpp,java,php,ruby,py,javascript,cpp11,sh,erb,haml,vue,typescript,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" autocmd FileType markdown set spell
 
 if executable("pg_format")
     autocmd FileType sql set formatprg=pg_format
