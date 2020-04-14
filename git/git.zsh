@@ -22,7 +22,9 @@ alias gd="git diff"
 # gdls: List all the file which have changed between the current branch and the
 # branch provided as the first parameter (or master, by default)
 function gdls() {
-    git --no-pager diff --name-only ${1:-master}
+    CMD="git --no-pager diff --name-only ${1:-master} ${2:-}"
+    echo "$CMD"
+    eval "$CMD"
 }
 
 # gr
