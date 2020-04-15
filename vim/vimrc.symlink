@@ -164,7 +164,11 @@ Plugin 'stephpy/vim-yaml'
 " ---
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Use deoplete.
-let g:deoplete#enable_at_startup = 1
+augroup enabledeoplete
+    au!
+    au FileType go call deoplete#enable()
+augroup END
+
 "
 " My plugins
 Plugin 'icyflame/PersistentScratch.vim'
