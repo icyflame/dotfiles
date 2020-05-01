@@ -393,6 +393,8 @@ let @u=':g/^*/norm O:g/^*/norm vipJ:%s/\n^*/*/g:noh'
 let @f='wyiwO// pa ...'
 " i => Insert empty function comment for an interface function
 let @i='/)wyiwO// pa ...:noh'
+" h => Hide text inside double quotes, useful for filtering strings in secrets
+let @h='ci"[FILTERED]'
 
 iab <expr> dts# strftime("%Y-%m-%d %H:%M, %A, Week %U")
 iab <expr> time# strftime("%H:%M")
