@@ -41,3 +41,7 @@ function goeval {
     print_go_version "# Go 1.13"
     eval go13 $cmd
 }
+
+function gofmt_everything {
+    find . -iname "*.go" | xargs gofmt -w -s
+}
