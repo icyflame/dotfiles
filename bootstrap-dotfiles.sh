@@ -10,7 +10,7 @@ function echo_eval {
     fi
 }
 
-RUN_STR="--run"
+RUN_STR="--go"
 HELP_STR="--help"
 
 GLOBAL_DEBUG="$1"
@@ -49,3 +49,11 @@ for file in `ls $DOTFILES_LOC/**/*.snippets`; do
     echo_eval "rm -f \"$dst_file\"" "$GLOBAL_DEBUG"
 	echo_eval "ln -s \"$file\" \"$dst_file\"" "$GLOBAL_DEBUG"
 done
+
+if [[ -f "$HOME/.emacs.d/init.el" ]]; then
+    echo_eval "mkdir -p $HOME/.emacs.d" "$GLOBAL_DEBUG"
+    echo_eval "cp -v $HOME/.emacs.d/init.el $HOME/.emacs.d/init.el.old" "$GLOBAL_DEBUG"
+fi
+
+echo_eval "rm -f $HOME/.emacs.d/init.el" "$GLOBAL_DEBUG"
+echo_eval "ln emacs/init.el $HOME/.emacs.d/init.el" "$GLOBAL_DEBUG"
