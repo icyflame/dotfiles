@@ -65,6 +65,7 @@ build_simple_histogram () {
         return 42
     fi
 
+    rm -f /tmp/histogram.gnuplot
     cat <<EOF > /tmp/histogram.gnuplot
 set key autotitle columnhead
 set style data histogram
@@ -74,6 +75,78 @@ set boxwidth 0.9
 set xtics center border out nomirror rotate by 45 right scale 0
 
 plot 'input' using $COLUMN:xticlabels(1)
+EOF
+
+    build_gnuplot_output "/tmp/histogram.gnuplot" "$DATA"
+}
+
+build_smooth_curve_no_xtics () {
+    if [[ $# -eq 0 ]];
+    then
+        echo "script data column"
+        return 0
+    fi
+
+    DATA="${1}"
+    COLUMN=${2}
+
+    if [[ ! -f "$DATA" ]];
+    then
+        echo "ERROR: Arg1 must be a file"
+        return 43
+    fi
+
+    if [[ $COLUMN -lt 2 ]];
+    then
+        echo "ERROR: Arg2 must be 2 or higher"
+        return 42
+    fi
+
+    rm -f /tmp/histogram.gnuplot
+    cat <<EOF > /tmp/histogram.gnuplot
+set key autotitle columnhead
+set style data histogram
+set style fill solid border 1
+set boxwidth 0.9
+
+set xtics center border out nomirror rotate by 45 right scale 0
+
+plot 'input' using $COLUMN smooth bezier
+EOF
+
+    build_gnuplot_output "/tmp/histogram.gnuplot" "$DATA"
+}
+
+build_clustered_histogram () {
+    if [[ $# -eq 0 ]];
+    then
+        echo "script data col1 col2"
+        return 0
+    fi
+
+    DATA="${1}"
+    COL_BASE=${2}
+    COL1=$(($COL_BASE+1))
+    COL2=${3}
+
+    if [[ ! -f "$DATA" ]];
+    then
+        echo "ERROR: Arg1 must be a file"
+        return 43
+    fi
+
+    rm -f /tmp/histogram.gnuplot
+    cat <<EOF > /tmp/histogram.gnuplot
+set key autotitle columnhead
+set style histogram cluster gap 1
+set style data histogram
+set style fill solid border 1
+set boxwidth 0.9
+
+set xtics center border out nomirror rotate by 45 right scale 0
+
+plot 'input' using $COL_BASE:xticlabels(1) ti col, \
+for [i=$COL1:$COL2] '' using i ti col
 EOF
 
     build_gnuplot_output "/tmp/histogram.gnuplot" "$DATA"
