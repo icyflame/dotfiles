@@ -12,7 +12,6 @@ _site
 .*.swp
 *.vi
 *.zip
-*~
 
 # OS or Editor folders
 ._*
@@ -27,6 +26,9 @@ _site
 *.sublime-workspace
 nbproject
 Thumbs.db
+## Emacs temp files
+*~
+\#*#
 
 # Komodo
 .komodotools
