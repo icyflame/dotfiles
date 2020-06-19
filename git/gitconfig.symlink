@@ -15,10 +15,11 @@
     helper = cache --timeout 36000
 [alias]
     cp = cherry-pick
-    lc = !git rev-list --no-merges HEAD | head -n1 | xargs git show
+    lc = !git rev-list --no-merges HEAD | head -n1
     back = reset --soft "HEAD^"
     rH = reset HEAD
     empty = commit --allow-empty -m 'empty commit'
+    deltemp = "!f() { git --no-pager branch | ag -v master | gawk '$1 ~ /^temp/ { print $1 }' | xargs git branch -D; }; f"
 [push]
     default = matching
 [hub]

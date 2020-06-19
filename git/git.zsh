@@ -1,5 +1,8 @@
 # git <3
 
+# g
+alias g="git"
+
 # gst : Status of the repository
 alias gst="git status"
 
@@ -35,9 +38,6 @@ alias gm="git merge"
 
 # gp
 alias gp="git push"
-
-# gco
-alias gco="git checkout"
 
 # gru
 alias gru="git remote update"
