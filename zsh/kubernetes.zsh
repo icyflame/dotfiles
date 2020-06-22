@@ -40,7 +40,7 @@ function kg {
 function kns {
     PARAM="$@"
     if [[ "$PARAM" == "" ]]; then
-        kubens
+        kubectl config set-context --current --namespace $(kubectl get ns | gawk 'NR != 1 { print $1 }' | fzf)
     else
         kubectl config set-context --current --namespace "$@"
     fi
