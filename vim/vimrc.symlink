@@ -46,6 +46,11 @@ nmap <C-p> :FZF<cr>
 nmap <C-P> :FZF<cr>
 " --------
 Plugin 'airblade/vim-gitgutter'
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=yellow
+" --------
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'git_patch_tags.vim'
 Plugin 'terryma/vim-multiple-cursors'
@@ -435,6 +440,9 @@ set backspace=2
 " Put a line at the 80 column mark
 set colorcolumn=+1
 highlight ColorColumn ctermbg=236
+
+" Set SignColumn background to empty
+highlight clear SignColumn
 
 if !has('gui_running')
   set t_Co=256
