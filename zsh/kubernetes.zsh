@@ -7,7 +7,11 @@ function stj {
 }
 
 function ste {
-    sts -ojson "$1" | jq '.message | fromjson? | select(.level == "error")'
+    sts -ojson "$1" | jq -c '.message | fromjson? | select((.level | ascii_downcase) == "error")'
+}
+
+function sti {
+    sts -ojson "$1" | jq -c '.message | fromjson? | select((.level | ascii_downcase) == "info")'
 }
 
 function kl {
