@@ -15,6 +15,8 @@
     helper = cache --timeout 36000
 [alias]
     cp = cherry-pick
+    co = checkout
+    upm = "!f() { git stash; git checkout master; git remote update; git merge origin/master; }; f"
     lc = !git rev-list --no-merges HEAD | head -n1
     back = reset --soft "HEAD^"
     rH = reset HEAD

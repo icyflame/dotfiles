@@ -14,7 +14,7 @@ gco () {
     else
         if [[ "$#" -ge 1 ]];
         then
-            git checkout "$1"
+            git checkout $@
         fi
     fi
 }
