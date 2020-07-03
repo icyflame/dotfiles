@@ -37,14 +37,7 @@ function kg {
     fi
 }
 
-function kns {
-    PARAM="$@"
-    if [[ "$PARAM" == "" ]]; then
-        kubectl config set-context --current --namespace $(kubectl get ns | gawk 'NR != 1 { print $1 }' | fzf)
-    else
-        kubectl config set-context --current --namespace "$@"
-    fi
-}
+alias kns="kubens"
 
 # Alias based namespace switching
 # Eg: kns_alias_based dev app-dev prod app-prod
@@ -90,3 +83,10 @@ alias kex="kubectl exec -it"
 alias klog="kubectl logs -f"
 
 alias kcon="kubectx"
+
+# Functions using kubectl-fzf
+# https://github.com/at-ishikawa/kubectl-fzf
+
+function kportforward {
+    kubectl fzf "$1" | xargs -I{} kubectl port-forward $1/{} 9000:9000
+}
