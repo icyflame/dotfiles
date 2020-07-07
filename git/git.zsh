@@ -3,25 +3,6 @@
 # g
 alias g="git"
 
-# gst : Status of the repository
-alias gst="git status"
-
-# gb
-alias gb="git branch"
-
-# gbl
-alias gbl="git branch --color | cat"
-
-# gc
-alias gc="git commit"
-alias gca="git commit --amend"
-
-# ga
-alias ga="git add"
-
-# gd
-alias gd="git diff"
-
 # gdls: List all the file which have changed between the current branch and the
 # branch provided as the first parameter (or master, by default)
 function gdls() {
@@ -29,42 +10,6 @@ function gdls() {
     echo "$CMD"
     eval "$CMD"
 }
-
-# gr
-alias gr="git remote"
-
-# gm
-alias gm="git merge"
-
-# gp
-alias gp="git push"
-
-# gru
-alias gru="git remote update"
-
-# gpoa : Push all branches to origin
-alias gpoa="git push origin --all"
-
-# gpot : Push all tags to origin
-alias gpot="git push origin --tags"
-
-# gpia : Push all branches to the fork
-alias gpia="git push icyflame --all"
-
-# gru : Remote the status of all remote repositories
-alias gru="git remote update"
-
-# glod : Decorated one line log (Shows the short SHA of each commit)
-alias glod="git log --oneline --decorate"
-
-# pl : Pretty git log for humans. (Name on Date : Commit subject)
-alias pl="git log --pretty=format:'(%h) %an on %ai: %s' --date=short"
-
-# gpo/u/h : git push aliases
-alias gpo="git push origin"
-alias gpu="git push upstream"
-alias gph="git push heroku"
-alias gpi="git push icyflame"
 
 alias hpr="hub pull-request"
 
@@ -118,7 +63,7 @@ function gpic {
     gpc "icyflame"
 }
 
-# delete all merged branches if the current branch _is_ master
+# Delete all merged branches if the current branch _is_ master
 # this command provides a `--dry-run` and `--force` option
 function gbDm {
     forced="$1"
