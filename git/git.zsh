@@ -51,14 +51,6 @@ function gpc {
     fi
 }
 
-function gpoc {
-    gpc "origin"
-}
-
-function gpofc {
-    gpc "origin" "--force"
-}
-
 function gpic {
     gpc "icyflame"
 }

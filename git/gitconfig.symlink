@@ -26,6 +26,8 @@
 
     ru = remote update
 
+    current-branch = rev-parse --abbrev-ref HEAD
+
     lod = log --oneline --decorate
     lodg = log --oneline --decorate --graph
     pl = log --pretty=format:'(%h) %an on %ai: %s' --date=short
@@ -39,6 +41,10 @@
     ph = push heroku
     pi = push icyflame
 
+    # https://github.com/etdev/dotfiles/blob/22985739ab0f09b59ae2379cc38301fa9769009c/gitconfig#L47
+    poc = "!f() { branch=$(git current-branch) && if [[ $branch == master || $branch == develop ]]; then echo FAILED $branch && return -1; fi && git push origin $branch; }; f"
+    pofc = "!f() { branch=$(git current-branch) && if [[ $branch == master || $branch == develop ]]; then echo FAILED $branch && return -1; fi && git push --force-with-lease origin $branch; }; f"
+
     cp = cherry-pick
     co = checkout
     upm = "!f() { git stash; git checkout master; git remote update; git merge origin/master; }; f"
@@ -47,6 +53,8 @@
     rH = reset HEAD
     empty = commit --allow-empty -m 'empty commit'
     deltemp = "!f() { git --no-pager branch | ag -v master | gawk '$1 ~ /^temp/ { print $1 }' | xargs git branch -D; }; f"
+
+    # bDm = "!f() { git --no-pager branch --merged --format '%(refname:short)' | xargs git branch -d }; f" */
 [push]
     default = matching
 [hub]
