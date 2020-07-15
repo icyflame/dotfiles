@@ -290,3 +290,46 @@ function mg {
 function path_split {
     echo $PATH | gawk '{ split($0, a, ":"); for (b in a) { print a[b] } }';
 }
+
+function next_version {
+    perl -e '
+my $o = `git tag --sort=-version:refname`;
+my @a = split("\n", $o);
+my $v = $a[0];
+my @comp = split(/\./, $v);
+print join(".", (0, $comp[1] + 1, 0))
+'
+}
+
+function create_next_tag {
+    git stash && \
+        git checkout master && \
+        git remote update && \
+        git merge origin/master
+
+    current=$(git tag --sort=-version:refname | head -1)
+    tag=$(next_version)
+
+    cat <<EOF
+
+---
+
+Current version: $current
+New version: $tag
+
+Should the new version be created? (y/N)
+EOF
+
+    read decision
+
+    if [[ "$decision" != "y" ]];
+    then
+        echo "BYE"
+        return 0
+    fi
+
+    echo "OKAY"
+    git tag $tag
+    # git push origin $tag
+    echo "BYE"
+}
