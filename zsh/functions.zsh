@@ -308,6 +308,7 @@ function create_next_tag {
         git merge origin/master
 
     current=$(git tag --sort=-version:refname | head -1)
+    top_commit=$(git log --pretty=format:'(%h) %an on %ai: %s' --date=short | head -1)
     tag=$(next_version)
 
     cat <<EOF
@@ -315,6 +316,8 @@ function create_next_tag {
 ---
 
 Current version: $current
+Top commit: $top_commit
+
 New version: $tag
 
 Should the new version be created? (y/N)
