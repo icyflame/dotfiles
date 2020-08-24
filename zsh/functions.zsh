@@ -333,6 +333,6 @@ EOF
 
     echo "OKAY"
     git tag $tag
-    # git push origin $tag
+    git push origin $tag
     echo "BYE"
 }
