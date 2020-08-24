@@ -52,9 +52,9 @@
     back = reset --soft "HEAD^"
     rH = reset HEAD
     empty = commit --allow-empty -m 'empty commit'
-    deltemp = "!f() { git --no-pager branch | ag -v master | gawk '$1 ~ /^temp/ { print $1 }' | xargs git branch -D; }; f"
 
-    # bDm = "!f() { git --no-pager branch --merged --format '%(refname:short)' | xargs git branch -d }; f" */
+    deltemp = "!f() { git --no-pager branch | ag -v master | gawk '$1 ~ /^temp/ { print $1 }' | xargs git branch -D; }; f"
+    bDm = "!f() { git --no-pager branch --format '%(refname:short)' --merged | grep -v master | xargs git branch -D; }; f"
 [push]
     default = matching
 [hub]

@@ -55,28 +55,6 @@ function gpic {
     gpc "icyflame"
 }
 
-# Delete all merged branches if the current branch _is_ master
-# this command provides a `--dry-run` and `--force` option
-function gbDm {
-    forced="$1"
-    dry_run="$1"
-    current_branch=`git-current-branch`
-
-    if [[ "$current_branch" =~ ".*master.*" || "$forced" = "--force" ]]; then
-        git branch --merged | grep -v "master" | grep -v "$current_branch" | while read p; do
-        if [[ "$dry_run" == "--dry-run" ]]; then
-            echo "$p"
-        else
-            git branch -d "$p";
-        fi
-        done;
-    else
-        echo "Not on branch master; can't delete merged branches; run with --force if you want to do that"
-    fi
-}
-
-alias gbDmd="gbDm --dry-run"
-
 # gfm = git find merge commit => Prints the merge commit in which the given
 # commit was merged into master
 function gfm {
