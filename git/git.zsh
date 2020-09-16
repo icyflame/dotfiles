@@ -58,3 +58,37 @@ function fix_conflicts {
     fi
     $EDITOR $FILES
 }
+
+function git_pattern_do {
+    local action="$1";
+    local pattern="$2";
+    local porcelain_pattern="";
+    case $action in
+        "add")
+            porcelain_pattern='^\sM'
+            ;;
+        "reset")
+            porcelain_pattern='^M\s'
+            ;;
+    esac
+
+    if [[ -z "$action" || -z "$pattern" || -z "$porcelain_pattern" ]];
+    then
+        echo "FAILED: action, pattern, porcelain_pattern should be non-empty"
+        return 41
+    fi
+
+    CMD="git status --porcelain --untracked=no | gawk '/$porcelain_pattern/ { print \$2 }' | grep $pattern | xargs git $action";
+    echo $CMD
+    eval $CMD
+}
+
+function git_add_pattern {
+    git_pattern_do "add" "$1"
+}
+alias gap="git_add_pattern"
+
+function git_reset_pattern {
+    git_pattern_do "reset" "$1"
+}
+alias grp="git_reset_pattern"
