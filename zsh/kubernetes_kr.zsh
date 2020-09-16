@@ -1,6 +1,6 @@
 function selector_string {
     if [[ "$@" != "" ]]; then
-        echo '| ag --nocolor '"$@"
+        echo '| grep --color=never '"$@"
     else
         echo ''
     fi
