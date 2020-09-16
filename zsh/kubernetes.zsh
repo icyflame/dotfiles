@@ -3,11 +3,11 @@ alias st="stern --exclude-container istio-proxy"
 alias sts="stern --exclude-container istio-proxy --since 1s"
 
 function stj {
-    sts -ojson "$1" | jq -c '.message | fromjson?'
+    sts -ojson "$@" | jq -c '.message | fromjson?'
 }
 
 function ste {
-    sts -ojson "$1" | jq -c '.message | fromjson? | select((.level | ascii_downcase) == "error")'
+    sts -ojson "$@" | jq -c '.message | fromjson? | select((.level | ascii_downcase) == "error")'
 }
 
 function sti {
