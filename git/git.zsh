@@ -3,14 +3,6 @@
 # g
 alias g="git"
 
-# gdls: List all the file which have changed between the current branch and the
-# branch provided as the first parameter (or master, by default)
-function gdls() {
-    CMD="git --no-pager diff --name-only ${1:-master} ${2:-}"
-    echo "$CMD"
-    eval "$CMD"
-}
-
 alias hpr="hub pull-request"
 
 # gcshallow: clone a repository, but only the top commit of a single branch
@@ -29,30 +21,6 @@ function gcshallow {
 # returns the current branch that you are on
 function git-current-branch {
     git rev-parse --abbrev-ref HEAD
-}
-
-# push to $1/current-branch
-# will not push if current-branch =~ master
-function gpc {
-    remote="$1"
-    forced="$2"
-    current_branch=`git-current-branch`
-    if [[ "$current_branch" =~ ".*master.*" ]]; then
-        echo "Current branch $current_branch is master! can not push directly to master!"
-        return 255
-    fi
-
-    echo "Pushing to $remote/$current_branch"
-
-    if [[ "$forced" = "--force" ]]; then
-        git push "$remote" --force $current_branch;
-    else
-        git push "$remote" $current_branch;
-    fi
-}
-
-function gpic {
-    gpc "icyflame"
 }
 
 # gfm = git find merge commit => Prints the merge commit in which the given
