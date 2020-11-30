@@ -219,7 +219,12 @@ function drop_top {
 function replace_all {
     PATTERN="$1"
     REPLACEMENT="$2"
-    cmd='ag -l "'$PATTERN'" | xargs sed -ie "s/'$PATTERN'/'$REPLACEMENT'/g"'
+    if [[ -x `which gsed` ]];
+    then
+        cmd='ag -l "'$PATTERN'" | xargs gsed -i -e "s/'$PATTERN'/'$REPLACEMENT'/g"'
+    else
+        cmd='ag -l "'$PATTERN'" | xargs sed -i "" -e "s/'$PATTERN'/'$REPLACEMENT'/g"'
+    fi
     echo $cmd >&2
     eval $cmd
 }
