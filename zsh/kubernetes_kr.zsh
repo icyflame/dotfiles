@@ -72,7 +72,7 @@ kr prints the command that will be run to stderr for easy inspection.
 Siddharth Kannan 2019 <www.siddharthkannan.in>
     '
 
-    COMMAND=("kubectl get")
+    COMMAND=("kubectl get --no-headers")
     
     RESOURCE="$1"
     SUBCOMMAND="$2"
