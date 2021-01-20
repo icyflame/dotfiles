@@ -133,8 +133,8 @@ JAVA_HOME=$HOME/Downloads/jdk1.8.0_161/bin
 [ -d "$JAVA_HOME" ] && PATH="$PATH:$JAVA_HOME"
 
 # Golang
-export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 export GOPATH="$HOME/go_workspace"
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
 
 # Ruby
 export PATH="$PATH:$HOME/.rbenv/bin"
