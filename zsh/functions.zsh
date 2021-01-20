@@ -378,3 +378,13 @@ function yron {
     INPUT=$1
     cat $INPUT | yq e - -j | gron
 }
+
+# pandoc_pdf 1.tex
+# Output: 1.pdf
+# Effect: Build 1.tex using pandoc and output to 1.pdf
+function pandoc_pdf {
+	local input=$1;
+	local output=$(basename "$input" .tex).pdf
+	pandoc --from latex --to latex --output "$output" "$input"
+	echo $output
+}
