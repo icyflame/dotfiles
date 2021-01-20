@@ -326,3 +326,41 @@ EOF
     git push origin $tag
     echo "BYE"
 }
+
+# last-cmd: Prints the last command that was run using the zsh shell
+# This will not work for other shells.
+function last-cmd {
+    tail -2 ~/dotfiles/.zhistory | \
+        head -1 | \
+        gawk -F';' '{ b = index($0, ";"); print substr($0, b+1) }'
+}
+
+# copy: Get the command run right before this function; run it again and copy
+# the output to the clipboard
+#
+# parameters: accepts 1 parameter
+#   first parameter values:
+#       empty (default) => copy the last command's stdout ONLY
+#       non-empty => copy the last command's stdout and stderr
+function copy {
+    local last_cmd=$(last-cmd)
+    local copy_err=$1
+    echo "Rerun: $last_cmd"
+
+    local out="${TMPDIR:-/tmp/}$RANDOM"
+    local last_cmd_file="${TMPDIR:-/tmp/}$RANDOM"
+
+    rm -f $out
+    rm -f $last_cmd_file
+
+    echo "\$ $last_cmd" > $last_cmd_file
+
+    if [[ -z "$copy_err" ]];
+    then
+        eval $last_cmd 1>$out 2>/dev/null
+    else
+        eval $last_cmd 1>$out 2>&1
+    fi
+
+    cat $last_cmd_file $out | pbcopy
+}
