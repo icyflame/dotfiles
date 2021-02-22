@@ -22,22 +22,25 @@ kr
 A utility to print your Kubernetes resource information with concise commands
 
 usage:
-    kr [resource] [command] [pattern] [w]
+    kr [wide|w] resource [command pattern]
 
-    command options
-        l / ls -> List all resources in current namespace
+	wide|w (optional)
+		use the "wide" output format when executing kubectl
+
+    resource
+        pod, rs, deployments, hpa, cronjobs, secrets, all
+        You can get the list of all resources using kubectl api-resources
+
+
+    command
+        l / ls -> List all resources in the current namespace
         w      -> Watch all resources in the current namespace
         la     -> List resources in all namespaces
         j      -> List all resources in current namespace in json format
         jl     -> List all resources in json format, pipe to less
         jq     -> List all resources in json format, pipe to jq then less
 
-    resource options
-        pod, rs, deployments, hpa, cronjobs, secrets, all
-
-        You can get the list of all resources using kubectl api-resources
-
-    pattern options
+    pattern
         you can provide text or regular expressions. be careful about the way
         your shell handles quotation marks
 
@@ -73,7 +76,15 @@ Siddharth Kannan 2019 <www.siddharthkannan.in>
     '
 
     COMMAND=("kubectl get --no-headers")
-    
+
+	WIDE="$1"
+	case "$WIDE" in
+		"wide" | "w")
+			COMMAND+=("-owide")
+			shift
+			;;
+	esac
+
     RESOURCE="$1"
     SUBCOMMAND="$2"
     REGEX="$3"
