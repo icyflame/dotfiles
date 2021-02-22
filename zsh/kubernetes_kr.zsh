@@ -77,7 +77,6 @@ Siddharth Kannan 2019 <www.siddharthkannan.in>
     RESOURCE="$1"
     SUBCOMMAND="$2"
     REGEX="$3"
-    WATCH="$4"
 
     COMMAND+=("$1")
 
@@ -110,7 +109,7 @@ Siddharth Kannan 2019 <www.siddharthkannan.in>
             ;;
     esac
 
-    if [[ "$WATCH" == "w" || "$SUBCOMMAND" == "w" ]]; then
+    if [[ "$SUBCOMMAND" == "w" ]]; then
         COMMAND="watch '"$COMMAND"'"
     fi
 
