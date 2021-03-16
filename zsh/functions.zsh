@@ -364,3 +364,11 @@ function copy {
 
     cat $last_cmd_file $out | pbcopy
 }
+
+# top-fzf: Look at the top output for a single process
+#
+# Works only with Mac's top command. Linux' top command takes the parameter "-p", figure out how to
+# detect the system and adapt to it.
+function top-fzf {
+	top -pid $(ps aux | grep "$1" | fzf | col2)
+}
