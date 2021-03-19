@@ -372,3 +372,9 @@ function copy {
 function top-fzf {
 	top -pid $(ps aux | grep "$1" | fzf | col2)
 }
+
+# yron: Get the gron output for the given YAML file
+function yron {
+    INPUT=$1
+    cat $INPUT | yq e - -j | gron
+}
