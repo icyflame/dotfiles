@@ -181,9 +181,17 @@ bar {
         status_command i3status
 }
 
+# Don't use xmodmap, it is too low-level a tool for what we want to do here.
 # Run Xmodmap and remap all the required keys
 # Mainly caps => esc
-exec --no-startup-id /usr/bin/xmodmap ~/.XModmap
+# exec --no-startup-id /usr/bin/xmodmap ~/.XModmap
 
+# https://github.com/susam/uncap#linux-setxkbmap
+exec --no-startup-id setxkbmap -option caps:escape
+
+# Don't use fcitx (use iBus instead, which is more modern and easier to use)
 # https://confluence.jaytaala.com/display/TKB/Japanese+input+with+i3+and+Arch+based+distros
 # exec --no-startup-id fcitx -d
+
+# Start ibus daemon and prepare to enter Japanese
+exec --no-startup-id ibus-daemon
