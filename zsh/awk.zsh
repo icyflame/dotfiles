@@ -18,12 +18,12 @@ function tsv7 { awk -F'\t' '{ print $7 }' }
 function tsv8 { awk -F'\t' '{ print $8 }' }
 function tsv9 { awk -F'\t' '{ print $9 }' }
 
-function csv1 { awk -F',' '{ print $1 }' }
-function csv2 { awk -F',' '{ print $2 }' }
-function csv3 { awk -F',' '{ print $3 }' }
-function csv4 { awk -F',' '{ print $4 }' }
-function csv5 { awk -F',' '{ print $5 }' }
-function csv6 { awk -F',' '{ print $6 }' }
-function csv7 { awk -F',' '{ print $7 }' }
-function csv8 { awk -F',' '{ print $8 }' }
-function csv9 { awk -F',' '{ print $9 }' }
+function csv1 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $1 }' }
+function csv2 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $2 }' }
+function csv3 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $3 }' }
+function csv4 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $4 }' }
+function csv5 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $5 }' }
+function csv6 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $6 }' }
+function csv7 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $7 }' }
+function csv8 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $8 }' }
+function csv9 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $9 }' }
