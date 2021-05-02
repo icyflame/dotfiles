@@ -187,7 +187,8 @@ bar {
 # exec --no-startup-id /usr/bin/xmodmap ~/.XModmap
 
 # https://github.com/susam/uncap#linux-setxkbmap
-exec --no-startup-id setxkbmap -option caps:escape
+# Note: After connecting a new keyboard, always restart i3 using MOD-shift-r
+exec_always --no-startup-id /usr/bin/setxkbmap -v 10 -option caps:escape
 
 # Don't use fcitx (use iBus instead, which is more modern and easier to use)
 # https://confluence.jaytaala.com/display/TKB/Japanese+input+with+i3+and+Arch+based+distros
