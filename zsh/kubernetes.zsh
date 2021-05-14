@@ -78,6 +78,14 @@ functions kdef() {
     kwhat
 }
 
+# ksetimagecmds outputs the commands that can be used later to revert the
+# deployment to the current version
+function ksetimagecmds {
+    local DEPLOY_NAME=$1
+    [ -z "$DEPLOY_NAME" ] && echo "ERROR: Must provide deployment name as the first argument" && return 42
+    k get deploy -ojson $DEPLOY_NAME | jq -r '.metadata.name as $name | .["spec"]["template"]["spec"]["containers"][] as $c | "k set image deploy \($name) \($c | .name)=\($c | .image)"'
+}
+
 ## Infrequent
 alias kex="kubectl exec -it"
 alias klog="kubectl logs -f"
