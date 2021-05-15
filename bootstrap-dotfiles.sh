@@ -50,10 +50,14 @@ for file in `ls $DOTFILES_LOC/**/*.snippets`; do
 	echo_eval "ln -s \"$file\" \"$dst_file\"" "$GLOBAL_DEBUG"
 done
 
-if [[ -f "$HOME/.emacs.d/init.el" ]]; then
-    echo_eval "mkdir -p $HOME/.emacs.d" "$GLOBAL_DEBUG"
-    echo_eval "cp -v $HOME/.emacs.d/init.el $HOME/.emacs.d/init.el.old" "$GLOBAL_DEBUG"
-fi
+### i3 Setup ###
 
-echo_eval "rm -f $HOME/.emacs.d/init.el" "$GLOBAL_DEBUG"
-echo_eval "ln emacs/init.el $HOME/.emacs.d/init.el" "$GLOBAL_DEBUG"
+DEST_FILE="$HOME/.config/i3/config"
+echo_eval "mkdir -p $HOME/.config/i3" "$GLOBAL_DEBUG"
+if [[ -e "$DEST_FILE" ]];
+then
+    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/i3config.old" "$GLOBAL_DEBUG"
+fi
+echo_eval "rm -f $DEST_FILE" "$GLOBAL_DEBUG"
+# Note this should NOT be a symbolic link. It must be a hard link.
+echo_eval "ln i3config $DEST_FILE" "$GLOBAL_DEBUG"
