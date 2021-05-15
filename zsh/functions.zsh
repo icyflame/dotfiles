@@ -388,3 +388,12 @@ function pandoc_pdf {
 	pandoc --from latex --to latex --output "$output" "$input"
 	echo $output
 }
+
+# wgi
+#
+# Print the currently active wireguard interface for inspection
+#
+# Output: "client-aws" OR "no wireguard"
+function wgi {
+    INTERFACE=$(sudo wg | head -1 | gawk -F': ' '{ print $2 }') && [ -n "$INTERFACE" ] && echo "$INTERFACE" || echo "no wireguard"
+}
