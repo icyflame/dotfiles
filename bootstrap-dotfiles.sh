@@ -1,4 +1,9 @@
 # Setup all the dotfiles in the $HOME directory
+#
+# This script is safe to rerun several times as it simply over-writes the existing configuration
+# files with the config files that are provided by this repository.
+
+### Helper ###
 
 function echo_eval {
     CMD="$1"
@@ -10,8 +15,22 @@ function echo_eval {
     fi
 }
 
+### Frontmatter ###
+
 RUN_STR="--go"
 HELP_STR="--help"
+
+if [[ "$1" == "$HELP_STR" ]];
+then
+    cat <<EOF
+Help text for bootstrap-dotfiles.sh script
+
+Options:
+    1. --go => Non-dry-run; create the symlinks which will be created otherwise
+    2. --help => Print this help text
+EOF
+    exit 42
+fi
 
 GLOBAL_DEBUG="$1"
 
@@ -20,6 +39,8 @@ if [[ "$GLOBAL_DEBUG" == "$RUN_STR" ]]; then
 else
     echo "DRY RUN: will not run any command"
 fi
+
+### Copy {file}.symlink to ~/.{file} ###
 
 DOTFILES_LOC="$HOME/dotfiles"
 
@@ -38,6 +59,8 @@ for file in `ls $DOTFILES_LOC/**/*.symlink`; do
 	echo_eval "rm -f  $HOME/.$dotfile" "$GLOBAL_DEBUG"
 	echo_eval "ln -s $file $HOME/.$dotfile" "$GLOBAL_DEBUG"
 done
+
+### Symlink Vim snippets ###
 
 echo "Symlinking all the snippets files:"
 SNIPPETS_LOC="$HOME/.vim/custom-snippets"
