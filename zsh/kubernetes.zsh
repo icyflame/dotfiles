@@ -98,3 +98,15 @@ alias kcon="kubectx"
 function kportforward {
     kubectl fzf "$1" | xargs -I{} kubectl port-forward $1/{} 9000:9000
 }
+
+function kshowsecret-filtered  {
+    SECRET_NAME=$(kr secrets l $1 | head -1 | col1)
+    echo "Secret $SECRET_NAME:"
+    k get secrets $SECRET_NAME -o jsonpath="{.data}" | jq -r 'keys[] as $k | "\($k)=''\(.[$k]|@base64d|.[0:4])[FILTERED]''"'
+}
+
+function kshowsecret {
+    SECRET_NAME=$(kr secrets l $1 | head -1 | col1)
+    echo "Secret $SECRET_NAME:"
+    k get secrets $SECRET_NAME -o jsonpath="{.data}" | jq -r 'keys[] as $k | "\($k)=''\(.[$k]|@base64d)''"'
+}
