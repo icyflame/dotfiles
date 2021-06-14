@@ -108,6 +108,10 @@ for i in `ls $ZDOTDIR/**/*.zsh`; do
 	source $i;
 done;
 
+for i in `ls $ZDOTDIR/**/*.zsh-completion`; do
+	source $i;
+done;
+
 # company-specific dotfiles
 [ -d $ZDOTDIR/mercari/bin ] && PATH="$PATH:$ZDOTDIR/mercari/bin"
 
