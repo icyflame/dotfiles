@@ -86,6 +86,21 @@ function ksetimagecmds {
     k get deploy -ojson $DEPLOY_NAME | jq -r '.metadata.name as $name | .["spec"]["template"]["spec"]["containers"][] as $c | "k set image deploy \($name) \($c | .name)=\($c | .image)"'
 }
 
+# kshowrevisions outputs the current revisions of the given deployment or all
+# deployments in the current namespace if no argument is given
+#
+# This number is useful for reverting a rollout using:
+# kubectl rollout undo deployment/some-deployment --to-revision=<number>
+function kshowrevisions {
+    local DEPLOY_NAME=$1
+    if [[ -z "$DEPLOY_NAME" ]];
+    then
+        k get deployment -o json | jq '.items[] | .metadata | [.name, .annotations["deployment.kubernetes.io/revision"]] | @tsv' -r | expand -t10
+    else
+        k get deployment -o json $DEPLOY_NAME | jq '.metadata | [.name, .annotations["deployment.kubernetes.io/revision"]] | @tsv' -r | expand -t10
+    fi
+}
+
 ## Infrequent
 alias kex="kubectl exec -it"
 alias klog="kubectl logs -f"
