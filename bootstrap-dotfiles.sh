@@ -84,3 +84,16 @@ fi
 echo_eval "rm -f $DEST_FILE" "$GLOBAL_DEBUG"
 # Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln i3config $DEST_FILE" "$GLOBAL_DEBUG"
+
+### Alacritty Setup ###
+
+DEST_FILE="$HOME/.config/alacritty/alacritty.yml"
+echo_eval "mkdir -p $HOME/.config/alacritty" "$GLOBAL_DEBUG"
+if [[ -e "$DEST_FILE" ]];
+then
+    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/alacritty.yml.old" "$GLOBAL_DEBUG"
+fi
+echo_eval "rm -f $DEST_FILE" "$GLOBAL_DEBUG"
+# Note this should NOT be a symbolic link. It must be a hard link.
+echo_eval "ln alacritty.yml $DEST_FILE" "$GLOBAL_DEBUG"
+
