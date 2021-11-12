@@ -75,6 +75,39 @@ unbind l
 setw -g window-status-format "#[fg=white]#[bg=blue] #I #[bg=blue]#[fg=white] #W "
 setw -g window-status-current-format "#[bg=brightmagenta]#[fg=white] *#I #[fg=white,bold]#[bg=cyan] [#W] "
 
+# Running nested tmux sessions. On pressing F12, disable outer session's keybindings and pass
+# everything through to the inner session.
+#
+# On pressing F12 again, re-enable the outer session.
+#
+# Sources:
+# https://gist.github.com/samoshkin/05e65f7f1c9b55d3fc7690b59d678734
+# http://stahlke.org/dan/tmux-nested/
+# https://www.freecodecamp.org/news/tmux-in-practice-local-and-nested-remote-tmux-sessions-4f7ba5db8795/
+#
+# Enhancements:
+# - Clearly show that Tmux is not working by greying out the statusline
+# set status-style "fg=$color_status_text,bg=$color_window_off_status_bg" \;\
+# set window-status-current-format "#[fg=$color_window_off_status_bg,bg=$color_window_off_status_current_bg]$separator_powerline_right#[default] #I:#W# #[fg=$color_window_off_status_current_bg,bg=$color_window_off_status_bg]$separator_powerline_right#[default]" \;\
+# set window-status-current-style "fg=$color_dark,bold,bg=$color_window_off_status_current_bg" \;\
+
+# Disable outer Tmux session
+bind -T root F12  \
+  set prefix None \;\
+  set key-table off \;\
+  if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+  refresh-client -S \;\
+
+# Enable outer Tmux session
+bind -T off F12 \
+  set -u prefix \;\
+  set -u key-table \;\
+  set -u status-style \;\
+  set -u window-status-current-style \;\
+  set -u window-status-current-format \;\
+  refresh-client -S
+
+
 # set-option -g status-position top
 
 # use ctrl to jump words
