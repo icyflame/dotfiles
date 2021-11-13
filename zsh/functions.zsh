@@ -365,14 +365,6 @@ function copy {
     cat $last_cmd_file $out | pbcopy
 }
 
-# top-fzf: Look at the top output for a single process
-#
-# Works only with Mac's top command. Linux' top command takes the parameter "-p", figure out how to
-# detect the system and adapt to it.
-function top-fzf {
-	top -pid $(ps aux | grep "$1" | fzf | col2)
-}
-
 # yron: Get the gron output for the given YAML file
 function yron {
     INPUT=$1
@@ -396,4 +388,19 @@ function pandoc_pdf {
 # Output: "client-aws" OR "no wireguard"
 function wgi {
     INTERFACE=$(sudo wg | head -1 | gawk -F': ' '{ print $2 }') && [ -n "$INTERFACE" ] && echo "$INTERFACE" || echo "no wireguard"
+}
+
+# top-fzf: Look at the top output for a single process
+#
+# Works only with Mac's top command. Linux' top command takes the parameter "-p", figure out how to
+# detect the system and adapt to it.
+function top-fzf {
+	top -p $(ps-fzf)
+}
+
+# ps-fzf
+#
+# Select a process using the fuzzy search tool fzf
+function ps-fzf {
+	ps aux | fzf --header-lines 1 | col2
 }
