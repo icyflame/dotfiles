@@ -45,6 +45,10 @@ bindsym $mod+F3 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle &
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym $mod+F4 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Take screenshots using maim
+bindsym $mod+F5 exec "maim -usnl -c 0.157,0.333,0.466,0.4 ~/Pictures/Screenshot\ from\ $(date +'%Y-%m-%d-%H-%M-%S').png"
+bindsym $mod+F6 exec "maim -usnl -c 0.157,0.333,0.466,0.4 | xclip -selection clipboard -t image/png"
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -204,3 +208,6 @@ exec_always --no-startup-id /usr/bin/setxkbmap -v 10 -option caps:escape
 
 # Start ibus daemon and prepare to enter Japanese
 exec --no-startup-id ibus-daemon
+
+# Start hardware accelerator at start-up in the background
+exec --no-startup-id picom -b
