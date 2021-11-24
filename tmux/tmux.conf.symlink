@@ -3,6 +3,7 @@
 set -g @tpm_plugins '                \
   tmux-plugins/tpm                   \
 	tmux-plugins/tmux-resurrect      \
+	tmux-plugins/tmux-yank           \
 	tmux-plugins/tmux-copycat        \
 	tmux-plugins/tmux-continuum		 \
     christoomey/vim-tmux-navigator   \
@@ -57,7 +58,6 @@ setw -g pane-base-index 1
 
 # use vim bindings for moving around in Copy mode
 set -g mode-keys vi
-
 bind-key -T copy-mode-vi 'v' send -X begin-selection
 
 # changing the key-bindings to move windows around
