@@ -97,3 +97,5 @@ echo_eval "rm -f $DEST_FILE" "$GLOBAL_DEBUG"
 # Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln alacritty.yml $DEST_FILE" "$GLOBAL_DEBUG"
 
+echo_eval "rm -f $DOTFILES_LOC/.zpreztorc" "$GLOBAL_DEBUG"
+echo_eval "ln -s $DOTFILES_LOC/.zprezto/runcoms/zpreztorc $DOTFILES_LOC/.zpreztorc" "$GLOBAL_DEBUG"
