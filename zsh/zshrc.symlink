@@ -100,6 +100,12 @@ autoload -U compinit && compinit -u
 # Load all the local settings
 [ -e "$HOME/.localrc" ] && source $HOME/.localrc
 
+if [[ "$ENV" == "WSL" ]];
+then
+    /usr/bin/keychain -q --nogui $HOME/.ssh/id_ed25519_windows_local
+    source $HOME/.keychain/$HOST-sh
+fi
+
 # for i in `ls $ZDOTDIR/.local/*.zsh`; do
 	# source $i;
 # done;
