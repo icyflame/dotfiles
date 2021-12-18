@@ -7,25 +7,25 @@
 # Types:
 # 1 - Ubuntu - Full setup
 # 2 - Ubuntu Digital Ocean
+# 3 - Custom setup
 
 declare -r UBUNTU=1
 declare -r DIGITAL_OCEAN=2
 declare -r CUSTOM=3
 
 INSTALLER="sudo apt-get"
-if [ `which apt-fast` ]; then
-	INSTALLER="sudo apt-fast"
-fi
 
-if [[ "$1" == "ubuntu" ]]; then
-	machine=$UBUNTU
-else
-	if [[ "$1" == "digitalocean" ]]; then
-		machine=$DIGITAL_OCEAN
-	else
-		machine=$CUSTOM
-	fi
-fi
+MACHINE=$1
+case $MACHINE in
+    "ubuntu")
+        machine=$UBUNTU
+        ;;
+    "digitalocean")
+        machine=$DIGITAL_OCEAN
+        ;;
+    "custom")
+        machine="$CUSTOM"
+esac
 
 ### Define global vars and bring in dependencies
 
