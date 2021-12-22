@@ -56,9 +56,12 @@ set -g mouse on
 set-option -g base-index 1
 setw -g pane-base-index 1
 
-# use vim bindings for moving around in Copy mode
+# tmux-plugins/tmux-yank configuration
+# copy the highlighted text and continue to stay in copy-mode. Default behavior
+# is to exist copy mode
 set -g mode-keys vi
 bind-key -T copy-mode-vi 'v' send -X begin-selection
+set -g @yank_action 'copy-pipe' # or 'copy-pipe-and-cancel' for the default
 
 # changing the key-bindings to move windows around
 # http://superuser.com/a/552493/207372
