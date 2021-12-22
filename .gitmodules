@@ -1,3 +1,6 @@
 [submodule ".zprezto"]
 	path = .zprezto
 	url = git@github.com:icyflame/prezto
+[submodule "fonts/noto-cjk"]
+	path = fonts/noto-cjk
+	url = git@github.com:googlefonts/noto-cjk.git
