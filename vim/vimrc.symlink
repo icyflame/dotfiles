@@ -379,7 +379,7 @@ if has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^da
     let g:system_copy#copy_command='pbcopy --clipboard --input'
 endif
 
-if has('windows')
+if has('win32')
     let g:system_copy#copy_command='clip.exe'
     let g:system_copy#paste_command='powershell.exe -c Get-Clipboard'
 endif
