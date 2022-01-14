@@ -39,30 +39,75 @@ function kg {
 
 alias kns="kubens"
 
-# Alias based namespace switching
-# Eg: kns_alias_based dev app-dev prod app-prod
+# kns_alias_based
+#
+# Context based namespace switching
+# Usage: kns_alias_based dev app-dev prod app-prod dev-2 app-dev-2 [ctx ns]
+#
+# Even number of arguments must be provided to this function. Each pair of
+# arguments that are provided are interpreted as context namespace pairs, with
+# the namespace that you want to switch to, depending on the Kubernetes context
+# that you are in.
+#
+# Example:
 # -> check the current context's local name
 # -> if dev then switch to app-dev
 # -> if prod then switch to app-prod
 # -> if neither print an error message and exit
 function kns_alias_based {
-    DEV_ALIAS="$1"
-    DEV_NS="$2"
-    PROD_ALIAS="$3"
-    PROD_NS="$4"
+    local current=`kwhat | jq -r '.alias'`
+    _kns_alias_based_in_alias 0 "$current" $@
+}
 
-    ALIAS=`kwhat | jq -r '.alias'`
+# _kns_alias_based_in_alias
+#
+# Internal function. End users should use the wrapper function kns_alias_based.
+#
+# This function is recursive but has a variable to put a limit on the amount of
+# recursion.
+function _kns_alias_based_in_alias {
+    local level="$1"
+    shift;
 
-    if [[ "$ALIAS" == "$DEV_ALIAS" ]]; then
-        kns "$DEV_NS"
-    elif [[ "$ALIAS" == "$PROD_ALIAS" ]]; then
-        kns "$PROD_NS"
-    else
-        echo "unrecognized alias: $ALIAS"
-        exit 42
+    if [[ $level -gt 10 ]];
+    then
+        echo "ERROR: Too many levels of recursion"
+        return 41
     fi
 
-    kwhat
+    local current="$1"
+    shift;
+
+    if [[ $# -eq 0 ]];
+    then
+        echo "ERROR: No namespace provided for current context: $current"
+        return 42
+    fi
+
+    local context="$1"
+    shift;
+    if [[ -z "$context" ]];
+    then
+        echo "ERROR: Empty context argument"
+        return 43
+    else
+        local namespace="$1"
+        shift;
+        if [[ -z "$namespace" ]];
+        then
+            echo "ERROR: Namespace empty for current context"
+            return 44
+        fi
+
+        if [[ "$context" == "$current" ]];
+        then
+            kns "$namespace"
+            kwhat
+            return 0
+        else
+            _kns_alias_based_in_alias $(($level+1)) $current $@
+        fi
+    fi
 }
 
 function k {
