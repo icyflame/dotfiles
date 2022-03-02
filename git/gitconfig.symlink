@@ -71,3 +71,5 @@
     insteadOf = https://github.com/
 [tag]
 	sort = -taggerdate
+[branch]
+	sort = -committerdate
