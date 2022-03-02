@@ -27,3 +27,13 @@ function csv6 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $6 }' }
 function csv7 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $7 }' }
 function csv8 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $8 }' }
 function csv9 { awk 'BEGIN { FPAT = "([^,]+)|(\"[^\"]+\")" } { print $9 }' }
+
+function scsv1 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $1 }' }
+function scsv2 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $2 }' }
+function scsv3 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $3 }' }
+function scsv4 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $4 }' }
+function scsv5 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $5 }' }
+function scsv6 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $6 }' }
+function scsv7 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $7 }' }
+function scsv8 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $8 }' }
+function scsv9 { awk 'BEGIN { FPAT = "([^;]+)|(\"[^\"]+\")" } { print $9 }' }
