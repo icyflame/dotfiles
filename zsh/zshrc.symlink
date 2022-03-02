@@ -156,3 +156,9 @@ alias python="python3"
 # D
 DMD_LOCATION="$HOME/dlang/dmd-2.088.0/activate"
 [ -f $DMD_LOCATION ] && source $DMD_LOCATION
+
+DEBFULLNAME="Siddharth Kannan"
+DEBEMAIL="mail@siddharthkannan.in"
+
+CASK_LOCATION="$HOME/.cask"
+[ -d $CASK_LOCATION ] && export PATH="$PATH:$CASK_LOCATION/bin"
