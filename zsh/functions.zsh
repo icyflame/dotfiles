@@ -381,15 +381,6 @@ function pandoc_pdf {
 	echo $output
 }
 
-# wgi
-#
-# Print the currently active wireguard interface for inspection
-#
-# Output: "client-aws" OR "no wireguard"
-function wgi {
-    INTERFACE=$(sudo wg | head -1 | gawk -F': ' '{ print $2 }') && [ -n "$INTERFACE" ] && echo "$INTERFACE" || echo "no wireguard"
-}
-
 # top-fzf: Look at the top output for a single process
 #
 # Works only with Mac's top command. Linux' top command takes the parameter "-p", figure out how to
