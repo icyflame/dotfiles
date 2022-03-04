@@ -106,9 +106,9 @@ then
     source $HOME/.keychain/$HOST-sh
 fi
 
-# for i in `ls $ZDOTDIR/.local/*.zsh`; do
-	# source $i;
-# done;
+for i in `ls $ZDOTDIR/.local/*.zsh`; do
+    source $i;
+done;
 # Source all the zsh files in this dir
 for i in `ls $ZDOTDIR/**/*.zsh`; do
 	source $i;
