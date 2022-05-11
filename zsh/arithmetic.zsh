@@ -28,3 +28,7 @@ EOF
 	local num_decimals=${1:-2}
 	perl -e 'my $val = '"$expression"'; printf "%0.'"$num_decimals"'f", $val'
 }
+
+format () {
+	perl -MNumber::Format -e 'my $N = new Number::Format; print $N->format_number('"$1"')'
+}
