@@ -8,3 +8,5 @@
 
 mercari
 makefile/mercari
+.local/*
+!.local/local.zsh
