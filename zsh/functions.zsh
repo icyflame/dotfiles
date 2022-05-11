@@ -395,3 +395,31 @@ function top-fzf {
 function ps-fzf {
 	ps aux | fzf --header-lines 1 | col2
 }
+
+# exchange_rate
+#
+# Print the exchange rate between the source and destination currencies
+#
+# Command: exchange_rate INR USD
+# Output: 1 INR = 0.0129441 USD
+function exchange_rate {
+	local SRC=$1
+	local DEST=$2
+	if [[ -z $SRC || -z $DEST ]];
+	then
+		echo "ERROR: Usage example: exchange_rate INR USD"
+		return 42
+	fi
+
+	curl \
+		-H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:100.0) Gecko/20100101 Firefox/100.0' \
+		-H 'Referer: https://www.xe.com/' \
+		"https://www.xe.com/currencyconverter/convert/?Amount=100&From=$SRC&To=$DEST" -s | \
+		rg --only-matching "[\d.]+ $SRC = [\d.]+ $DEST" | \
+		rg --invert-match "= 0 $DEST$"
+}
+
+function exchange_rate_number {
+	local output=$(exchange_rate $1 $2)
+	echo $output | gawk -F'=' '{ print $2 }' | gawk '{ print $1 }'
+}
