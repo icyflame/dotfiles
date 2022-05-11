@@ -51,6 +51,9 @@
     poc = "!f() { branch=$(git current-branch) && if [[ $branch == master || $branch == develop ]]; then echo FAILED $branch && return -1; fi && git push origin $branch; }; f"
     pofc = "!f() { branch=$(git current-branch) && if [[ $branch == master || $branch == develop ]]; then echo FAILED $branch && return -1; fi && git push --force-with-lease origin $branch; }; f"
 
+    rbc = rebase --continue
+    rba = rebase --abort
+
     cp = cherry-pick
     co = checkout
     upm = "!f() { git stash; git checkout master; git remote update --prune; git merge origin/master; git bDm; }; f"
