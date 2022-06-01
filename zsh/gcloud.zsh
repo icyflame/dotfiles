@@ -7,3 +7,7 @@ function gcauth {
         echo "Token valid";
     fi
 }
+
+function gcexpiry {
+    curl -s -H "Content-Type: application/x-www-form-urlencoded" -d "access_token=$(gcloud auth print-access-token)" https://oauth2.googleapis.com/tokeninfo | jq -r .expires_in
+}
