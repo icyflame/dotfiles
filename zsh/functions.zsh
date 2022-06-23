@@ -121,7 +121,11 @@ function what_cmd {
 }
 
 function sum_all {
-    awk '{ sum += $1 } END { print sum }' -
+    gawk '{ sum += $1 } END { print sum }' -
+}
+
+function avg_all {
+    gawk '{ sum += $1 } END { print sum/NR }' -
 }
 
 function pretty_print_inplace {
