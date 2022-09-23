@@ -10,7 +10,7 @@ The font's licence is included in the folder. Here is an extract:
 
 #+begin_quote
 Permission is hereby granted, free of charge, to any person obtaining a copy of the fonts
-accompanying this license (“Fonts”) and associated documentation files (the “Font Software”), to
+accompanying this license ( Fonts ) and associated documentation files (the  Font Software ), to
 reproduce and distribute the Font Software, including without limitation the rights to use, copy,
 merge, publish, distribute, and/or sell copies of the Font Software ...
 #+end_quote
@@ -23,4 +23,5 @@ This is the default font for Japanese character set.
 
 This font is licensed under the SIL Open Font license.
 
-To install the font, use the file =noto-cjk/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf=.
+To install the font, use [[https://github.com/googlefonts/noto-cjk/blob/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf][the file]] =noto-cjk/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf=. The file
+can be found inside [[https://github.com/googlefonts/noto-cjk][this GitHub repository.]]
