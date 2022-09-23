@@ -56,8 +56,7 @@ for file in `ls $DOTFILES_LOC/**/*.symlink`; do
 	dotfile="${filename%.*}"
 
 	echo_eval "cp -v $HOME/.$dotfile $OLD_DOTFILES_LOC/$dotfile.old" "$GLOBAL_DEBUG"
-	echo_eval "rm -f  $HOME/.$dotfile" "$GLOBAL_DEBUG"
-	echo_eval "ln -s $file $HOME/.$dotfile" "$GLOBAL_DEBUG"
+	echo_eval "ln -sf $file $HOME/.$dotfile" "$GLOBAL_DEBUG"
 done
 
 ### Symlink Vim snippets ###
@@ -69,8 +68,7 @@ echo_eval "mkdir -p \"$SNIPPETS_LOC\"" "$GLOBAL_DEBUG"
 for file in `ls $DOTFILES_LOC/**/*.snippets`; do
     file_name=`basename $file`
 	dst_file="$SNIPPETS_LOC/$file_name"
-    echo_eval "rm -f \"$dst_file\"" "$GLOBAL_DEBUG"
-	echo_eval "ln -s \"$file\" \"$dst_file\"" "$GLOBAL_DEBUG"
+	echo_eval "ln -sf \"$file\" \"$dst_file\"" "$GLOBAL_DEBUG"
 done
 
 ### i3 Setup ###
@@ -81,9 +79,8 @@ if [[ -e "$DEST_FILE" ]];
 then
     echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/i3config.old" "$GLOBAL_DEBUG"
 fi
-echo_eval "rm -f $DEST_FILE" "$GLOBAL_DEBUG"
 # Note this should NOT be a symbolic link. It must be a hard link.
-echo_eval "ln i3config $DEST_FILE" "$GLOBAL_DEBUG"
+echo_eval "ln -f i3config $DEST_FILE" "$GLOBAL_DEBUG"
 
 ### Alacritty Setup ###
 
@@ -93,9 +90,8 @@ if [[ -e "$DEST_FILE" ]];
 then
     echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/alacritty.yml.old" "$GLOBAL_DEBUG"
 fi
-echo_eval "rm -f $DEST_FILE" "$GLOBAL_DEBUG"
 # Note this should NOT be a symbolic link. It must be a hard link.
-echo_eval "ln alacritty.yml $DEST_FILE" "$GLOBAL_DEBUG"
+echo_eval "ln -f alacritty.yml $DEST_FILE" "$GLOBAL_DEBUG"
 
 # setopt EXTENDED_GLOB
 for rcfile in `find $DOTFILES_LOC/.zprezto/runcoms -type f -not -name "README.md"`; do
