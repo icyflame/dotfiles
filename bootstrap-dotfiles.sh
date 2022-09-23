@@ -97,5 +97,9 @@ echo_eval "rm -f $DEST_FILE" "$GLOBAL_DEBUG"
 # Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln alacritty.yml $DEST_FILE" "$GLOBAL_DEBUG"
 
-echo_eval "rm -f $DOTFILES_LOC/.zpreztorc" "$GLOBAL_DEBUG"
-echo_eval "ln -s $DOTFILES_LOC/.zprezto/runcoms/zpreztorc $DOTFILES_LOC/.zpreztorc" "$GLOBAL_DEBUG"
+# setopt EXTENDED_GLOB
+for rcfile in `find $DOTFILES_LOC/.zprezto/runcoms -type f -not -name "README.md"`; do
+  base=$(basename $rcfile)
+  dest=$DOTFILES_LOC/.${base:t}
+  echo_eval "ln -sf $rcfile $dest" "$GLOBAL_DEBUG"
+done
