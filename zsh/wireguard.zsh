@@ -4,7 +4,7 @@
 #
 # Output: "client-aws" with return code 0 OR "" with return code 43
 function wgi {
-    INTERFACE=$(sudo wg | head -1 | gawk -F': ' '{ print $2 }') && [ -n "$INTERFACE" ] && echo "$INTERFACE" || return 43
+    INTERFACE=$(sudo wg | head -1 | awk -F': ' '{ print $2 }') && [ -n "$INTERFACE" ] && echo "$INTERFACE" || return 43
 }
 
 function switch-wg {
