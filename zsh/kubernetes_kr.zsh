@@ -75,7 +75,7 @@ kr prints the command that will be run to stderr for easy inspection.
 Siddharth Kannan 2019 <www.siddharthkannan.in>
     '
 
-    COMMAND=("kubectl get --no-headers")
+    COMMAND=("kubectl 2>/dev/null get --no-headers")
 
 	WIDE="$1"
 	case "$WIDE" in

@@ -37,7 +37,7 @@ function kg {
     fi
 }
 
-alias kns="kubens"
+alias kns="kubens 2>/dev/null"
 
 # kns_alias_based
 #
@@ -111,7 +111,7 @@ function _kns_alias_based_in_alias {
 }
 
 function k {
-    kubectl $@
+    kubectl 2>/dev/null $@
 }
 
 function kwhat {
