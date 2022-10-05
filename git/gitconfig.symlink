@@ -36,7 +36,7 @@
 
     lod = log --oneline --decorate
     lodg = log --oneline --decorate --graph
-    pl = log --pretty=format:'(%h) %an on %ai: %s' --date=short
+    pl = log --pretty=format:'(%h)\t%an\t%ai\t%s' --date=short
 
     poa = push origin --all
     pot = push origin --tags
