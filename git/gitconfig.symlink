@@ -18,6 +18,7 @@
 
     b = branch
     bl = !git --no-pager branch --format '%(refname:short)'
+    bDp = !git branch -D @{-1}
 
     c = commit
     ca = commit --amend
