@@ -43,6 +43,8 @@ export MAIL=/var/spool/mail/siddharth
 export KEYTIMEOUT=1
 
 # Set the locale to en_US
+export LANGUAGE="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 
 # Android
