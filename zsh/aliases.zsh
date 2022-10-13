@@ -2,9 +2,7 @@
 
 # serve port_number : Create a Simple HTTP Server
 # Using Python. Port defaults to 8000.
-alias serve_simple="python -m SimpleHTTPServer $1"
-alias serve_php="php -S localhost:8000"
-alias serve_django="python manage.py runserver"
+alias serve_simple="python3 -m http.server"
 
 # copy output of a command to the clipboard
 # solve stats | clip
@@ -25,7 +23,7 @@ alias indent_all_php="find . -name '*.php' -printf \"echo -e \"G=gg\n:wq\n\" | v
 # find all todo tags in a folder
 alias todo='ag "todo" .'
 
-# getvideo : getvideo URL 
+# getvideo : getvideo URL
 # URL : Video URL | Playlist URL | video on playlist URL
 alias getvideo="youtube-dl -citk --max-quality FORMAT "
 
