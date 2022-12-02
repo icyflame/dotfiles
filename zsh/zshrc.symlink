@@ -8,6 +8,11 @@ PREZTO_INIT_LOCATION="${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 # set default editor
 if [[ -f `which nvim` ]]; then export EDITOR="nvim"; else export EDITOR="vim"; fi
 
+export GIT_EDITOR="$EDITOR"
+alias v=$EDITOR
+alias vi=$EDITOR
+alias vim=$EDITOR
+
 # edit commands in vm when v is pressed in command-line normal mode
 export VISUAL="vim"
 

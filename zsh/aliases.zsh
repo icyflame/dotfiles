@@ -66,9 +66,6 @@ alias gq="nocorrect gq"
 # using dep
 alias depv="dep ensure -v"
 
-# v: a shortcut to nvim (if it exists) or vim
-if [[ -f `which nvim` ]]; then alias v="nvim"; else alias v="vim"; fi
-
 alias ts_str="date -u +\"%FT%H:%M:%S.000Z\""
 
 alias sd="say -v Victoria done"
