@@ -1,6 +1,7 @@
 [user]
     email = mail@siddharthkannan.in
     name = Siddharth Kannan
+	signingkey = 4B3B6680F92810F8C72D6B373B201F184CE32FB2
 
 [sendemail]
     smtpserver = /usr/bin/msmtp
@@ -79,3 +80,5 @@
 	sort = -taggerdate
 [branch]
 	sort = -committerdate
+[commit]
+	gpgsign = true
