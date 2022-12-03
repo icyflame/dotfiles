@@ -82,3 +82,5 @@
 	sort = -committerdate
 [commit]
 	gpgsign = true
+[init]
+	defaultBranch = master
