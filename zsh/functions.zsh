@@ -277,6 +277,14 @@ function extensions {
     fi
 }
 
+function extensions {
+	ls -1 | gawk -F'.' '{ print $NF }' | sort | uniq -c | sort -rh
+}
+
+function extensions_nested {
+	find ${1:-.} -type f | gawk -F'.' '{ print $NF }' | sort | uniq -c | sort -rh
+}
+
 function mg {
     source="$PWD" make -C "$ZDOTDIR" $@
 }
