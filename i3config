@@ -31,23 +31,17 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym $mod+F1 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym $mod+F3 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym $mod+F4 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# Use pactl to adjust volume in PulseAudio.
+bindsym F7 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym F6 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 
 # Take screenshots using maim
-bindsym $mod+F5 exec "maim -usnl -c 0.157,0.333,0.466,0.4 ~/Pictures/Screenshot\ from\ $(date +'%Y-%m-%d-%H-%M-%S').png"
-bindsym $mod+F6 exec "maim -usnl -c 0.157,0.333,0.466,0.4 | xclip -selection clipboard -t image/png"
+bindsym F1 exec "maim --hidecursor --select --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
+bindsym F2 exec "maim --hidecursor --select --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
+bindsym F3 exec "maim --hidecursor --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
+bindsym F4 exec "maim --hidecursor --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
