@@ -1,0 +1,31 @@
+#+TITLE: Email Setup
+
+I am using 3 pieces of software together for reading email inside Emacs.
+
+* What to Install
+
+#+begin_src sh
+  apt-get install isync msmtp notmuch
+#+end_src
+
+* Getting the Mail: =mbsync=
+
+=mbsync= is a simple package which syncs an IMAP store with a local maildir store. The configuration
+file is inside this directory and it is pretty generic. It needs a password, which is stored inside
+=pass=, a GPG based secure password storage mechanism.
+
+You have to manually create the directory where mail will be stored.
+
+* Sending Mail: =msmtp=
+
+=msmtp= is simpler than =mbsync= and sends any message that is piped to it. It has a very short
+configuration and it can also be configured with only a single password, which has the permission to
+send email using an SMTP server.
+
+* Reading Mail: =notmuch=
+
+=notmuch= is a thin wrapper around the Xapian library, a full text search library written in C. The
+configuration file for notmuch is long. However, it was generated using the =notmuch init= command
+and I have not made any changes to it. By running the =bootstrap-dotfiles.sh= script, the
+=notmuch-config= file will be put in the appropriate location, and you can start using =notmuch=
+immediately.

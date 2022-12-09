@@ -1,0 +1,27 @@
+IMAPStore home-remote
+    Host imap.fastmail.com
+    Port 993
+    User mail@siddharthkannan.in
+    SSLType IMAPS
+    CertificateFile /etc/ssl/certs/ca-certificates.crt
+    PassCmd "/usr/bin/pass show fastmail"
+
+MaildirStore home-local
+    Path /home2/mail/
+    Inbox /home2/mail/INBOX
+    SubFolders Verbatim
+
+Channel home
+    Far :home-remote:
+    Near :home-local:
+    Create Both
+    SyncState *
+    Patterns INBOX
+	# There are other options for this configuration:
+	#
+	# To enable all folders to be synced as is from IMAP server to local:
+	# Patterns *
+	#
+	# To enable only some folders to be synced:
+	# Patterns SENT
+	# Patterns "0 - Staging"

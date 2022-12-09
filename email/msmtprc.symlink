@@ -1,0 +1,14 @@
+defaults
+auth on
+tls on
+logfile ~/.msmtp.log
+
+account home
+host smtp.fastmail.com
+port 587
+user mail@siddharthkannan.in
+passwordeval /usr/bin/pass show fastmail
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+# from mail@siddharthkannan.in
+
+account default : home
