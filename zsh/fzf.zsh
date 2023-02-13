@@ -7,3 +7,12 @@ then
     [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 fi
 
+if [[ "$(uname)" == "Darwin" ]];
+then
+    # The path to these files depends on where the package fzf was installed by
+    # Homebrew. The path can be found through =brew info fzf=.
+    [ -f "/opt/homebrew/opt/fzf/shell/completion.zsh" ] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 
+    [ -f "/opt/homebrew/opt/fzf/shell/key-bindings.zsh" ] && source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+fi
+
+

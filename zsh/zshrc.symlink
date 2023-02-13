@@ -81,12 +81,6 @@ if [ -f "$HOME/work/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/work/google-
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/work/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/work/google-cloud-sdk/completion.zsh.inc"; fi
 
-# Deprecated
-# fzf: This mode of activating fzf's completion and key bindings features is
-# deprecated. Put platform specific loading commands inside the =zsh/fzf.zsh=
-# file.
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 autoload -U compinit && compinit -u
 
 # Load binaries from dotfiles
