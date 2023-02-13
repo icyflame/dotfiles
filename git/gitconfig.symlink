@@ -26,7 +26,11 @@
     a = add
 
     d = diff
-    dl = !git --no-pager diff --stat origin/master...HEAD
+    dl = !git --no-pager diff --stat master..HEAD
+    # Diff between current branch and default branch. This will be shown on a
+    # PR. A..B is the equivalent of set (A) - set (B): i.e. all commits in B
+    # which are not in branch A.
+    dpr = diff master..HEAD
 
     r = remote
     m = merge
@@ -39,6 +43,7 @@
     lod = log --oneline --decorate
     lodg = log --oneline --decorate --graph
     pl = log --pretty=format:'(%h)\t%an\t%ai\t%s' --date=short
+    lpr = log --oneline --decorate --graph master..HEAD
 
     poa = push origin --all
     pot = push origin --tags
