@@ -225,9 +225,9 @@ function replace_all {
     REPLACEMENT="$2"
     if [[ -x `which gsed` ]];
     then
-        cmd='ag -l "'$PATTERN'" | xargs gsed -i -e "s/'$PATTERN'/'$REPLACEMENT'/g"'
+        cmd='rg -l "'$PATTERN'" | xargs gsed -i -e "s/'$PATTERN'/'$REPLACEMENT'/g"'
     else
-        cmd='ag -l "'$PATTERN'" | xargs sed -i "" -e "s/'$PATTERN'/'$REPLACEMENT'/g"'
+        cmd='rg -l "'$PATTERN'" | xargs sed -i "" -e "s/'$PATTERN'/'$REPLACEMENT'/g"'
     fi
     echo $cmd >&2
     eval $cmd
