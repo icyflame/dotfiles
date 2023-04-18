@@ -117,10 +117,10 @@ let g:vsm_search_engine = 'duckduckgo'
 " ---
 Plugin 'aklt/plantuml-syntax'
 " ---
-Plugin 'sirver/ultisnips'
-let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" Plugin 'sirver/ultisnips'
+" let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "
 Plugin 'epeli/slimux'
 " (normal) fr = evaluate full buffer in an REPL
