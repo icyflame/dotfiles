@@ -37,7 +37,11 @@ function kg {
     fi
 }
 
-alias kns="kubens"
+alias _kns="kubens"
+
+function kns () {
+    kubens 2>/dev/null $(kubectl 2>/dev/null get ns | awk 'NR != 1 { print $1 }' | fzf)
+}
 
 # kns_alias_based
 #
@@ -101,7 +105,7 @@ function _kns_alias_based_in_alias {
 
         if [[ "$context" == "$current" ]];
         then
-            kns "$namespace"
+            _kns "$namespace"
             kwhat
             return 0
         else
