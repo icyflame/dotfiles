@@ -40,7 +40,13 @@ function kg {
 alias _kns="kubens"
 
 function kns () {
-    kubens 2>/dev/null $(kubectl 2>/dev/null get ns | awk 'NR != 1 { print $1 }' | fzf)
+    local namespace=$1
+    if [ -z "$namespace" ];
+    then
+        namespace=$(kubectl 2>/dev/null get ns | awk 'NR != 1 { print $1 }' | fzf)
+    fi
+
+    _kns 2>/dev/null "$namespace"
 }
 
 # kns_alias_based
@@ -170,7 +176,10 @@ function kshowsecret-filtered  {
 }
 
 function kshowsecret {
-    SECRET_NAME=$(kr secrets l $1 | head -1 | col1)
-    echo "Secret $SECRET_NAME:"
-    k get secrets $SECRET_NAME -o jsonpath="{.data}" | jq -r 'keys[] as $k | "\($k)=''\(.[$k]|@base64d)''"'
+	local search=$1
+	kr secrets l $search | col1 | while read SECRET_NAME;
+	do
+		echo "Secret $SECRET_NAME:"
+		k get secrets $SECRET_NAME -o jsonpath="{.data}" | jq -r 'keys[] as $k | "\($k)=''\(.[$k]|@base64d)''"'
+	done
 }
