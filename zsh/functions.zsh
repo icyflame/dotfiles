@@ -156,38 +156,55 @@ function go_test {
 }
 
 # got
-# -> runs for all packages and prints a summary of what happened
-# got ./handler
-# -> runs for this package and prints a summary
-# got ./handler NewPromote
-# -> runs for this package and prints a summary
-# got ./handler -v
-# -> runs and doesn't change the output of `go test`
-# got ./handler NewPromote -v
-# -> runs and doesn't change the output of `go test`
+# 
+# Go Test Runner utility
 function got {
+    if [[ "$1" == "-h" ]];
+    then
+        cat <<EOF
+
+Go Test Runner Utility
+
+$ got
+-> runs for all packages and prints a summary of what happened
+
+$ got ./handler
+-> runs for this package and prints a summary
+
+$ got ./handler NewPromote
+-> runs for this package and prints a summary
+
+$ got ./handler -v
+-> runs and doesn't change the output of `go test`
+
+$ got ./handler NewPromote -v
+-> runs and doesn't change the output of `go test`
+EOF
+return 0;
+    fi
+
     if [[ "$2" == "-v" ]]; then
         go_test "$1" ""
     elif [[ "$3" == "-v" ]]; then
         go_test "$1" "$2"
     else
-        TEST_OUTPUT=`go_test "$1" "$2" | ag "^---"`
+        TEST_OUTPUT=`go_test "$1" "$2" | rg "^---"`
 
-        FAILED=`echo "$TEST_OUTPUT" | ag "FAIL"`
+        FAILED=`echo "$TEST_OUTPUT" | rg "FAIL"`
         FAILED_COUNT=0
 
         if [[ "$FAILED" != "" ]]; then
             FAILED_COUNT=`echo "$FAILED" | wc -l`
         fi
 
-        PASSED=`echo "$TEST_OUTPUT" | ag "PASS"`
+        PASSED=`echo "$TEST_OUTPUT" | rg "PASS"`
         PASSED_COUNT=0
 
         if [[ "$PASSED" != "" ]]; then
             PASSED_COUNT=`echo "$PASSED" | wc -l`
         fi
 
-        SKIPED=`echo "$TEST_OUTPUT" | ag "SKIP"`
+        SKIPED=`echo "$TEST_OUTPUT" | rg "SKIP"`
         SKIPED_COUNT=0
 
         if [[ "$SKIPED" != "" ]]; then
@@ -342,7 +359,13 @@ EOF
 # last-cmd: Prints the last command that was run using the zsh shell
 # This will not work for other shells.
 function last-cmd {
-    tail -2 ~/dotfiles/.zhistory | \
+    if [[ -z "$HISTFILE" ]];
+    then
+        echo 'echo "ERROR: Histfile is empty and previous command could not be found"'
+        return
+    fi
+
+    tail -2 $HISTFILE | \
         head -1 | \
         gawk -F';' '{ b = index($0, ";"); print substr($0, b+1) }'
 }
