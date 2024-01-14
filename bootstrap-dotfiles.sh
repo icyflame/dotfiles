@@ -82,6 +82,15 @@ fi
 # Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln -f i3config $DEST_FILE" "$GLOBAL_DEBUG"
 
+DEST_FILE="$HOME/.config/i3status/config"
+echo_eval "mkdir -p $HOME/.config/i3status" "$GLOBAL_DEBUG"
+if [[ -e "$DEST_FILE" ]];
+then
+    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/i3status.config.old" "$GLOBAL_DEBUG"
+fi
+# Note this should NOT be a symbolic link. It must be a hard link.
+echo_eval "ln -f i3status.config $DEST_FILE" "$GLOBAL_DEBUG"
+
 ### Alacritty Setup ###
 
 DEST_FILE="$HOME/.config/alacritty/alacritty.yml"
