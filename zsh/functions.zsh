@@ -68,11 +68,12 @@ function open_oldest {
 }
 
 function get_ip {
+    local host="https://ip.siddharthkannan.in"
     if [[ -x `which curl` ]]; then
-        curl icanhazip.com
+        curl -q $host
     else
         if [[ -x `which wget` ]]; then
-            wget -q -O- icanhazip.com
+            wget -q -O- $host
         else
             echo "curl and wget not found"
         fi
@@ -120,12 +121,21 @@ function what_cmd {
     cat `which $1`
 }
 
+function awk_cmd {
+	if [[ -x $(which gawk) ]];
+	then
+		echo "gawk"
+	else
+		echo "awk"
+	fi
+}
+
 function sum_all {
-    gawk '{ sum += $1 } END { print sum }' -
+    $(awk_cmd) '{ sum += $1 } END { print sum }' -
 }
 
 function avg_all {
-    gawk '{ sum += $1 } END { print sum/NR }' -
+    $(awk_cmd) '{ sum += $1 } END { print sum/NR }' -
 }
 
 function pretty_print_inplace {
@@ -156,7 +166,7 @@ function go_test {
 }
 
 # got
-# 
+#
 # Go Test Runner utility
 function got {
     if [[ "$1" == "-h" ]];
@@ -287,19 +297,15 @@ function time_cmd_null {
 }
 
 function extensions {
-    if [[ -e `which gawk` ]]; then
-        ls | gawk '{ split($0, a, "."); printf("%s\n", a[length(a)]); }' | sort | uniq -c
-    else
-        echo "gawk: not found";
-    fi
+	ls | $(awk_cmd) '{ split($0, a, "."); printf("%s\n", a[length(a)]); }' | sort | uniq -c
 }
 
 function extensions {
-	ls -1 | gawk -F'.' '{ print $NF }' | sort | uniq -c | sort -rh
+	ls -1 | awk -F'.' '{ print $NF }' | sort | uniq -c | sort -rh
 }
 
 function extensions_nested {
-	find ${1:-.} -type f | gawk -F'.' '{ print $NF }' | sort | uniq -c | sort -rh
+	find ${1:-.} -type f | awk -F'.' '{ print $NF }' | sort | uniq -c | sort -rh
 }
 
 function mg {
@@ -307,7 +313,7 @@ function mg {
 }
 
 function path_split {
-    echo $PATH | gawk '{ split($0, a, ":"); for (b in a) { print a[b] } }';
+    echo $PATH | awk '{ split($0, a, ":"); for (b in a) { print a[b] } }';
 }
 
 function next_version {
@@ -359,15 +365,15 @@ EOF
 # last-cmd: Prints the last command that was run using the zsh shell
 # This will not work for other shells.
 function last-cmd {
-    if [[ -z "$HISTFILE" ]];
-    then
-        echo 'echo "ERROR: Histfile is empty and previous command could not be found"'
-        return
-    fi
+	if [[ -z "$HISTFILE" ]];
+	then
+		echo "ERROR: HISTFILE environment variable is not defined."
+		return 1
+	fi
 
     tail -2 $HISTFILE | \
         head -1 | \
-        gawk -F';' '{ b = index($0, ";"); print substr($0, b+1) }'
+        $(awk_cmd) -F';' '{ b = index($0, ";"); print substr($0, b+1) }'
 }
 
 # copy: Get the command run right before this function; run it again and copy
@@ -442,7 +448,7 @@ function exchange_rate {
 	local DEST=$2
 	if [[ -z $SRC || -z $DEST ]];
 	then
-		echo "ERROR: Usage example: exchange_rate INR USD"
+		echo "ERROR: Usage example: exchange_rate INR USD" >&2
 		return 42
 	fi
 
@@ -456,5 +462,5 @@ function exchange_rate {
 
 function exchange_rate_number {
 	local output=$(exchange_rate $1 $2)
-	echo $output | gawk -F'=' '{ print $2 }' | gawk '{ print $1 }'
+	echo $output | $(awk_cmd) -F'=' '{ print $2 }' | $(awk_cmd) '{ print $1 }'
 }
