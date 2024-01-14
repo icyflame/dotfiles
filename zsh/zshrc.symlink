@@ -65,7 +65,7 @@ mkdir -p $HOME/bin $HOME/bin/temp
 
 ## A single export statement is faster than multiple export statements
 ## Benchmark: https://gist.github.com/icyflame/5809a23c0e391943be7451daaf61f1c9
-export PATH="$PATH:$HOME/bin:$HOME/bin/temp:$HOME/dotfiles/bin:$HOME/bin/tsv-utils:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/perl-scripts/script:/opt/homebrew/bin"
+export PATH="$PATH:$HOME/bin:$HOME/bin/temp:$HOME/dotfiles/bin:$HOME/bin/tsv-utils:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/perl-scripts/script:/opt/homebrew/bin:$HOME/.local/bin"
 
 # Perl scripts
 
