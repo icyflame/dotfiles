@@ -37,6 +37,8 @@ set $refresh_i3status killall -SIGUSR1 i3status
 bindsym F7 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym F6 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 
+bindsym F9 exec i3lock --image ~/dotfiles/wallpaper.png
+
 # Take screenshots using maim
 bindsym F1 exec "maim --hidecursor --select --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
 bindsym F2 exec "maim --hidecursor --select --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
