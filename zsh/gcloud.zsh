@@ -38,3 +38,55 @@ EOF
 	echo $cmd
 	eval $cmd
 }
+
+function gcp-deletion-protection {
+	local project=$1
+	local regex=$2
+	local mode=$3
+	local go=$4
+
+	if [[ -z "$project" || -z "$regex" ]];
+	then
+		echo "ERROR: Project and regex required."
+		echo "function gcp-project-name regular-expression-for-instances --check|--disable [--go]"
+		return 2
+	fi
+
+	local gcloud=$(which gcloud)
+	local rg=$(which rg)
+
+	if [[ ! -x $gcloud || ! -x $rg ]];
+	then
+		echo "ERROR: gcloud and ripgrep (rg) are requirements for this command"
+		return 3
+	fi
+
+	local awk_command=''
+	case "$3" in
+		"--check")
+			awk_command='{printf "gcloud compute instances describe %s --zone=%s --project='$project' | rg -w deletionProtection\n", $1, $2}';
+			;;
+		"--disable")
+			awk_command='{printf "gcloud compute instances update %s --zone=%s --no-deletion-protection --project='$project'\n", $1, $2}'
+			;;
+		"--enable")
+			awk_command='{printf "gcloud compute instances update %s --zone=%s --deletion-protection --project='$project'\n", $1, $2}'
+			;;
+	esac
+
+	if [[ -z "$awk_command" ]];
+	then
+		echo "ERROR: Usage must be one of --check or --disable"
+		return 4
+	fi
+
+	gcloud compute instances list --project $project | rg $regex | \
+		$(awk_cmd) -n "$awk_command" | \
+		while read p; do
+			echo $p;
+			if [[ "$go" == "--go" ]];
+			then
+				eval $p;
+			fi
+		done
+}
