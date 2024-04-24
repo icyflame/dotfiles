@@ -464,3 +464,12 @@ function exchange_rate_number {
 	local output=$(exchange_rate $1 $2)
 	echo $output | $(awk_cmd) -F'=' '{ print $2 }' | $(awk_cmd) '{ print $1 }'
 }
+
+function time_simple {
+	local start=$(date +%s);
+	date >&2;
+	eval $@;
+	local end=$(date +%s);
+	date >&2;
+	echo "$(($end-$start)) seconds" >&2;
+}
