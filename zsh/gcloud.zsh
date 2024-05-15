@@ -18,7 +18,7 @@ function gcr-image-tag {
 
 	if [[ -z "$image" || -z "$digest" ]];
 	then
-		cat <<EOF
+		usage_exit "
 ERROR: image-name and digest are required arguments
 
 COMMAND:
@@ -30,8 +30,7 @@ EXAMPLE:
 	gcr-image-tag gcr.io/cloud-spanner-emulator/emulator cd2bc121ab99
 	DIGEST        TAGS   TIMESTAMP
 	cd2bc121ab99  1.4.5  2022-09-07T22:35:12
-EOF
-		return 43
+" 43
 	fi
 
 	cmd="gcloud container images list-tags $image --filter='digest:$2'"
@@ -48,8 +47,7 @@ function gcp-deletion-protection {
 	if [[ -z "$project" || -z "$regex" ]];
 	then
 		echo "ERROR: Project and regex required."
-		echo "function gcp-project-name regular-expression-for-instances --check|--disable [--go]"
-		return 2
+		usage_exit "function gcp-project-name regular-expression-for-instances --check|--disable [--go]" 2
 	fi
 
 	local gcloud=$(which gcloud)
@@ -58,7 +56,7 @@ function gcp-deletion-protection {
 	if [[ ! -x $gcloud || ! -x $rg ]];
 	then
 		echo "ERROR: gcloud and ripgrep (rg) are requirements for this command"
-		return 3
+		usage_exit "function gcp-project-name regular-expression-for-instances --check|--disable [--go]" 3
 	fi
 
 	local awk_command=''
