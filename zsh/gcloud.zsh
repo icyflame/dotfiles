@@ -85,6 +85,8 @@ function gcp-deletion-protection {
 			if [[ "$go" == "--go" ]];
 			then
 				eval $p;
+			else
+				echo "[INFO] --go required to exit dry-run mode"
 			fi
 		done
 }
