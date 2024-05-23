@@ -77,3 +77,7 @@ colors:
     magenta: '0xb77ee0'
     cyan:    '0x54ced6'
     white:   '0x282a2e'
+
+scrolling:
+  history: 100000
+  multiplier: 5

@@ -25,6 +25,12 @@ set -g renumber-windows on
 set-window-option -g automatic-rename off
 set-option -g allow-rename off
 
+# https://stackoverflow.com/a/50594393
+#
+# This is the maximum history supported by Alacritty:
+# https://alacritty.org/config-alacritty.html
+set-option -g history-limit 100000
+
 # bind alt-r to reloading source-file
 unbind r
 bind r source-file ~/.tmux.conf
