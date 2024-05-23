@@ -93,14 +93,14 @@ echo_eval "ln -f i3status.config $DEST_FILE" "$GLOBAL_DEBUG"
 
 ### Alacritty Setup ###
 
-DEST_FILE="$HOME/.config/alacritty/alacritty.yml"
+DEST_FILE="$HOME/.config/alacritty/alacritty.toml"
 echo_eval "mkdir -p $HOME/.config/alacritty" "$GLOBAL_DEBUG"
 if [[ -e "$DEST_FILE" ]];
 then
-    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/alacritty.yml.old" "$GLOBAL_DEBUG"
+    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/alacritty.toml.old" "$GLOBAL_DEBUG"
 fi
 # Note this should NOT be a symbolic link. It must be a hard link.
-echo_eval "ln -f alacritty.yml $DEST_FILE" "$GLOBAL_DEBUG"
+echo_eval "ln -f alacritty.toml $DEST_FILE" "$GLOBAL_DEBUG"
 
 # setopt EXTENDED_GLOB
 for rcfile in `find $DOTFILES_LOC/.zprezto/runcoms -type f -not -name "README.md"`; do
