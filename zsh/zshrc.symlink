@@ -51,6 +51,7 @@ export KEYTIMEOUT=1
 export LANGUAGE="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
+export LOCALE="en_US"
 
 # Android
 export ANDROID_HOME="$HOME/Android/Sdk"
