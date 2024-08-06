@@ -14,7 +14,12 @@ function disp-external-and-internal {
 
 function disp-one-only {
     local selected=$(disp-list | fzf)
-    disp-only $selected
+	if [[ -z "$selected" ]];
+	then
+		echo "ERROR: Must select the display that must be turned on."
+		return 41
+	fi
+	disp-only $selected
 }
 
 function disp-only {
