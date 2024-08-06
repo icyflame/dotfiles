@@ -68,7 +68,7 @@ function open_oldest {
 }
 
 function get_ip {
-    local host="https://ip.siddharthkannan.in"
+    local host="http://ip.siddharthkannan.in"
     if [[ -x `which curl` ]]; then
         curl -q $host
     else
