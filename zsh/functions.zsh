@@ -412,16 +412,6 @@ function yron {
     cat $INPUT | yq e - -j | gron
 }
 
-# pandoc_pdf 1.tex
-# Output: 1.pdf
-# Effect: Build 1.tex using pandoc and output to 1.pdf
-function pandoc_pdf {
-	local input=$1;
-	local output=$(basename "$input" .tex).pdf
-	pandoc --from latex --to latex --output "$output" "$input"
-	echo $output
-}
-
 # top-fzf: Look at the top output for a single process
 #
 # Works only with Mac's top command. Linux' top command takes the parameter "-p", figure out how to

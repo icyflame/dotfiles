@@ -1,7 +1,7 @@
 check_docker () {
 	if [ ! -x `which docker` ];
 	then
-		echo "ERROR: Docker is required for pandock"
+		echo "ERROR: Docker is required."
 		return 42
 	fi
 
