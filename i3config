@@ -48,6 +48,11 @@ bindsym F2 exec "maim --hidecursor --select --nodecorations=0 --noopengl > ~/Pic
 bindsym F3 exec "maim --hidecursor --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
 bindsym F4 exec "maim --hidecursor --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
 
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
