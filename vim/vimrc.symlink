@@ -5,6 +5,7 @@ set noswapfile
 
 set showcmd		    " Show (partial) command in status line.
 set showmatch		" Show matching brackets.
+set ignorecase		" Ignore case while searching
 set smartcase		" Do smart case matching
 set incsearch		" Incremental search
 set hlsearch        " highlight the search results
@@ -37,22 +38,9 @@ nmap <leader>sp :set paste<cr>i
 nmap <leader>np :set nopaste<cr>
 
 nmap fy ggyG``<cr>    " yank the complete buffer while maintaining position
-nmap fcp ggcpG``<cr>  " copy the complete buffer to system clipboard using vim-system-copy
 nmap fv ggVG          " highlight the complete buffer
 
-" PLATFORM: this will change on the basis of the platform
-" default: xsel (ubuntu)
-" mac: pbcopy
-let g:system_copy#copy_command='xsel --clipboard --input'
-
-if has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^darwin'
-    let g:system_copy#copy_command='pbcopy --clipboard --input'
-endif
-
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType yaml setl indentkeys-=<:>
-
-autocmd FileType proto,go,javascript,typescript,sh,vue set tw=100
+nmap <silent> <BS> :noh<CR>  " stop highlighting the last search expression
 
 autocmd FileType markdown
             \ set comments=b:> |
