@@ -1,374 +1,44 @@
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually just
-"
-
-" /usr/share/vim/vimcurrent/debian.vim) and sourced by the call to :runtime
-" you can find below.  If you wish to change any of those settings, you should
-" do it in this file (/etc/vim/vimrc), since debian.vim will be overwritten
-" everytime an upgrade of the vim packages is performed.  It is recommended to
-" make changes after sourcing debian.vim since it alters the value of the
-" 'compatible' option.
-
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
-
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
-
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-if has("syntax")
-	syntax on
-endif
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" " alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
-"
-" " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" syntax checking for several languages
-Plugin 'scrooloose/syntastic'
-
-" --------
-" Use fzf for file searching
-" Remap to Ctrl-P
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-nmap <C-p> :FZF<cr>
-nmap <C-P> :FZF<cr>
-" --------
-Plugin 'airblade/vim-gitgutter'
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=yellow
-" --------
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'git_patch_tags.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-fugitive'
-" --------
-Plugin 'scrooloose/nerdcommenter'
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" --------
-Plugin 'mhinz/vim-startify'
-Plugin 'christoomey/vim-system-copy'
-Plugin 'moll/vim-node'
-Plugin 'rking/ag.vim'
-
-Plugin 'jamessan/vim-gnupg'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'mizuchi/stl-syntax'
-
-Plugin 'fatih/vim-go'
-let g:go_fmt_command = "goimports"
-let g:go_def_mode = 'gopls'
-let g:go_info_mode = 'gopls'
-
-let g:go_echo_command_info = 0
-
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-
-Plugin 'uarun/vim-protobuf'
-
-Plugin 'christoomey/vim-tmux-navigator'
-
-Plugin 'itchyny/lightline.vim'
-
-Plugin 'edkolev/tmuxline.vim'
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = {
-        \ 'a': '[#S]',
-        \ 'win': '#I:#W#F',
-        \ 'cwin': '#I:#W#F',
-        \ 'z': '[#{window_width},#{window_height}] [#{pane_width},#{pane_height}] %a %e %b %Y %H:%M',
-        \ 'options': {
-        \ 'status-justify': 'left' } }
-" ----
-Plugin 'mtth/scratch.vim'
-let g:scratch_filetype = "markdown"
-let g:scratch_height = 0.4
-let g:scratch_no_mappings = 1
-nmap gs :Scratch<cr>
-nmap gS :Scratch!<cr>
-vmap gs :ScratchSelection<cr>
-vmap gS :ScratchSelection!<cr>
-" ---
-Plugin 'jparise/vim-graphql'
-" ---
-Plugin 'voldikss/vim-search-me'
-let g:vsm_search_engine = 'duckduckgo'
-" ---
-Plugin 'aklt/plantuml-syntax'
-" ---
-" Plugin 'sirver/ultisnips'
-" let g:UltiSnipsSnippetDirectories = ["custom-snippets"]
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-"
-Plugin 'epeli/slimux'
-" (normal) fr = evaluate full buffer in an REPL
-nmap fr :SlimuxREPLSendBuffer<CR>
-
-" fR = evaluate the current line in an REPL
-nmap fR :SlimuxREPLSendLine<CR>
-
-" fr = evaluate the highlighted part of a buffer in an REPL
-vmap fr :SlimuxREPLSendSelection<CR>
-
-" FR = Run the last command in the same shell again
-nmap FR :SlimuxShellLast<CR>
-" ---
-"
-"  PLUGINS UNDER TESTING
-"
-Plugin 'leafgarland/typescript-vim'
-"
-Plugin 'tyru/open-browser.vim'
-Plugin 'tyru/open-browser-github.vim'
-cabbrev OGF OpenGithubFile
-let g:openbrowser_github_url_exists_check = "ignore"
-" ---
-Plugin 'tpope/vim-surround'
-let g:surround_no_mappings = 1
-nmap ds  <Plug>Dsurround
-nmap cs  <Plug>Csurround
-nmap cS  <Plug>CSurround
-nmap ys  <Plug>Ysurround
-nmap yS  <Plug>YSurround
-nmap yss <Plug>Yssurround
-nmap ySs <Plug>YSsurround
-nmap ySS <Plug>YSsurround
-xmap S   <Plug>VSurround
-" ---
-Plugin 'godlygeek/tabular'
-au FileType markdown AddTabularPattern table /|/
-au FileType markdown nnoremap <leader>t m`vip:Tab table<CR>``
-" ---
-Plugin 'tpope/vim-repeat'
-" ---
-Plugin 'pearofducks/ansible-vim'
-Plugin 'stephpy/vim-yaml'
-"
-" ---
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Use deoplete.
-augroup enabledeoplete
-    au!
-    au FileType go call deoplete#enable()
-augroup END
-
-"
-" My plugins
-Plugin 'icyflame/PersistentScratch.vim'
-let g:persistent_scratch_file_location = "$HOME/sandbox/scratch"
-" ---
-Plugin 'icyflame/MarkdownLinks.vim'
-" ---
-call vundle#end()
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-set background=dark
+" A barebones vim configuration file which runs without any plugins on vanilla Vim
+" Tested with Vim 8.2
 
 set noswapfile
 
-" The following are commented out as they cause vim to behave a lot
-" differently from regular Vi. They are highly recommended though.
-" set showcmd		" Show (partial) command in status line.
-" set showmatch		" Show matching brackets.
-" set smartcase		" Do smart case matching
-set ignorecase      " Ignore case while searching
+set showcmd		    " Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set smartcase		" Do smart case matching
 set incsearch		" Incremental search
+set hlsearch        " highlight the search results
 set autowrite		" Automatically save before commands like :next and :make
-" set hidden             " Hide buffers when they are abandoned
-set mouse=a		" Enable mouse usage (all modes)
-" size of a hard tabstop
-set tabstop=4
+set mouse=a		    " Enable mouse usage (all modes)
+
 " http://vim.wikia.com/wiki/Indenting_source_code
+set tabstop=4       " size of a hard tabstop
 set expandtab
 set shiftwidth=4
 set softtabstop=4
-"
-" set the width of text in the editor
-set tw=80
-"
-syntax on
-filetype plugin on
-filetype plugin indent on
 
 set smartindent
 set autoindent
 set cindent
 
-set hlsearch " highlight the search results
+set tw=80           " set the width of text in the editor
 
-" Activate syntax highlighting for roslaunch files
-autocmd BufRead,BufNewFile *.launch setfiletype roslaunch
+syntax on
+filetype plugin on
+filetype plugin indent on
 
 " Remember where to go in a buffer when re-opening that file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" remap leader to , character
-let g:mapleader=","
-
-" the write shortcut
-nmap <leader>w :w<cr>
-nmap <leader>W :w<cr>
-
-" indent the whole file
-nmap <leader>i gg=G``<cr>
-
-nmap <leader>z :w<cr>ZZ
-nmap <leader>Z :w<cr>ZZ
+let g:mapleader=","    " remap leader to , character
+nmap <leader>w :w<cr>  " the write shortcut
 
 nmap <leader>sp :set paste<cr>i
 nmap <leader>np :set nopaste<cr>
-" indent the whole file, write and exit vim.
-nmap <leader>x gg=G:w<cr>ZZ
 
-nmap <silent> <RIGHT> :next<CR>
-nmap <silent> <LEFT> :prev<CR>
-
-" make sure that vim-airline works
-set laststatus=2
-
-" yank the complete buffer while maintaining position
-nmap fy ggyG``<cr>
-" copy the complete buffer to system clipboard using vim-system-copy
-nmap fcp ggcpG``<cr>
-" highlight the complete buffer
-nmap fv ggVG
-
-let g:markdown_fenced_languages = [
-            \ 'css',
-            \ 'javascript',
-            \ 'js=javascript',
-            \ 'json=javascript',
-            \ 'ruby',
-            \ 'sass',
-            \ 'xml',
-            \ 'html',
-            \ 'java',
-            \ 'plaintext=nosyntax',
-            \ 'sql',
-            \ 'sh',
-            \ 'plantuml',
-            \ 'go'
-            \ ]
-
-function! AirlineInit()
-    " let g:airline_section_a = ''
-    " let g:airline_section_b = ''
-    " let g:airline_section_c = ''
-    " let g:airline_section_x = ''
-    " let g:airline_section_y = ''
-    let g:airline_section_z = airline#section#create(['%l', ':', '%c', '/', '%L', ' - ', '%p%%'])
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
-let g:airline_symbols_ascii = 1
-let g:airline#extensions#wordcount#enabled = 1
-let g:airline#extensions#default#section_truncate_width = {
-            \ 'b': 79,
-            \ 'x': 60,
-            \ 'y': 88,
-            \ 'z': 45,
-            \ 'warning': 80,
-            \ 'error': 80,
-            \ }
-silent! call airline#extensions#whitespace#disable()
-
-function JsonWhere()
-    if executable("json-where") == 0
-        return 'ERROR: json-where not found'
-    endif
-
-    let cursor = getcurpos()
-    let lnum = cursor[1]
-    let colnum = cursor[2]
-
-    let filename = expand('%:p')
-    if len(filename) == 0
-        let filename = tempname() + ".json"
-        silent exe("write! " . filename)
-        silent exe("edit " . filename)
-    endif
-
-    let cmd_list = [ ]
-    let cmd_list += [ 'json-where' ]
-    let cmd_list += [ filename ]
-    let cmd_list += [ lnum ]
-    let cmd_list += [ colnum ]
-
-    let cmd = join(cmd_list, ' ')
-    let json_where_output = systemlist(cmd)
-
-    if len(json_where_output) > 0
-        return json_where_output[len(json_where_output)-1]
-    else
-        return 'ERROR: json-where output is invalid'
-    endif
-endfunction
-nmap <leader>jw :echo JsonWhere()<cr>
-
-" E: Execute the given command on the current command and replace the contents
-" of the buffer with the command's output
-" Inspired by @cookie-s's Jq:
-" https://github.com/cookie-s/dotfiles/blob/60e2a63fa1e0e58c87a86a0af37e365bcaaa8277/.vimrc#L188-L197
-function! s:E(...)
-    if 0 == a:0
-        echo "ERROR: Must provide at least one argument"
-        return 1
-    endif
-    let l:arg = a:1
-    execute "%! " . l:arg
-endfunction
-command! -nargs=+ E call s:E(<f-args>)
-
-command! -nargs=? Sort call s:E("sort " . <q-args>)
-command! -nargs=? Uniq call s:E("uniq " . <q-args>)
-command! -nargs=0 ASCII call s:E("iconv -c -t ascii//translit")
-
-function! s:Jq(...)
-    if 0 == a:0
-        call s:E("jq .")
-    else
-        call s:E("jq " . join(a:000, ' '))
-    end
-endfunction
-command! -nargs=* Jq call s:Jq(<f-args>)
-
-" clean up commands copied from the shell
-command ShellClean g/^#/norm "_dd
-nmap <leader>sc :ShellClean<cr>
-
-" simplify creation of substitution and replacement commands
-nmap SS :%s//g<LEFT><LEFT>
-nmap <expr> SM ':%s/' . @/ . '//g<LEFT><LEFT>'
-nmap SW :%s/\<<C-r><C-w>\>//g<LEFT><LEFT>
-
-" stop highlighting the last search expression
-nmap <silent> <BS> :noh<CR>
-
-nmap <leader>gfs :GoFillStruct<cr>
-
-" show the full path of an open buffer
-nmap <leader>fp :echo expand('%:p')<cr>
+nmap fy ggyG``<cr>    " yank the complete buffer while maintaining position
+nmap fcp ggcpG``<cr>  " copy the complete buffer to system clipboard using vim-system-copy
+nmap fv ggVG          " highlight the complete buffer
 
 " PLATFORM: this will change on the basis of the platform
 " default: xsel (ubuntu)
@@ -377,49 +47,6 @@ let g:system_copy#copy_command='xsel --clipboard --input'
 
 if has('mac') || has('macunix') || has('gui_macvim') || system('uname') =~? '^darwin'
     let g:system_copy#copy_command='pbcopy --clipboard --input'
-endif
-
-if has('win32')
-    let g:system_copy#copy_command='clip.exe'
-    let g:system_copy#paste_command='powershell.exe -c Get-Clipboard'
-endif
-
-command FormatCurl s/-H/\\\r-H/g
-
-let @m='ggVG:s/^\n/\r\r/ggg:normal€kb€kb€kb€kb€kb€kb%normal! vipJ:noh'
-nmap <leader>pt :normal! @m<cr>
-
-" Unfill several paragraphs of text each of which is a list item
-let @u=':g/^*/norm O:g/^*/norm vipJ:%s/\n^*/*/g:noh'
-
-" Recorded registers
-" Process:
-" Step 1 => Record the macro using `q + <letter key>`
-" Step 2 => After the recording, paste the register to the configuration using `" <letter key> p`
-" Note: Always use Escape at the end of the macro to ensure that focus does not shift to another
-" window after the completion of the macro
-"
-" f => Insert empty function comment for a function
-let @f='wyiwO// pa ...'
-" i => Insert empty function comment for an interface function
-let @i='/)wyiwO// pa ...:noh'
-" h => Hide text inside double quotes, useful for filtering strings in secrets
-let @h='ci"[FILTERED]'
-
-iab <expr> dts# strftime("%Y-%m-%d %H:%M, %A, Week %U")
-iab <expr> time# strftime("%H:%M")
-
-" remove trailing whiespace from as many file types as possible
-autocmd FileType go,c,cpp,java,php,ruby,py,javascript,cpp11,sh,erb,haml,vue,typescript,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
-
-" autocmd FileType markdown set spell
-
-if executable("pg_format")
-    autocmd FileType sql set formatprg=pg_format
-endif
-
-if executable("tidy")
-    autocmd FileType html set formatprg=tidy\ -q\ -i\ -w\ 100\ -f\ \/dev\/null
 endif
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -437,11 +64,6 @@ autocmd FileType gitcommit
             \ set flp=^\\s*\[-*+\]\\s |
             \ set nocindent
 
-autocmd BufNewFile,BufReadPost *.notes set filetype=markdown
-
-set omnifunc=syntaxcomplete#Complete
-set backspace=2
-
 " Put a line at the 80 column mark
 set colorcolumn=+1
 highlight ColorColumn ctermbg=236
@@ -452,9 +74,3 @@ highlight clear SignColumn
 if !has('gui_running')
   set t_Co=256
 endif
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-	source /etc/vim/vimrc.local
-endif
-set secure exrc
