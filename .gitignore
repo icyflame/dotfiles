@@ -1,10 +1,4 @@
-.zhistory
-.zlogin
-.zlogout
-.zpreztorc
-.zprofile
-.zshenv
-.zcompdump*
+.*
 
 mercari
 makefile/mercari
