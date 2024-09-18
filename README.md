@@ -48,11 +48,3 @@ bash bootstrap-dotfiles.sh --go
 
 Now, opening a new shell, you should see the zsh shell, with all your zprezto
 plugins included.
-
-If you want to install all the plugins that will be used by the `vimrc` file in this repository,
-then you need to clone the package manager [`Vundle.vim`](https://github.com/VundleVim/Vundle.vim)
-manually and then run `vim +PluginInstall`.
-
-``` sh
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-```

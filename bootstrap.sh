@@ -43,16 +43,6 @@ source ~/.bashrc
 # Install the stable version of Node.js using nvm
 nvm install stable
 
-# Installing Vundle: Vim Bundle, the vim Package Manager
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-# Install all vim plugins using Vundle
-## This requires the user to press ZZ at the end of the process
-## for exiting properly
-if [[ $machine != $DIGITAL_OCEAN ]]; then
-	vim +PluginInstall
-fi
-
 # Tmux Plugin Manager setup
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
