@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Base16 Solarized Dark - Gnome Terminal color scheme install script
-# Ethan Schoonover (modified by aramisgithub)
-# https://github.com/aarowill/base16-gnome-terminal/blob/master/color-scripts/base16-solarized-dark-256.sh
+# Base16 Tomorrow Night - Gnome Terminal color scheme install script
+# Chris Kempson (http://chriskempson.com)
+# https://raw.githubusercontent.com/aarowill/base16-gnome-terminal/master/color-scripts/base16-tomorrow-night-256.sh
 
-[[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="Base 16 Solarized Dark 256"
-[[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG="base-16-solarized-dark-256"
+[[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="Base 16 Tomorrow Night 256"
+[[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG="base-16-tomorrow-night-256"
 [[ -z "$DCONF" ]] && DCONF=dconf
 [[ -z "$UUIDGEN" ]] && UUIDGEN=uuidgen
 
@@ -63,14 +63,14 @@ if which "$DCONF" > /dev/null 2>&1; then
 
         # Update profile values with theme options
         dset visible-name "'$PROFILE_NAME'"
-        dset palette "['#002b36', '#dc322f', '#859900', '#b58900', '#268bd2', '#6c71c4', '#2aa198', '#93a1a1', '#657b83', '#dc322f', '#859900', '#b58900', '#268bd2', '#6c71c4', '#2aa198', '#fdf6e3']"
-        dset background-color "'#002b36'"
-        dset foreground-color "'#93a1a1'"
-        dset bold-color "'#93a1a1'"
+        dset palette "['#1d1f21', '#cc6666', '#b5bd68', '#f0c674', '#81a2be', '#b294bb', '#8abeb7', '#c5c8c6', '#969896', '#cc6666', '#b5bd68', '#f0c674', '#81a2be', '#b294bb', '#8abeb7', '#ffffff']"
+        dset background-color "'#1d1f21'"
+        dset foreground-color "'#c5c8c6'"
+        dset bold-color "'#c5c8c6'"
         dset bold-color-same-as-fg "true"
         dset cursor-colors-set "true"
-        dset cursor-background-color "'#93a1a1'"
-        dset cursor-foreground-color "'#002b36'"
+        dset cursor-background-color "'#c5c8c6'"
+        dset cursor-foreground-color "'#1d1f21'"
         dset use-theme-colors "false"
         dset use-theme-background "false"
 
@@ -116,14 +116,14 @@ glist_append() {
 glist_append string /apps/gnome-terminal/global/profile_list "$PROFILE_SLUG"
 
 gset string visible_name "$PROFILE_NAME"
-gset string palette "#002b36:#dc322f:#859900:#b58900:#268bd2:#6c71c4:#2aa198:#93a1a1:#657b83:#dc322f:#859900:#b58900:#268bd2:#6c71c4:#2aa198:#fdf6e3"
-gset string background_color "#002b36"
-gset string foreground_color "#93a1a1"
-gset string bold_color "#93a1a1"
+gset string palette "#1d1f21:#cc6666:#b5bd68:#f0c674:#81a2be:#b294bb:#8abeb7:#c5c8c6:#969896:#cc6666:#b5bd68:#f0c674:#81a2be:#b294bb:#8abeb7:#ffffff"
+gset string background_color "#1d1f21"
+gset string foreground_color "#c5c8c6"
+gset string bold_color "#c5c8c6"
 gset bool   bold_color_same_as_fg "true"
 gset bool   cursor-colors-set "true"
-gset string cursor-background-color "'#93a1a1'"
-gset string cursor-foreground-color "'#002b36'"
+gset string cursor-background-color "'#c5c8c6'"
+gset string cursor-foreground-color "'#1d1f21'"
 gset bool   use_theme_colors "false"
 gset bool   use_theme_background "false"
 
