@@ -49,7 +49,9 @@ EOF
 	dock_pandoc_run_container () {
 		check_docker
 
-		if [[ $(docker container inpsect pandoc-container) -gt 0 ]];
+		local inspect_output=$(docker container inspect pandoc-container | jq '.[0].State.Running')
+
+		if [[ $? -ne 0 || "$inspect_output" != "true" ]];
 		then
 			docker rm -f pandoc-container
 			docker run --name pandoc-container --detach --workdir /src --entrypoint tail pandoc/extra:3.2.0.0 -f
