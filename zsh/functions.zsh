@@ -463,3 +463,27 @@ function time_simple {
 	date >&2;
 	echo "$(($end-$start)) seconds" >&2;
 }
+
+function separate-extensions {
+	local go="$1"
+	if [[ "$go" != "--go" ]];
+	then
+		echo "INFO: Dry-run mode."
+	fi
+
+	ls -1 | awk -F\. '{ print $(NF) }' | sort -u | while read extension;
+	do
+		if [[ -d "$extension" ]];
+		then
+			echo "WARNING: Files with the extension \"$extension\" will not be moved because the directory \"$extension\" exists already."
+		else
+			local cmd="fdfind -e \"$extension\" | xargs -I{} mv {} \"$extension/\""
+			echo $cmd
+			if [[ "$go" == "--go" ]];
+			then
+				mkdir $extension
+				eval $cmd;
+			fi
+		fi
+	done
+}
