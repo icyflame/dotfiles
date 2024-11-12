@@ -49,7 +49,7 @@ EOF
 	dock_pandoc_run_container () {
 		check_docker
 
-		local inspect_output=$(docker container inspect pandoc-container | jq '.[0].State.Running')
+		local inspect_output=$(docker container inspect pandoc-container)
 
 		if [[ $? -ne 0 || "$inspect_output" != "true" ]];
 		then
