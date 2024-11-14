@@ -22,6 +22,33 @@ You have to manually create the directory where mail will be stored.
 configuration and it can also be configured with only a single password, which has the permission to
 send email using an SMTP server.
 
+I have sample configurations for Fastmail and Gmail. In general, any e-mail provider which supports
+sending e-mail using SMTP can be used.
+
+#+begin_src sh
+  # Gmail
+  account        gmail
+  host           smtp.gmail.com
+  port           587
+  from           example@gmail.com
+  user           example@gmail.com
+  passwordeval   "/usr/bin/pass show gmail"
+#+end_src
+
+#+begin_src sh
+  account fastmail
+  host smtp.fastmail.com
+  port 587
+  user example@fastmail.com
+  passwordeval /usr/bin/pass show fastmail
+
+  # This might be required when using SMTP over TLS
+  tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+  # This sets the envelope-from address
+  from example@fastmail.com
+#+end_src
+
 * Reading Mail: =notmuch=
 
 =notmuch= is a thin wrapper around the Xapian library, a full text search library written in C. The
@@ -29,3 +56,6 @@ configuration file for notmuch is long. However, it was generated using the =not
 and I have not made any changes to it. By running the =bootstrap-dotfiles.sh= script, the
 =notmuch-config= file will be put in the appropriate location, and you can start using =notmuch=
 immediately.
+
+Inside =notmuch-config=, the =database.path= variable might need to be set to the proper value for
+every computer. This contains the path to the directory that stores all the e-mail files.
