@@ -16,6 +16,31 @@ file is inside this directory and it is pretty generic. It needs a password, whi
 
 You have to manually create the directory where mail will be stored.
 
+-----
+
+This is an optional part of the mbsync configuration on a Macbook. The package =isync= might need to
+be built locally in order to work around some bugs that occur when the =isync= package provided
+through Homebrew is used.
+
+#+begin_src sh
+  TLSType IMAPS
+  PassCmd "/usr/bin/pass show gmail"
+
+  # $ openssl s_client -connect imap.gmail.com:993 -showcerts 2>&1 < /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | head -n 40 > ~/gmail.crt
+  # For some reason, the server's certificate is required (?) I don't know
+  # what will happen when the certificate changes due to expiry etc on Gmail's
+  # side
+  # CertificateFile "~/gmail.crt"
+
+  # https://sourceforge.net/p/isync/bugs/52/
+  # Without this, the error seen on Mac OS is "Error: SASL(-7): invalid parameter supplied: Parameter Error in /AppleInternal/BuildRoot/Library/Caches/com.apple.xbs/Sources/passwordserver_saslplugins/passwordserver_saslplugins-194/plain_clienttoken.c near line 195""
+  # AuthMech PLAIN
+  # Authenticate PLAIN
+
+  # isync has started using openssl@3 as a dependency. This causes a bug which is fixed on the
+  # isync master branch, but not released as a tag yet.
+#+end_src
+
 * Sending Mail: =msmtp=
 
 =msmtp= is simpler than =mbsync= and sends any message that is piped to it. It has a very short
