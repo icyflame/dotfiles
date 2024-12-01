@@ -69,6 +69,11 @@ set -g mode-keys vi
 bind-key -T copy-mode-vi 'v' send -X begin-selection
 set -g @yank_action 'copy-pipe' # or 'copy-pipe-and-cancel' for the default
 
+# Tmux' in-built set-clipboard option (available since Tmux 1.5) does not work with gnome-terminal.
+# tmux-yank prefers xsel over xclip. However, xsel does not seem to work on Debian 12. So, I will
+# force the usage of xclip by Tmux here.
+set -g @override_copy_command 'xclip -selection clipboard -in'
+
 # changing the key-bindings to move windows around
 # http://superuser.com/a/552493/207372
 bind-key -n C-S-Left swap-window -t -1
