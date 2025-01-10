@@ -1,6 +1,7 @@
 [user]
     email = mail@siddharthkannan.in
     name = Siddharth Kannan
+	signingkey = /home/siddharth/.ssh/id_ecdsa_primary.pub
 
 [sendemail]
     smtpserver = /usr/bin/msmtp
@@ -88,3 +89,9 @@
 	sort = -committerdate
 [init]
 	defaultBranch = master
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/.allowed_signers
