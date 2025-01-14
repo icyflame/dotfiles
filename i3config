@@ -9,18 +9,19 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# Mod1 = Alt key
 # Mod4 = Windows key
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 # font pango:DejaVu Sans Mono 8
 
-# bindsym F9 exec i3lock
+bindsym $mod+Ctrl+l exec i3lock
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -34,16 +35,16 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # Take screenshots using maim
 bindsym F1 exec "maim --hidecursor --select --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
 bindsym F2 exec "maim --hidecursor --select --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
 bindsym F3 exec "maim --hidecursor --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
 bindsym F4 exec "maim --hidecursor --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
-
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -146,31 +147,32 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
+# I don't use i3's resize mode much.
+# mode "resize" {
+#         # These bindings trigger as soon as you enter the resize mode
+#
+#         # Pressing left will shrink the window’s width.
+#         # Pressing right will grow the window’s width.
+#         # Pressing up will shrink the window’s height.
+#         # Pressing down will grow the window’s height.
+#         bindsym j resize shrink width 10 px or 10 ppt
+#         bindsym k resize grow height 10 px or 10 ppt
+#         bindsym l resize shrink height 10 px or 10 ppt
+#         bindsym semicolon resize grow width 10 px or 10 ppt
+#
+#         # same bindings, but for the arrow keys
+#         bindsym Left resize shrink width 10 px or 10 ppt
+#         bindsym Down resize grow height 10 px or 10 ppt
+#         bindsym Up resize shrink height 10 px or 10 ppt
+#         bindsym Right resize grow width 10 px or 10 ppt
+#
+#         # back to normal: Enter or Escape or $mod+r
+#         bindsym Return mode "default"
+#         bindsym Escape mode "default"
+#         bindsym $mod+r mode "default"
+# }
+#
+# bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -180,6 +182,7 @@ bar {
 
 # https://github.com/susam/uncap#linux-setxkbmap
 # Note: After connecting a new keyboard, always restart i3 using MOD-shift-r
+# This is still required for the built-in keyboard.
 exec_always --no-startup-id /usr/bin/setxkbmap -v 10 -option caps:escape
 
 # Don't use fcitx (use iBus instead, which is more modern and easier to use)

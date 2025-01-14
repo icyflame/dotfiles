@@ -46,5 +46,7 @@ bash bootstrap-dotfiles.sh
 bash bootstrap-dotfiles.sh --go
 ```
 
-Now, opening a new shell, you should see the zsh shell, with all your zprezto
-plugins included.
+Now, opening a new shell, you should see the zsh shell, with all your zprezto plugins included. You
+might have to logout and login in order to get the `chsh` to take effect.
+
+In order to apply color schemes, run the appropriate script inside the `color-schemes` directory.
