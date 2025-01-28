@@ -152,3 +152,5 @@ CASK_LOCATION="$HOME/.cask"
 [ -d $CASK_LOCATION ] && export PATH="$PATH:$CASK_LOCATION/bin"
 
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
+[ -f $(which mise) ] && eval "$(mise activate zsh)"
