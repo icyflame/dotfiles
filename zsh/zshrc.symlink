@@ -158,3 +158,5 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 [ -f $(which direnv) ] && eval "$(direnv hook zsh)"
 
 [ -f "${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock ] && export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock"
+
+[ -d /usr/local/lib ] && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
