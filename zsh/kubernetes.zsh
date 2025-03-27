@@ -183,3 +183,19 @@ function kshowsecret {
 		k get secrets $SECRET_NAME -o jsonpath="{.data}" | jq -r 'keys[] as $k | "\($k)=''\(.[$k]|@base64d)''"'
 	done
 }
+
+function open-yaml {
+	local resource=$1
+	local tmpfile=/tmp/${resource/\//-}.yaml
+	k get -oyaml $resource > $tmpfile
+	if command -v emacsclient >/dev/null 2>&1; then
+		emacsclient $tmpfile
+	elif command - vim >/dev/null 2>&1; then
+		vim $tmpfile
+	elif [ -n "$EDITOR" ];then
+		$EDITOR $tmpfile
+	else
+		echo "ERROR: No suitable editors found."
+		return 2
+	fi
+}
