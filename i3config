@@ -40,9 +40,6 @@ bindsym F2 exec "maim --hidecursor --select --nodecorations=0 --noopengl > ~/Pic
 bindsym F3 exec "maim --hidecursor --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
 bindsym F4 exec "maim --hidecursor --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -78,11 +75,16 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+# Use Mouse+$mod to drag floating windows to their wanted position
+# floating_modifier Ctrl
 # TODO: Figure out whether floating mode is useful. Possibly video calling?
 #     toggle tiling / floating
-#         bindsym $mod+Shift+space floating toggle
+bindsym $mod+i floating toggle
 #     change focus between tiling / floating windows
-#         bindsym $mod+space focus mode_toggle
+bindsym $mod+o focus mode_toggle
+
+gaps inner 20
+gaps outer 20
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
