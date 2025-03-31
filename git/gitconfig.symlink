@@ -53,9 +53,10 @@
     ph = push heroku
     pi = push icyflame
 
-    # https://github.com/etdev/dotfiles/blob/22985739ab0f09b59ae2379cc38301fa9769009c/gitconfig#L47
-    poc = "!f() { branch=$(git current-branch) && if [[ $branch == master || $branch == develop ]]; then echo FAILED $branch && return -1; fi && git push origin $branch; }; f"
-    pofc = "!f() { branch=$(git current-branch) && if [[ $branch == master || $branch == develop ]]; then echo FAILED $branch && return -1; fi && git push --force-with-lease origin $branch; }; f"
+    # Inspired by https://github.com/etdev/dotfiles/blob/22985739ab0f09b59ae2379cc38301fa9769009c/gitconfig#L47
+	# Use POSIX shell compatible expression here. Do not use `[[ ]]` as that is only supported by Bash and Zsh
+    poc = "!{ branch=$(git current-branch); [ $branch != 'master' ] && [ $branch != 'main' ] && git push origin $branch || echo ERROR: will not push to branch $branch; }"
+    pofc = "!{ branch=$(git current-branch); [ $branch != 'master' ] && [ $branch != 'main' ] && git push origin --force-with-lease $branch || echo ERROR: will not push to branch $branch; }"
 
     rb  = rebase
     rbc = rebase --continue
