@@ -198,37 +198,29 @@ return 0;
     elif [[ "$3" == "-v" ]]; then
         go_test "$1" "$2"
     else
-        TEST_OUTPUT=`go_test "$1" "$2" | rg "^---"`
+        TEST_OUTPUT=`go_test "$1" "$2" | rg "^--- [A-Z]"`
 
-        FAILED=`echo "$TEST_OUTPUT" | rg "FAIL"`
-        FAILED_COUNT=0
+		echo "$TEST_OUTPUT" | rg --quiet "FAIL" &&
+			FAIL=$(echo -n "$TEST_OUTPUT" | rg -F FAIL) ||
+				FAIL=""
 
-        if [[ "$FAILED" != "" ]]; then
-            FAILED_COUNT=`echo "$FAILED" | wc -l`
-        fi
+		echo "$TEST_OUTPUT" | rg --quiet "PASS" &&
+			PASS=$(echo -n "$TEST_OUTPUT" | rg -F PASS) || PASS=""
 
-        PASSED=`echo "$TEST_OUTPUT" | rg "PASS"`
-        PASSED_COUNT=0
+		echo "$TEST_OUTPUT" | rg --quiet "SKIP" &&
+			SKIP=$(echo -n "$TEST_OUTPUT" | rg -F SKIP) || SKIP=""
 
-        if [[ "$PASSED" != "" ]]; then
-            PASSED_COUNT=`echo "$PASSED" | wc -l`
-        fi
+		FAIL_COUNT=$(echo -n "$FAIL" | wc -l)
+		SKIP_COUNT=$(echo -n "$SKIP" | wc -l)
+		PASS_COUNT=$(echo -n "$PASS" | wc -l)
 
-        SKIPED=`echo "$TEST_OUTPUT" | rg "SKIP"`
-        SKIPED_COUNT=0
-
-        if [[ "$SKIPED" != "" ]]; then
-            SKIPED_COUNT=`echo "$SKIPED" | wc -l`
-        fi
-
-        if [[ $FAILED_COUNT -eq 0 ]]; then
-            echo "ALL $PASSED_COUNT PASSED";
-        else
-            echo "$FAILED" | colorize_go_tests
-            echo
-            echo "$FAILED_COUNT FAILED; $PASSED_COUNT PASSED; $SKIPPED_COUNT SKIPPED"
+        if [[ $FAIL_COUNT -gt 0 ]]; then
+            echo "$FAIL" | colorize_go_tests
             echo
         fi
+
+		echo "$PASS_COUNT PASS; $FAIL_COUNT FAIL; $SKIP_COUNT SKIP"
+		echo
     fi
 }
 
