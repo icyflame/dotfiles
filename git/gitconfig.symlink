@@ -39,10 +39,13 @@
 
     current-branch = rev-parse --abbrev-ref HEAD
 
+    lh = log --pretty=format:'%H'
     lod = log --oneline --decorate
     lodg = log --oneline --decorate --graph
-    pl = log --pretty=format:'(%h)\t%an\t%ai\t%s' --date=short
     lpr = log --oneline --decorate --graph master..HEAD
+
+    pl = log --pretty=format:'(%h)\t%an\t%ai\t%s' --date=short
+    plh = log --pretty=format:'(%H)\t%an\t%ai\t%s' --date=short
 
     poa = push origin --all
     pot = push origin --tags
