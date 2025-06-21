@@ -466,6 +466,11 @@ function time_simple {
 
 function separate-extensions {
 	local go="$1"
+	if [[ -z "$go" ]];
+	then
+		echo "Usage: separate-extensions [--go]"
+	fi
+
 	if [[ "$go" != "--go" ]];
 	then
 		echo "INFO: Dry-run mode."
@@ -477,11 +482,10 @@ function separate-extensions {
 		then
 			echo "WARNING: Files with the extension \"$extension\" will not be moved because the directory \"$extension\" exists already."
 		else
-			local cmd="fdfind -e \"$extension\" | xargs -I{} mv {} \"$extension/\""
+			local cmd="mkdir -p \"$extension\" && fdfind -e \"$extension\" | xargs -I{} mv {} \"$extension/\""
 			echo $cmd
 			if [[ "$go" == "--go" ]];
 			then
-				mkdir $extension
 				eval $cmd;
 			fi
 		fi
