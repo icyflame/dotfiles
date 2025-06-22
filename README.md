@@ -50,3 +50,20 @@ Now, opening a new shell, you should see the zsh shell, with all your zprezto pl
 might have to logout and login in order to get the `chsh` to take effect.
 
 In order to apply color schemes, run the appropriate script inside the `color-schemes` directory.
+
+## [Unmaintained] Setting up an Apple computer
+
+> I used to use a Macbook at work. But I don't use one anymore. So, these setup instructions are old
+> and unmaintained. I am keeping them around in case I need to use a Macbook again at some point in
+> the future.
+
+1. Import your vimrc.
+2. Install zsh. Install zsh-syntax-highlighting and zsh-autosuggestions using
+   git clone. Import zshrc and configure everything
+3. Install iTerm 2. Import the colorscheme file inside the `color-schemes`
+   directory with the extension `itermcolors`
+4. Install `golang`
+
+### IntelliJ IDEA
+
+[Solarized dark color scheme](https://github.com/jkaving/intellij-colors-solarized)
