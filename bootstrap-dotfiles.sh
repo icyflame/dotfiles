@@ -42,10 +42,10 @@ fi
 
 ### Copy {file}.symlink to ~/.{file} ###
 
-DOTFILES_LOC="$HOME/dotfiles"
+DOTFILES_LOC="$(pwd)"
 
 DATE=`date +%Y-%m-%d-%H-%M-%S`
-OLD_DOTFILES_LOC="$HOME/dotfiles_old/$DATE"
+OLD_DOTFILES_LOC="/tmp/dotfiles_old/$DATE"
 
 echo "Symlinking all the dotfiles:"
 echo_eval "mkdir -p \"$OLD_DOTFILES_LOC\"" "$GLOBAL_DEBUG"
