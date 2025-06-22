@@ -143,7 +143,7 @@ export PATH="$PATH:$HOME/.rbenv/bin"
 
 # D
 DMD_LOCATION="$HOME/dlang/dmd-2.088.0/activate"
-[ -f $DMD_LOCATION ] && source $DMD_LOCATION
+[[ -f $DMD_LOCATION ]] && source $DMD_LOCATION
 
 DEBFULLNAME="Siddharth Kannan"
 DEBEMAIL="mail@siddharthkannan.in"
@@ -153,10 +153,10 @@ CASK_LOCATION="$HOME/.cask"
 
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
-[ -f $(which mise) ] && eval "$(mise activate zsh)"
+[[ -f $(which mise) ]] && eval "$(mise activate zsh)"
 
-[ -f $(which direnv) ] && eval "$(direnv hook zsh)"
+[[ -f $(which direnv) ]] && eval "$(direnv hook zsh)"
 
-[ -f "${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock" ] && export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock"
+[[ -f "${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock" ]] && export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/yubikey-agent/yubikey-agent.sock"
 
-[ -d /usr/local/lib ] && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+[[ -d /usr/local/lib ]] && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
