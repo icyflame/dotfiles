@@ -1,7 +1,7 @@
 # Core shell setup
 
 # Prezto
-ZDOTDIR="$HOME/dotfiles"
+ZDOTDIR="$HOME/code/dotfiles"
 PREZTO_INIT_LOCATION="${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 [ -s "$PREZTO_INIT_LOCATION" ] && source "$PREZTO_INIT_LOCATION"
 
