@@ -45,7 +45,7 @@ fi
 DOTFILES_LOC="$(pwd)"
 
 DATE=`date +%Y-%m-%d-%H-%M-%S`
-OLD_DOTFILES_LOC="/tmp/dotfiles_old/$DATE"
+OLD_DOTFILES_LOC="${DOTFILES_LOC}_old"
 
 echo "Symlinking all the dotfiles:"
 echo_eval "mkdir -p \"$OLD_DOTFILES_LOC\"" "$GLOBAL_DEBUG"
