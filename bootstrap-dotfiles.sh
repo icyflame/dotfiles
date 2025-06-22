@@ -59,18 +59,6 @@ for file in `ls $DOTFILES_LOC/**/*.symlink`; do
 	echo_eval "ln -sf $file $HOME/.$dotfile" "$GLOBAL_DEBUG"
 done
 
-### Symlink Vim snippets ###
-
-echo "Symlinking all the snippets files:"
-SNIPPETS_LOC="$HOME/.vim/custom-snippets"
-echo_eval "mkdir -p \"$SNIPPETS_LOC\"" "$GLOBAL_DEBUG"
-
-for file in `ls $DOTFILES_LOC/**/*.snippets`; do
-    file_name=`basename $file`
-	dst_file="$SNIPPETS_LOC/$file_name"
-	echo_eval "ln -sf \"$file\" \"$dst_file\"" "$GLOBAL_DEBUG"
-done
-
 ### Alacritty Setup ###
 
 DEST_FILE="$HOME/.config/alacritty/alacritty.toml"
