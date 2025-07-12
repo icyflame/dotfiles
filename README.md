@@ -51,6 +51,20 @@ might have to logout and login in order to get the `chsh` to take effect.
 
 In order to apply color schemes, run the appropriate script inside the `color-schemes` directory.
 
+## Keybindings
+
+### Gnome Shell Extension - PaperWM
+
+PaperWM's keybindings are stored in the `dconf` database. They can be fetched using `dconf dump` and
+`dconf read` and written using `dconf write`.
+
+See the script inside the `scripts/keybindings/` directory.
+
+Note that PaperWM does not store its default keybindings anywhere. This means that for a new version
+of the PaperWM extension, there might be new actions that have gained keybindings. However, these
+will not show up in the `dconf` database. One would have to go to the extension's settings, and in
+the keybindings tab, manually update all the unnecessary keybindings to `Disabled`.
+
 ## [Unmaintained] Setting up an Apple computer
 
 > I used to use a Macbook at work. But I don't use one anymore. So, these setup instructions are old
