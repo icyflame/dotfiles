@@ -70,6 +70,17 @@ fi
 # Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln -f alacritty.toml $DEST_FILE" "$GLOBAL_DEBUG"
 
+### Sway window manager ###
+
+DEST_FILE="$HOME/.config/sway/config"
+echo_eval "mkdir -p $HOME/.config/sway" "$GLOBAL_DEBUG"
+if [[ -e "$DEST_FILE" ]];
+then
+    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/swayconfig.old" "$GLOBAL_DEBUG"
+fi
+# Note this should NOT be a symbolic link. It must be a hard link.
+echo_eval "cp -v swayconfig $DEST_FILE" "$GLOBAL_DEBUG"
+
 # setopt EXTENDED_GLOB
 for rcfile in `find $DOTFILES_LOC/.zprezto/runcoms -type f -not -name "README.md"`; do
   base=$(basename $rcfile)
