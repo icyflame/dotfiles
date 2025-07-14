@@ -83,8 +83,8 @@ bindsym $mod+i floating toggle
 #     change focus between tiling / floating windows
 bindsym $mod+o focus mode_toggle
 
-gaps inner 20
-gaps outer 20
+gaps inner 5
+gaps outer 5
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
