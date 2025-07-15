@@ -34,18 +34,6 @@ blinking = "Off"
 [font]
 size = 14.0
 
-[font.bold]
-family = "Menlo"
-style = "Bold"
-
-[font.italic]
-family = "Menlo"
-style = "Italic"
-
-[font.normal]
-family = "Menlo"
-style = "Regular"
-
 [[keyboard.bindings]]
 action = "Quit"
 key = "W"
