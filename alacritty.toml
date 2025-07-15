@@ -34,11 +34,6 @@ blinking = "Off"
 [font]
 size = 14.0
 
-[[keyboard.bindings]]
-action = "Quit"
-key = "W"
-mods = "Command"
-
 [scrolling]
 history = 100000
 multiplier = 5
