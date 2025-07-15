@@ -38,6 +38,8 @@ size = 14.0
 history = 100000
 multiplier = 5
 
-[shell]
+[terminal]
+
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
