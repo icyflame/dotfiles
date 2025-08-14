@@ -55,15 +55,20 @@ In order to apply color schemes, run the appropriate script inside the `color-sc
 
 ### Gnome Shell Extension - PaperWM
 
-PaperWM's keybindings are stored in the `dconf` database. They can be fetched using `dconf dump` and
-`dconf read` and written using `dconf write`.
+PaperWM's keybindings are stored in the `dconf` database. They can be fetched using `dconf dump`,
+read individually using `dconf read`, written individually using `dconf write`, and set to the
+default values using `dconf reset -f`.
 
-See the script inside the `scripts/keybindings/` directory.
+See the script inside the `scripts/keybindings/` directory to use my preferred keys
 
 Note that PaperWM does not store its default keybindings anywhere. This means that for a new version
 of the PaperWM extension, there might be new actions that have gained keybindings. However, these
 will not show up in the `dconf` database. One would have to go to the extension's settings, and in
 the keybindings tab, manually update all the unnecessary keybindings to `Disabled`.
+
+``` sh
+$ export KEYBINDINGS_KEY="/org/gnome/shell/extensions/paperwm/keybindings/"; dconf reset -f "${KEYBINDINGS_KEY}"
+```
 
 ## [Unmaintained] Setting up an Apple computer
 
