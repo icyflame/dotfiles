@@ -35,10 +35,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Take screenshots using maim
-bindsym F1 exec "maim --hidecursor --select --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
-bindsym F2 exec "maim --hidecursor --select --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
-bindsym F3 exec "maim --hidecursor --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
-bindsym F4 exec "maim --hidecursor --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
+# TODO: maim runs on Wayland but copies a black image, rather than what is actually on screen.
+# bindsym F1 exec "maim --hidecursor --select --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
+# bindsym F2 exec "maim --hidecursor --select --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
+# bindsym F3 exec "maim --hidecursor --nodecorations=0 --noopengl | xclip -selection clipboard -t image/png"
+# bindsym F4 exec "maim --hidecursor --nodecorations=0 --noopengl > ~/Pictures/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
