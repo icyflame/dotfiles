@@ -4,11 +4,6 @@
 # Using Python. Port defaults to 8000.
 alias serve_simple="python3 -m http.server"
 
-# copy output of a command to the clipboard
-# solve stats | clip
-# then use Ctrl+V to paste
-alias clip="xclip -selection clipboard"
-
 # utility : show cron log, from syslog
 alias cronlog='less /var/log/syslog | grep -i cron'
 

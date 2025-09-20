@@ -504,3 +504,18 @@ function separate-extensions {
 		fi
 	done
 }
+
+# copy output of a command to the clipboard
+function clip {
+	if [[ $(command -v pbcopy 2>/dev/null) ]];
+	then
+		pbcopy
+	else
+		if [[ $(command -v wl-copy 2>/dev/null) ]];
+		then
+			wl-copy
+		else
+			echo "ERROR: Copy command not found (tried pbcopy and wl-copy)"
+		fi
+	fi
+}
