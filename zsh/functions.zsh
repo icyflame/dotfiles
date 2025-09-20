@@ -404,7 +404,19 @@ function copy {
         eval $last_cmd 1>$out 2>&1
     fi
 
-    cat $last_cmd_file $out | pbcopy
+	copy_command="pbcopy";
+	if [[ $(command -v wl-copy 2>/dev/null) ]];
+	then
+		copy_command="wl-copy";
+	fi
+
+	if [[ ! $(command -v "$copy_command" 2>/dev/null) ]];
+	then
+		echo "ERROR: Copy command is not available (pbcopy or wl-copy)"
+		return 2;
+	fi
+
+    cat $last_cmd_file $out | $copy_command
 }
 
 # yron: Get the gron output for the given YAML file
