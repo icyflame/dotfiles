@@ -519,3 +519,12 @@ function clip {
 		fi
 	fi
 }
+
+function url-encode {
+	if [[ $(command -v perl 2>/dev/null) ]];
+	then
+		perl -MURI::Escape -e 'print uri_escape(<>)'
+	else
+		echo "ERROR: Perl is required."
+	fi
+}
