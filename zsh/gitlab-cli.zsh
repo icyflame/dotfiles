@@ -59,3 +59,58 @@ glab-wait-for-pipeline () {
 
 	return 44;
 }
+
+glab-mr-get-command () {
+	local url=$1;
+	[[ -z "$url" ]] && echo "ERROR: URL must be provided" >&2 || \
+			echo "$url" | perl -MURI::Escape -lane 'm!(https://.+?)/(.+)/-/merge_requests/(.+)! && print "GITLAB_HOST=\"$1\" glab api \"/projects/" . uri_escape($2) . "/merge_requests/$3\""'
+}
+
+glab-mr-merge-commit () {
+	local mr_url=$1;
+	command=$(glab-mr-get-command "$mr_url")
+	commit_sha=$(eval $command | jq -r '.merge_commit_sha')
+	if [[ $commit_sha == "null" ]];
+	then
+		echo "ERROR: MR has not been merged yet, so merge commit does not exist" >&2
+	fi
+
+	echo "$commit_sha"
+}
+
+glab-check-commit-contains-mr () {
+	local commit=$1;
+	while true; do
+		shift;
+		mr=$1;
+		if [[ -z $mr ]];
+		then
+			echo "Done."
+			return
+		fi
+
+		merge_commit=$(glab-mr-merge-commit "$mr")
+		git log --pretty=format:'%H' "$commit" | grep -F -q -e "$merge_commit"
+		direct_hit=$?
+
+		cherry_picked_hit=-1
+		if [[ $direct_hit -ne 0 ]];
+		then
+			git log "$commit" | grep -F -q -e "(cherry picked from commit $merge_commit)"
+			cherry_picked_hit=$?
+		fi
+
+		if [[ $direct_hit -eq 0 || $cherry_picked_hit -eq 0 ]];
+		then
+			echo -n "INFO: $commit contains $mr (merge commit $merge_commit)"
+			if [[ $direct_hit -eq 0 ]];
+			then
+				echo " (direct)"
+			else
+				echo " (cherry picked)"
+			fi
+		else
+			echo "ERROR: $commit does not contain $mr (merge commit $merge_commit)";
+		fi
+	done
+}
