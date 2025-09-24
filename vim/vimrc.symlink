@@ -42,6 +42,11 @@ nmap fv ggVG          " highlight the complete buffer
 
 nmap <silent> <BS> :noh<CR>  " stop highlighting the last search expression
 
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 autocmd FileType markdown
             \ set comments=b:> |
             \ set flp=^\\s*\[-*+\]\\s |
