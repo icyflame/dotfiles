@@ -63,7 +63,7 @@ glab-wait-for-pipeline () {
 glab-mr-get-command () {
 	local url=$1;
 	[[ -z "$url" ]] && echo "ERROR: URL must be provided" >&2 || \
-			echo "$url" | perl -MURI::Escape -lane 'm!(https://.+?)/(.+)/-/merge_requests/(.+)! && print "GITLAB_HOST=\"$1\" glab api \"/projects/" . uri_escape($2) . "/merge_requests/$3\""'
+			echo "$url" | perl -MURI::Escape -lane 'm!(https://.+?)/(.+)/-/merge_requests/(.+)! && print "GITLAB_HOST=\"$1\" glab mr --repo \"$2\" view --output json $3"'
 }
 
 glab-mr-merge-commit () {
@@ -90,7 +90,7 @@ glab-check-commit-contains-mr () {
 		fi
 
 		merge_commit=$(glab-mr-merge-commit "$mr")
-		git log --pretty=format:'%H' "$commit" | grep -F -q -e "$merge_commit"
+		git merge-base --is-ancestor "$merge_commit" "$commit"
 		direct_hit=$?
 
 		cherry_picked_hit=-1
