@@ -4,7 +4,7 @@ pipeline-get-command () {
 			echo "$url" | perl -lane 'm!(https://.+?)/(.+)/-/pipelines/(.+)! && print "GITLAB_HOST=\"$1\" glab pipeline get --repo $2 --pipeline-id $3"'
 }
 
-wait-for-pipeline () {
+glab-wait-for-pipeline () {
 	# https://ops.gitlab.net/gitlab-com/gl-infra/k8s-workloads/gitlab-com/-/pipelines/4697472
 	local url=$1;
 	if [[ -z "$url" ]];
