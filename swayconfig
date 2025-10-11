@@ -15,12 +15,14 @@ font pango:monospace 12
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 # font pango:DejaVu Sans Mono 8
 
-bindsym $alt+Ctrl+l exec i3lock
+# Shortcut to Lock screen
+bindsym $alt+Ctrl+l exec swaylock
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# i3status refreshes itself when it gets the USR1 signal
 set $refresh_i3status killall -SIGUSR1 i3status
 
 # Use pactl to adjust volume in PulseAudio.
