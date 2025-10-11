@@ -25,11 +25,29 @@ exec --no-startup-id nm-applet
 # i3status refreshes itself when it gets the USR1 signal
 set $refresh_i3status killall -SIGUSR1 i3status
 
-# Use pactl to adjust volume in PulseAudio.
-# https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+# TODO: Keyboard shortcuts for mute and volume increase/decrease
+#
+# Use wpctl to use WirePlumber (Pipewire session manager) to control volume
+#
+# wpctl v0.4.8 does not have support for @DEFAULT_AUDIO_SINK@. There is no support for increasing or
+# decreasnig the current volume either.
+# https://github.com/PipeWire/wireplumber/blob/0.4.8/src/tools/wpctl.c
+#
+# These commands work:
+#
+#     $ wpctl status # Find the default Sink ID: 89
+#     $ wpctl set-mute 89 toggle # Toggle mute
+#     $ wpctl set-mute 89 1 # Mute default sink
+#     $ wpctl set-mute 89 0 # Unmute default sink
+#     $ wpctl set-volume 89 0.5 # Set volume to 50%
+#
+# These can be integrated if I build a newer version of wireplumber.
+#
+# wpctl commands: https://wiki.archlinux.org/title/WirePlumber#Keyboard_volume_control
+# keyboard shortcuts: https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
+bindsym XF86AudioRaiseVolume exec "swaynag -t warning -m 'Volume increase: Not supported yet'"
+bindsym XF86AudioLowerVolume exec "swaynag -t warning -m 'Volume decrease: Not supported yet'"
+bindsym XF86AudioMute exec "swaynag -t warning -m 'Mute sink: Not supported yet'"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
