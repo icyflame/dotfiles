@@ -67,7 +67,8 @@ bindsym F3 exec "grimshot copy active"
 bindsym F4 exec "grimshot save active ~/Screenshots/screenshot-from-$(date +'%Y-%m-%d-%H-%M-%S').png"
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+set $foot_exists command -v foot
+bindsym $mod+Return exec $foot_exists && foot
 
 # kill focused window
 bindsym $mod+Shift+q kill
