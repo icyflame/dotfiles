@@ -70,6 +70,17 @@ fi
 # Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln -f alacritty.toml $DEST_FILE" "$GLOBAL_DEBUG"
 
+### Foot (Terminal) Setup ###
+
+DEST_FILE="$HOME/.config/foot/foot.ini"
+echo_eval "mkdir -p $HOME/.config/foot" "$GLOBAL_DEBUG"
+if [[ -e "$DEST_FILE" ]];
+then
+    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/foot.ini.old" "$GLOBAL_DEBUG"
+fi
+# Note this should NOT be a symbolic link. It must be a hard link.
+echo_eval "ln -f foot.ini $DEST_FILE" "$GLOBAL_DEBUG"
+
 ### Sway window manager ###
 
 DEST_FILE="$HOME/.config/sway/config"
