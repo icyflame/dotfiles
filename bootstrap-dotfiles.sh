@@ -90,7 +90,7 @@ then
     echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/swayconfig.old" "$GLOBAL_DEBUG"
 fi
 # Note this should NOT be a symbolic link. It must be a hard link.
-echo_eval "cp -v swayconfig $DEST_FILE" "$GLOBAL_DEBUG"
+echo_eval "ln -f swayconfig $DEST_FILE" "$GLOBAL_DEBUG"
 
 DEST_FILE="$HOME/.config/i3status/config"
 echo_eval "mkdir -p $HOME/.config/i3status" "$GLOBAL_DEBUG"
