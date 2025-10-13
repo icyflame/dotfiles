@@ -168,7 +168,7 @@ exec_always --no-startup-id /usr/bin/setxkbmap -v 10 -option caps:escape
 
 # Don't use fcitx (use iBus instead, which is more modern and easier to use)
 # https://confluence.jaytaala.com/display/TKB/Japanese+input+with+i3+and+Arch+based+distros
-# exec --no-startup-id fcitx -d
+# exec --no-startup-id fcitx5 -d
 
 # Start ibus daemon and prepare to enter Japanese
 exec --no-startup-id ibus-daemon
