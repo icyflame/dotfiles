@@ -110,8 +110,14 @@ bindsym $mod+i floating toggle
 # Move focus from a floating window to the tiling windows
 bindsym $mod+o focus mode_toggle
 
-gaps inner 5
-gaps outer 5
+# Set default gaps for new workspaces to 0
+gaps inner 0
+gaps outer 0
+# Changes to gap values here will not take effect on reload, as it only sets the default values and
+# does not change the value for the current workspace. See
+# https://github.com/swaywm/sway/issues/5519
+# Gaps can be changed at the workspace-level using swaymsg:
+#    swaymsg gaps inner|outer all set 5
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
