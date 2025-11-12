@@ -2,9 +2,9 @@ IMAPStore home-remote
     Host imap.fastmail.com
     Port 993
     User mail@siddharthkannan.in
-    SSLType IMAPS
-    CertificateFile /etc/ssl/certs/ca-certificates.crt
-    PassCmd "/usr/bin/pass show fastmail"
+    TLSType IMAPS
+    # CertificateFile /etc/ssl/certs/ca-certificates.crt
+    PassCmd "/usr/bin/pass show fastmail/email"
 
 MaildirStore home-local
     Path /home2/mail/
@@ -23,5 +23,4 @@ Channel home
 	# Patterns *
 	#
 	# To enable only some folders to be synced:
-	# Patterns SENT
 	# Patterns "0 - Staging"
