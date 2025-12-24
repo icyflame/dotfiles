@@ -42,7 +42,9 @@ bash bootstrap-dotfiles.sh --go
 Now, when you open a new shell, you should see the zsh shell, with all your zprezto plugins
 included. You may have to logout and login in order to get the `chsh` to take effect.
 
-In order to apply color schemes, run the appropriate script inside the `color-schemes` directory.
+In order to apply color schemes, run the appropriate script inside the `color-schemes` directory. If
+you are using Alacritty, this will not be required because the color schemes are stored inside the
+Alacritty configuration directly.
 
 ## Keybindings
 
