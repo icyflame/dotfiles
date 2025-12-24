@@ -246,15 +246,15 @@ function replace_all {
 	# GNU sed on Linux machines is invoked using the sed command
 	command -v sed >/dev/null 2>&1 &&
 		sed --version | head -1 | grep -q GNU &&
-		cmd='rg -l "'$PATTERN'" | xargs sed -i -e "s/'$PATTERN'/'$REPLACEMENT'/g"'
+		cmd='rg -l "'$PATTERN'" | xargs sed -i -e "s#'$PATTERN'#'$REPLACEMENT'#g"'
 
 	if [[ -z "$cmd" ]];
 	then
 		# GNU sed on Mac OS machines is invoked using gsed
 		# Default sed on Mac OS machines is BSD sed which has slightly different options
 		command -v gsed >/dev/null 2>&1 &&
-			cmd='rg -l "'$PATTERN'" | xargs gsed -i -e "s/'$PATTERN'/'$REPLACEMENT'/g"' ||
-				cmd='rg -l "'$PATTERN'" | xargs sed -i "" -e "s/'$PATTERN'/'$REPLACEMENT'/g"'
+			cmd='rg -l "'$PATTERN'" | xargs gsed -i -e "s#'$PATTERN'#'$REPLACEMENT'#g"' ||
+				cmd='rg -l "'$PATTERN'" | xargs sed -i "" -e "s#'$PATTERN'#'$REPLACEMENT'#g"'
 	fi
 
     echo $cmd >&2
