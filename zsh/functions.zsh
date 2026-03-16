@@ -165,65 +165,6 @@ function go_test {
     fi
 }
 
-# got
-#
-# Go Test Runner utility
-function got {
-    if [[ "$1" == "-h" ]];
-    then
-        cat <<EOF
-
-Go Test Runner Utility
-
-$ got
--> runs for all packages and prints a summary of what happened
-
-$ got ./handler
--> runs for this package and prints a summary
-
-$ got ./handler NewPromote
--> runs for this package and prints a summary
-
-$ got ./handler -v
--> runs and doesn't change the output of `go test`
-
-$ got ./handler NewPromote -v
--> runs and doesn't change the output of `go test`
-EOF
-return 0;
-    fi
-
-    if [[ "$2" == "-v" ]]; then
-        go_test "$1" ""
-    elif [[ "$3" == "-v" ]]; then
-        go_test "$1" "$2"
-    else
-        TEST_OUTPUT=`go_test "$1" "$2" | rg "^--- [A-Z]"`
-
-		echo "$TEST_OUTPUT" | rg --quiet "FAIL" &&
-			FAIL=$(echo -n "$TEST_OUTPUT" | rg -F FAIL) ||
-				FAIL=""
-
-		echo "$TEST_OUTPUT" | rg --quiet "PASS" &&
-			PASS=$(echo -n "$TEST_OUTPUT" | rg -F PASS) || PASS=""
-
-		echo "$TEST_OUTPUT" | rg --quiet "SKIP" &&
-			SKIP=$(echo -n "$TEST_OUTPUT" | rg -F SKIP) || SKIP=""
-
-		FAIL_COUNT=$(echo -n "$FAIL" | wc -l)
-		SKIP_COUNT=$(echo -n "$SKIP" | wc -l)
-		PASS_COUNT=$(echo -n "$PASS" | wc -l)
-
-        if [[ $FAIL_COUNT -gt 0 ]]; then
-            echo "$FAIL" | colorize_go_tests
-            echo
-        fi
-
-		echo "$PASS_COUNT PASS; $FAIL_COUNT FAIL; $SKIP_COUNT SKIP"
-		echo
-    fi
-}
-
 function tmp_file {
     FILE_NAME="/tmp/tmp-$RANDOM"
     $EDITOR $FILE_NAME

@@ -45,3 +45,17 @@ function goeval {
 function gofmt_everything {
     find . -iname "*.go" | xargs gofmt -w -s
 }
+
+# got
+#
+# Go Test Runner utility
+function got {
+	echo "DEPRECATED: Use 'gotestsum' instead."
+
+	if [[ `command -v gotestsum 2>/dev/null` ]];
+	then
+		gotestsum
+	fi
+
+	return 1
+}
