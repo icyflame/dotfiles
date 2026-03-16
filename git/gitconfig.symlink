@@ -48,6 +48,8 @@
     pl = log --pretty=format:'(%h)\t%an\t%ai\t%s' --date=short
     plh = log --pretty=format:'(%H)\t%an\t%ai\t%s' --date=short
 
+    plo = "!git pull origin $(git current-branch)"
+
     poa = push origin --all
     pot = push origin --tags
     pia = push icyflame --all
