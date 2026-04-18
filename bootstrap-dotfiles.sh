@@ -67,7 +67,6 @@ if [[ -e "$DEST_FILE" ]];
 then
     echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/alacritty.toml.old" "$GLOBAL_DEBUG"
 fi
-# Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln -f alacritty.toml $DEST_FILE" "$GLOBAL_DEBUG"
 
 ### Foot (Terminal) Setup ###
@@ -78,7 +77,6 @@ if [[ -e "$DEST_FILE" ]];
 then
     echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/foot.ini.old" "$GLOBAL_DEBUG"
 fi
-# Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln -f foot.ini $DEST_FILE" "$GLOBAL_DEBUG"
 
 ### Sway window manager ###
@@ -89,7 +87,6 @@ if [[ -e "$DEST_FILE" ]];
 then
     echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/swayconfig.old" "$GLOBAL_DEBUG"
 fi
-# Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "ln -f swayconfig $DEST_FILE" "$GLOBAL_DEBUG"
 
 DEST_FILE="$HOME/.config/i3status/config"
