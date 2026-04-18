@@ -98,6 +98,24 @@ fi
 # Note this should NOT be a symbolic link. It must be a hard link.
 echo_eval "cp -v i3status.config $DEST_FILE" "$GLOBAL_DEBUG"
 
+### Nix ###
+
+DEST_FILE="$HOME/.config/nix/nix.conf"
+echo_eval "mkdir -p $HOME/.config/nix" "$GLOBAL_DEBUG"
+if [[ -e "$DEST_FILE" ]];
+then
+    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/nix.conf.old" "$GLOBAL_DEBUG"
+fi
+echo_eval "ln -f config/nix/nix.conf $DEST_FILE" "$GLOBAL_DEBUG"
+
+DEST_FILE="$HOME/.config/nixpkgs/config.nix"
+echo_eval "mkdir -p $HOME/.config/nixpkgs" "$GLOBAL_DEBUG"
+if [[ -e "$DEST_FILE" ]];
+then
+    echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/config.nix.old" "$GLOBAL_DEBUG"
+fi
+echo_eval "ln -f config/nixpkgs/config.nix $DEST_FILE" "$GLOBAL_DEBUG"
+
 # setopt EXTENDED_GLOB
 for rcfile in `find $DOTFILES_LOC/.zprezto/runcoms -type f -not -name "README.md"`; do
   base=$(basename $rcfile)
