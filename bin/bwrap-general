@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# Base script: https://github.com/cyunrei/opencode-bwrap/blob/3c030da77afaf9ff122902a4c250e348e645f5fe/opencode-bwrap
+
+# opencode sandbox wrapper with configurable binds
+# Config file: ~/.config/opencode-bwrap/bwrap.conf
+
+set -o errexit -o nounset -o errtrace
+
+log_message() {
+	printf "%s\n" "${*}" >&2
+}
+
+log_error()   { log_message "ERROR"   "${@}"; }
+log_info()    { log_message "INFO"    "${@}"; }
+log_warning() { log_message "WARNING" "${@}"; }
+log_debug()   { log_message "DEBUG"   "${@}"; }
+
+# Dependency Check
+require_command() {
+    local missing=()
+    for c in "${@}"; do
+        if ! command -v "${c}" >/dev/null 2>&1; then
+            missing+=("${c}")
+        fi
+    done
+
+    if [[ ${#missing[@]} -gt 0 ]]; then
+        log_error "Required command(s) not installed: ${missing[*]}"
+        exit 1
+    fi
+}
+
+# Main function
+main() {
+    require_command bwrap
+
+    # Base bwrap arguments (always included)
+    local base_args=(
+        --unshare-pid
+        --unshare-uts
+        --unshare-ipc
+        --share-net
+        --die-with-parent
+        --new-session
+
+        --dev /dev
+
+        --ro-bind /usr /usr
+        --ro-bind /etc /etc
+        --ro-bind /lib /lib
+        --ro-bind-try /lib64 /lib64
+        --ro-bind-try /lib32 /lib32
+
+        --symlink usr/bin /bin
+        --symlink usr/sbin /sbin
+
+        --proc /proc
+
+        --tmpfs /tmp
+        --tmpfs /run
+    )
+
+    exec bwrap "${base_args[@]}" "${@}"
+}
+
+main "${@}"
