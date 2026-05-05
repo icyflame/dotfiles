@@ -469,3 +469,11 @@ function url-encode {
 		echo "ERROR: Perl is required."
 	fi
 }
+
+function am-i-online {
+	for i in `seq 1 1000`;
+	do
+		date;
+		dig +timeout=1 +short g.co; sleep 1;
+	done
+}
