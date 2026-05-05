@@ -151,6 +151,9 @@ DEBEMAIL="mail@siddharthkannan.in"
 CASK_LOCATION="$HOME/.cask"
 [ -d $CASK_LOCATION ] && export PATH="$PATH:$CASK_LOCATION/bin"
 
+# Include the auto-completion script for Jujutsu (jj)
+[[ -f $(which jj) ]] && [[ -x $(which jj) ]] && source <(COMPLETE=zsh jj)
+
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 [[ -f $(which mise) ]] && eval "$(mise activate zsh)"

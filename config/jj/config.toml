@@ -1,0 +1,8 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "Siddharth Kannan"
+email = "mail@siddharthkannan.in"
+
+[ui]
+default-command = "st"
