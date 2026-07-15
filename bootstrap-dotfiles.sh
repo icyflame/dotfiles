@@ -116,6 +116,8 @@ then
 fi
 echo_eval "ln -f config/nixpkgs/config.nix $DEST_FILE" "$GLOBAL_DEBUG"
 
+### Jujutsu ###
+
 DEST_FILE="$HOME/.config/jj/config.toml"
 echo_eval "mkdir -p $HOME/.config/jj" "$GLOBAL_DEBUG"
 if [[ -e "$DEST_FILE" ]];
