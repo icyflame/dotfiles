@@ -1,4 +1,5 @@
 # Core shell setup
+export SHELL="$(which zsh)"
 
 # Prezto
 ZDOTDIR="$HOME/code/dotfiles"
