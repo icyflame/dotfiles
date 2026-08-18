@@ -76,8 +76,8 @@ set -g @override_copy_command 'xclip -selection clipboard -in'
 
 # changing the key-bindings to move windows around
 # http://superuser.com/a/552493/207372
-bind-key -n C-S-Left swap-window -t -1
-bind-key -n C-S-Right swap-window -t +1
+bind-key -n C-S-Left swap-window -t -1 \; select-window -t -1
+bind-key -n C-S-Right swap-window -t +1 \; select-window -t +1
 
 # move around with vim-like bindings
 # https://stackoverflow.com/a/30719312
