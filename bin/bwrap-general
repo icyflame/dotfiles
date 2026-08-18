@@ -37,17 +37,24 @@ main() {
 
     # Base bwrap arguments (always included)
     local base_args=(
+		--unshare-all
         --unshare-pid
         --unshare-uts
         --unshare-ipc
         --share-net
         --die-with-parent
         --new-session
+        --clearenv
 
         --dev /dev
 
+        --ro-bind /etc/resolv.conf /etc/resolv.conf
+        --ro-bind /etc/hosts /etc/hosts
+        --ro-bind /etc/ssl /etc/ssl
+        --ro-bind /etc/passwd /etc/passwd
+        --ro-bind /etc/group /etc/group
+
         --ro-bind /usr /usr
-        --ro-bind /etc /etc
         --ro-bind /lib /lib
         --ro-bind-try /lib64 /lib64
         --ro-bind-try /lib32 /lib32
