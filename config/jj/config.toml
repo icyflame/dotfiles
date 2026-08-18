@@ -6,3 +6,7 @@ email = "mail@siddharthkannan.in"
 
 [ui]
 default-command = "st"
+
+[colors]
+"diff removed token" = { underline = false }
+"diff added token" = { underline = false }

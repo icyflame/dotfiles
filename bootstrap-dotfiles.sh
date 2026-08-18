@@ -124,7 +124,7 @@ if [[ -e "$DEST_FILE" ]];
 then
     echo_eval "cp -v $DEST_FILE $OLD_DOTFILES_LOC/config.nix.old" "$GLOBAL_DEBUG"
 fi
-echo_eval "cp -f config/jj/config.toml $DEST_FILE" "$GLOBAL_DEBUG"
+echo_eval "ln -f ./config/jj/config.toml $DEST_FILE" "$GLOBAL_DEBUG"
 
 ### Helix ###
 
