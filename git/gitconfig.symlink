@@ -6,7 +6,7 @@
     smtpserver = /usr/bin/msmtp
 
 [core]
-    editor = vim
+    editor = hx
     excludesfile = ~/.gitignore_global
     autocrlf = input
     filemode = true
