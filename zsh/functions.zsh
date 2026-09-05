@@ -477,3 +477,14 @@ function am-i-online {
 		dig +timeout=1 +short g.co; sleep 1;
 	done
 }
+
+function opencode {
+	nono run --allow-cwd \
+		 --profile nolabs-ai/opencode \
+		 --read /home/siddharth/.local/share/mise/installs/ruby/ \
+		 --read /home/siddharth/.local/share/mise/installs/glab/ \
+		 --read /home/siddharth/.local/share/mise/installs/jj/ \
+		 --allow /home/siddharth/code/ai-implementation-plans/ \
+		 --allow-file ~/.bun/bin/opencode $@ \
+		 -- ~/.bun/bin/opencode
+}
