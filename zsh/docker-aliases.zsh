@@ -22,3 +22,21 @@ dock_readeck () {
 	check_docker
 	docker run --rm -dit --name readeck -p 8000:8000 -v readeck-data:/readeck codeberg.org/readeck/readeck:latest
 }
+
+dock_hledger () {
+	check_docker
+    docker run -i --rm -v "$(pwd):/data:ro" -w /data dastapov/hledger:1.42.1 hledger $@
+}
+
+dock_ledger () {
+	check_docker
+    docker run -i --rm -v "$(pwd):/data:ro" -w /data dcycle/ledger:1 $@
+}
+
+podman_hledger () {
+    podman run -i --rm -v "$(pwd):/data:ro" -w /data docker.io/dastapov/hledger:1.42.1 hledger $@
+}
+
+podman_ledger () {
+    podman run -i --rm -v "$(pwd):/data:ro" -w /data docker.io/dcycle/ledger:1 $@
+}
