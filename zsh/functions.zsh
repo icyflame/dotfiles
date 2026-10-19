@@ -488,3 +488,10 @@ function opencode {
 		 --allow-file ~/.bun/bin/opencode $@ \
 		 -- ~/.bun/bin/opencode
 }
+
+function copspec {
+	mise i -y;
+	bundle i;
+	bundle exec rubocop;
+	bundle exec rspec;
+}
