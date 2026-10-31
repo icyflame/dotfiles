@@ -10,3 +10,19 @@ default-command = "st"
 [colors]
 "diff removed token" = { underline = false }
 "diff added token" = { underline = false }
+
+[aliases]
+bookmark-name = {
+    definition = ["log", "--no-graph", "--color=never", "--revision", "@", "--template", "self.local_bookmarks().first().name()"],
+	doc = "Local bookmark pointing to the current working copy change"
+}
+
+change-id-short = {
+    definition = ["log", "--no-graph", "--color=never", "--revision", "@", "--template", "self.change_id().short()"],
+	doc = "Short change ID of the working copy"
+}
+
+change-id-shortest = {
+    definition = ["log", "--no-graph", "--color=never", "--revision", "@", "--template", "self.change_id().shortest()"],
+	doc = "Shortest change ID alias for the working copy"
+}
