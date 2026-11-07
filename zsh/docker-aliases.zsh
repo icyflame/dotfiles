@@ -17,3 +17,8 @@ dock_excalidraw () {
 	check_docker
 	docker run --rm -dit --name excalidraw -p 5000:80 excalidraw/excalidraw:latest
 }
+
+dock_readeck () {
+	check_docker
+	docker run --rm -dit --name readeck -p 8000:8000 -v readeck-data:/readeck codeberg.org/readeck/readeck:latest
+}
