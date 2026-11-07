@@ -2,6 +2,10 @@
 
 # Base script: https://github.com/cyunrei/opencode-bwrap/blob/3c030da77afaf9ff122902a4c250e348e645f5fe/opencode-bwrap
 
+# Similar scripts:
+#
+# - https://github.com/evilsquid888/claude-bubblewrap/blob/e39389b699ddde9a07967d26b10701d315115099/claude-sandbox.sh
+
 # opencode sandbox wrapper with configurable binds
 # Config file: ~/.config/opencode-bwrap/bwrap.conf
 
@@ -66,6 +70,8 @@ main() {
 
         --tmpfs /tmp
         --tmpfs /run
+
+		--ro-bind /run/resolvconf/resolv.conf /run/resolvconf/resolv.conf
     )
 
     exec bwrap "${base_args[@]}" "${@}"
